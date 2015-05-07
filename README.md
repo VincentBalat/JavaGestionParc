@@ -13,3 +13,8 @@ git config --global user.email votreadresse@courriel.com
 maintenant ajouter le projet GIT dans netbeans via le menu TEAM
 
 Travail uniquement dans la branch TEST
+
+
+#comprendre GIT
+
+http://longair.net/blog/2009/04/16/git-fetch-and-merge/
