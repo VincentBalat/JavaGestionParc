@@ -6,9 +6,9 @@
 package net.stri.batm.gestionparc;
 
 /**
- * Cette classse permet nana
- * @author Vince
+ * Cette classe est s
+ * @author VincentBalat
  */
-public class Batiment {
-
+public class Ordinateur extends Equipement{
+    
 }
