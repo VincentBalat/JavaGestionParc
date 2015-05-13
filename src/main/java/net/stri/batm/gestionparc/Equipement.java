@@ -13,6 +13,14 @@ package net.stri.batm.gestionparc;
  */
 public class Equipement {
     private String nom;
+
+    public Equipement(String nom, String marque, String modele, String SN, boolean actif) {
+        this.nom = nom;
+        this.marque = marque;
+        this.modele = modele;
+        this.SN = SN;
+        this.actif = actif;
+    }
     
     /**
      *
