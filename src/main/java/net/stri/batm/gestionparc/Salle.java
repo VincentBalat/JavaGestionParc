@@ -11,6 +11,10 @@ package net.stri.batm.gestionparc;
  */
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Vince
+ */
 public class Salle {
 
 	private Batiment batiment;
@@ -20,7 +24,15 @@ public class Salle {
 	private int etage;
 	private ArrayList<Equipement> equipements;
 
-	public Salle(Batiment batiment, int id, String name, int num, int etage) {
+    /**
+     *
+     * @param batiment
+     * @param id
+     * @param name
+     * @param num
+     * @param etage
+     */
+    public Salle(Batiment batiment, int id, String name, int num, int etage) {
 		this.batiment = batiment;
 		this.id = id;
 		this.name = name;
@@ -29,43 +41,83 @@ public class Salle {
 		equipements = new ArrayList<Equipement>();
 	}
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getNum() {
+    /**
+     *
+     * @return
+     */
+    public int getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+    /**
+     *
+     * @param num
+     */
+    public void setNum(int num) {
 		this.num = num;
 	}
 
-	public Batiment getBatiment() {
+    /**
+     *
+     * @return
+     */
+    public Batiment getBatiment() {
 		return batiment;
 	}
 
-	public int getId() {
+    /**
+     *
+     * @return
+     */
+    public int getId() {
 		return id;
 	}
 
-	public int getEtage() {
+    /**
+     *
+     * @return
+     */
+    public int getEtage() {
 		return etage;
 	}
 
-	public ArrayList<Equipement> getEquipements() {
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Equipement> getEquipements() {
 		return equipements;
 	}
 
-	public void addEquipement(Equipement equipement) {
+    /**
+     *
+     * @param equipement
+     */
+    public void addEquipement(Equipement equipement) {
 		equipements.add(equipement);
 	}
 
-	public void removeEquipement(Equipement equipement) {
+    /**
+     *
+     * @param equipement
+     */
+    public void removeEquipement(Equipement equipement) {
 		if (!equipements.contains(equipement)) {
 			System.out.println("This equipement is not in this salle...");
 		} else {

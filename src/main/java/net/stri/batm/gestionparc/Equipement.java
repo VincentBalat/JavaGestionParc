@@ -13,7 +13,7 @@ package net.stri.batm.gestionparc;
  */
 public class Equipement {
     private String nom;
-
+    
     /**
      *
      * @return

@@ -5,8 +5,17 @@
  */
 package net.stri.batm.gestionparc;
 
+/**
+ *
+ * @author Xavier
+ */
+
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Vince
+ */
 public class Batiment {
 
 	private int id;
@@ -14,42 +23,80 @@ public class Batiment {
 	private int num;
 	private ArrayList<Salle> salles;
 
-	public Batiment(int id, String name, int num) {
+    /**
+     *
+     * @param id
+     * @param name
+     * @param num
+     */
+    public Batiment(int id, String name, int num) {
 		this.id = id;
 		this.name = name;
 		this.num = num;
 		salles = new ArrayList<Salle>();
 	}
 
-	public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+    /**
+     *
+     * @param name
+     */
+    public void setName(String name) {
 		this.name = name;
 	}
 
-	public int getNum() {
+    /**
+     *
+     * @return
+     */
+    public int getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+    /**
+     *
+     * @param num
+     */
+    public void setNum(int num) {
 		this.num = num;
 	}
 
-	public int getId() {
+    /**
+     *
+     * @return
+     */
+    public int getId() {
 		return id;
 	}
 
-	public ArrayList<Salle> getSalles() {
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Salle> getSalles() {
 		return salles;
 	}
 
-	public void addSalle(Salle salle) {
+    /**
+     *
+     * @param salle
+     */
+    public void addSalle(Salle salle) {
 		salles.add(salle);
 	}
 
-	public void removeSalle(Salle salle) {
+    /**
+     *
+     * @param salle
+     */
+    public void removeSalle(Salle salle) {
 		if (!salles.contains(salle)) {
 			System.out.println("This salle is not in this batiment...");
 		} else {
