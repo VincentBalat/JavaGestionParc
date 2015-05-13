@@ -12,7 +12,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 /**
- *
+ * Cette classe permet de créer les tables de la base de données.
+ * La base de données doit être préalablement créée.
  * @author Gaspar
  */
 public class Connect {
