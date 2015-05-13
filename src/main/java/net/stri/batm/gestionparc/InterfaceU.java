@@ -1,7 +1,4 @@
 package net.stri.batm.gestionparc;
-
-
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,6 +9,7 @@ package net.stri.batm.gestionparc;
  * @author 21408200
  */
 public class InterfaceU extends javax.swing.JFrame {
+    private Object Interface;
 
     /**
      * Creates new form InterfaceU
@@ -29,7 +27,7 @@ public class InterfaceU extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        Gestion = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -39,10 +37,15 @@ public class InterfaceU extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("GESTION");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Gestion.setText("GESTION");
+        Gestion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GestionMouseClicked(evt);
+            }
+        });
+        Gestion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                GestionActionPerformed(evt);
             }
         });
 
@@ -50,6 +53,11 @@ public class InterfaceU extends javax.swing.JFrame {
             String[] strings = { "Batiment A", "Batiment B", "Batiment C", "Batiment D" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
         });
         jScrollPane1.setViewportView(jList1);
 
@@ -87,8 +95,8 @@ public class InterfaceU extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(223, 223, 223)
+                        .addComponent(Gestion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,17 +108,32 @@ public class InterfaceU extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
                         .addComponent(jScrollPane1))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addGap(29, 29, 29)
+                .addComponent(Gestion, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void GestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionActionPerformed
+        FrameGestion j = new FrameGestion();
+        j.setVisible(true);
+       //Frame2.setVisible(true);
+    }//GEN-LAST:event_GestionActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+         System.out.println("Mouse-button clicked (pressed and released)!");
+         
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void GestionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GestionMouseClicked
+        // TODO add your handling code here:
+//Frame2.setVisible(true);
+    }//GEN-LAST:event_GestionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -147,7 +170,7 @@ public class InterfaceU extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Gestion;
     private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
