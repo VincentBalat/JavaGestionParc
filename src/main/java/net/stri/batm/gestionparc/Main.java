@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
        
-        Batiment b = new Batiment();        
+        Batiment b = new Batiment(1, "Batiment1", 2);        
         // TODO code application logic here
     }
     
