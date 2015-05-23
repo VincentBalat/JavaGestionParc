@@ -99,17 +99,18 @@ public class Controller {
          * @param name
          * @param marque
          * @param modele
+         * @param num
          * @param active
          * @param type 
          */
         
         public void addEquipement(Salle salle, String SN, String name, 
-                        String marque, String modele, boolean active, String type) {
+                        String marque, String modele, int num, boolean active, String type) {
 		Equipement equipement = new Equipement(salle, name, marque, modele, SN, active, type);
 		salle.addEquipement(equipement);
                 BD bd = new BD();
                 bd.requete("INSERT INTO equipements VALUES ('"+SN+"','"+name+"',"
-                        + "'"+marque+"','"+modele+"',"+active+","+null+","
+                        + "'"+marque+"','"+modele+"',"+num+","+active+","+null+","
                         + null+","+null+",'"+type+"',"+salle.getId()+");");
 	}
         
@@ -256,14 +257,14 @@ public class Controller {
                         BD bd = new BD();
                         bd.requete("UPDATE interfaces SET ideq ="+null+"where ideq = '"+or.getSN()+"';");
                         or.importInterfaces();
-                        bd.requete("DELETE FROM equipements where sn = '"+or.getSN()+"';");
+                        bd.requete("DELETE FROM ordinateurs where sn = '"+or.getSN()+"';");
 			or.getSalle().removeOrdinateur(or);
 		}
 	}
         
         /**
          * Supprime une interface, la supprime de sa base de donnée
-     * @param mac
+         * @param sn
          * @throws SQLException 
          */
         
@@ -291,105 +292,6 @@ public class Controller {
                         }
 		}
 	}      
-        
-        public void modifyBatiment(int id, String name, int num) throws SQLException{
-            Batiment batiment = null;
-            for(Batiment b : batiments){
-                if (b.getId()==id){
-                    batiment = b;
-                    break;
-                }
-            }
-            if(batiment != null){
-                BD bd = new BD();
-                bd.requete("UPDATE batiments SET nomb ='"+name+"', numb = "+num+"where idbatiment = '"+id+"';");
-                
-            }
-            
-        }
-        
-        public void modifySalle(int id, Batiment batiment, String name, int num, int etage) throws SQLException{
-            ArrayList<Salle> salles = listAllSalles();
-		Salle sal = null;
-		for(Salle salle:salles){
-			if (salle.getId()==id){
-				sal = salle;
-				break;
-			}
-		}
-		if(sal!=null){
-                        BD bd = new BD();
-                        bd.requete("UPDATE salles SET nomS ='"+name+"', nums = "+num+", etage = "+etage+", "
-                                + "idbat= "+batiment.getId()+"where idsalle = "+id+";");
-                        batiment.importSalles();
-		}
-        }
-        
-        public void modifyEquipement(String sn, Salle salle, String name, String marque, String modele, boolean actif, String type) throws SQLException{
-            ArrayList<Equipement> equipements = listAllEquipements();
-		Equipement eq = null;
-		for(Equipement equipement:equipements){
-			if (equipement.getSN() == null ? sn == null : equipement.getSN().equals(sn)){
-				eq = equipement;
-				break;
-			}
-		}
-		if(eq!=null){
-                        BD bd = new BD();
-                        bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
-                                + "active ='"+actif+"',type = '"+type+"',idsalle = "+salle.getId()
-                                + " where ideq = '"+sn+"';");
-                        salle.importequipements();
-		}
-        }
-        
-        public void modifyOrdinateur(String sn, Salle salle, String name, String marque, 
-                String modele, boolean actif, String process, int ram, int dd, String type) throws SQLException{
-            ArrayList<Equipement> equipements = listAllEquipements();
-		Equipement eq = null;
-		for(Equipement equipement:equipements){
-			if (equipement.getSN() == null ? sn == null : equipement.getSN().equals(sn)){
-				eq = equipement;
-				break;
-			}
-		}
-		if(eq!=null){
-                        BD bd = new BD();
-                        bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
-                                + "active ='"+actif+"', processeur = "+process+", ram = "+ram+", "
-                                + "disque = "+dd+",type = '"+type+"',idsalle = "+salle.getId()
-                                + " where ideq = '"+sn+"';");
-                        salle.importequipements();
-		}
-        }
-        
-        public void modifyInterface(String mac, Object eq, String ip, String name, int speed) throws SQLException {
-		ArrayList<Interface> interfaces = listAllInterfaces();
-		Interface in = null;
-		for(Interface inter:interfaces){
-			if (inter.getMAC()== null ? mac == null : inter.getMAC().equals(mac)){
-				in = inter;
-				break;
-			}
-		}
-		if(in!=null){
-                        BD bd = new BD();
-                        			
-                        Object obj = in.getEquipement();
-                        if (obj instanceof Ordinateur){
-                            Ordinateur ord = (Ordinateur)obj;
-                            bd.requete("UPDATE interface SET ip ='"+ip+"',nomint ='"+name+"',vitesse ="+speed
-                                + "ideq = '"+ord.getSN()+"' where mac = '"+mac+"';");
-                            ord.importInterfaces();
-                        }
-                        else if (obj instanceof Equipement){
-                            Equipement equ = (Equipement)obj;
-                            bd.requete("UPDATE interface SET ip ='"+ip+"',nomint ='"+name+"',vitesse ="+speed
-                                + "ideq = '"+equ.getSN()+"' where mac = '"+mac+"';");
-                            equ.importInterfaces();
-                        }
-		}
-	} 
         
 
 	private ArrayList<Salle> listAllSalles() {
