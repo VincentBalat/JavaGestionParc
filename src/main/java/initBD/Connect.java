@@ -59,8 +59,7 @@ public class Connect {
 "       (SN         VARCHAR(255) CONSTRAINT PK_IdEquipement PRIMARY KEY,\n" +
 "        NomEq      VARCHAR(255),\n" +
 "        Marque     VARCHAR(255),\n" +
-"        Modele     VARCHAR(255),\n" +              
-"        NumEq      INT,\n" +
+"        Modele     VARCHAR(255),\n" +
 "        Active     BOOLEAN,\n" +
 "        Processeur VARCHAR(255),\n" +
 "        RAM        INT,\n" +
