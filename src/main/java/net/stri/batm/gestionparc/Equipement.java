@@ -1,5 +1,9 @@
 package net.stri.batm.gestionparc;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,14 +16,42 @@ package net.stri.batm.gestionparc;
  * @author VincentBalat
  */
 public class Equipement {
+    
     private String nom;
+    private String marque;
+    private String modele;
+    private String SN;
+    private boolean actif;
+    private String type;
+    private ArrayList<Interface> interfaces;
 
-    public Equipement(String nom, String marque, String modele, String SN, boolean actif) {
+    public Equipement(String nom, String marque, String modele, String SN, boolean actif, String type) {
         this.nom = nom;
         this.marque = marque;
         this.modele = modele;
         this.SN = SN;
+        this.type = type;
         this.actif = actif;
+    }
+    
+    public void majint() throws SQLException{
+        
+        ResultSet element;
+        
+        BD bd = new BD();
+        
+        int i = 0;
+        
+        element = bd.selectRs("SELECT * FROM Interfaces WHERE sn = "+SN+";");
+        
+        while(element.next()) {
+            
+            Interface in = new Interface((String)element.getString("mac"), (String)element.getString("ip"), (String)element.getString("nomint"), (int)element.getInt("vitesse"));
+            interfaces.add(i,in);
+            i++;
+            
+        }
+        
     }
     
     /**
@@ -101,11 +133,6 @@ public class Equipement {
     public void setActif(boolean actif) {
         this.actif = actif;
     }
-    private String marque;
-    private String modele;
-    private String SN;
-    private boolean actif;
-    
     
     
       

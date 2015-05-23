@@ -11,6 +11,16 @@ package net.stri.batm.gestionparc;
  */
 public class Interface {
     private String Nom;
+    private String IP;
+    private String MAC;
+    private int Vitesse;
+    
+    public Interface(String MAC, String IP, String Nom, int Vitesse){
+        this.Nom = Nom;
+        this.IP = IP;
+        this.MAC = MAC;
+        this.Vitesse = Vitesse;
+    }
 
     /**
      *
@@ -64,7 +74,7 @@ public class Interface {
      *
      * @return
      */
-    public String getVitesse() {
+    public int getVitesse() {
         return Vitesse;
     }
 
@@ -72,11 +82,9 @@ public class Interface {
      *
      * @param Vitesse
      */
-    public void setVitesse(String Vitesse) {
+    public void setVitesse(int Vitesse) {
         this.Vitesse = Vitesse;
     }
-    private String IP;
-    private String MAC;
-    private String Vitesse;
+    
     
 }

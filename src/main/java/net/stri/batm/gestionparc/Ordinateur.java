@@ -39,7 +39,7 @@ public class Ordinateur extends Equipement{
      * @param RAM
      */
     public Ordinateur(String nom, String marque, String modele, String SN, boolean actif, String processeur, int DD, int RAM){
-        super(nom, marque, modele, SN, actif);
+        super(nom, marque, modele, SN, actif, "Ordinateur");
         this.processeur = processeur;
         this.DD = DD;
         this.RAM = RAM;

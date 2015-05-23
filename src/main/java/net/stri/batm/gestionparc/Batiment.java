@@ -10,6 +10,9 @@ package net.stri.batm.gestionparc;
  * @author Xavier
  */
 
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,24 +40,21 @@ public class Batiment {
 		salles = new ArrayList<Salle>();
 	}
     
-    public void majsalle(){
+    public void majsalle() throws SQLException{
         
-        HashMap<String, Object> element = new HashMap<String, Object>();
+        ResultSet element;
         
-        boolean fin = false;
         BD bd = new BD();
         
         int i = 0;
         
-        do {
-            element = bd.select("SELECT * FROM Salle WHERE idsalle = ".concat(Integer.toString(i)));
-            
-            Salle s = new Salle((int)element.get("idsalle"), (String)element.get("noms"), (int)element.get("nums"), (int)element.get("idbat"));
+        element = bd.selectRs("SELECT * FROM Salle WHERE idbatiment = " + id);
+        
+        while(element.next()) {
+            Salle s = new Salle(this, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etages"));
             salles.add(i,s);
             i++;
-            if(element == null)
-                fin = true;
-        }while(!fin);
+        }
     }
 
     /**

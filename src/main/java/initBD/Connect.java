@@ -56,7 +56,8 @@ public class Connect {
 "        IdBat      INT CONSTRAINT FK_IdBat REFERENCES Batiments(IdBatiment));\n");
       
       state.execute("CREATE TABLE Equipements\n" +
-"       (SN         VARCHAR(255) CONSTRAINT PK_IdEquipement PRIMARY KEY,\n" +     
+"       (SN         VARCHAR(255) CONSTRAINT PK_IdEquipement PRIMARY KEY,\n" +  
+"        Idequipement INT,\n" +
 "        NomEq      VARCHAR(255),\n" +
 "        Marque     VARCHAR(255),\n" +
 "        Modele     VARCHAR(255),\n" +              

@@ -21,10 +21,10 @@ import net.stri.batm.gestionparc.Interface;
 public class BD {
     
     private ArrayList<Batiment> batiments;
-   /*private ArrayList<Salle> salles;
+    private ArrayList<Salle> salles;
     private ArrayList<Equipement> equipements;
     private ArrayList<Ordinateur> ordinateurs;
-    private ArrayList<Interface> interfaces;*/
+    private ArrayList<Interface> interfaces;
     
     /**
      * La méthode initialisation permet la connexion à la base de données.
@@ -34,6 +34,10 @@ public class BD {
     
     public BD(){
         batiments = new ArrayList<Batiment>();
+        salles = new ArrayList<Salle>(); 
+        equipements = new ArrayList<Equipement>(); 
+        ordinateurs = new ArrayList<Ordinateur>(); 
+        interfaces = new ArrayList<Interface>(); 
     }
     
     private Statement initialisation(){
@@ -53,6 +57,24 @@ public class BD {
             e.printStackTrace();
             return null;
         }
+    }
+    
+    public ResultSet selectRs(String query) {
+        try{
+            
+            Statement init = this.initialisation();
+            //L'objet ResultSet contient le résultat de la requête SQL
+            ResultSet result = init.executeQuery(query);
+            
+           init.close();
+           
+           return result;
+         
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
     
     public HashMap<String, Object> select(String query) {
@@ -86,62 +108,81 @@ public class BD {
         
     }
     
-    
-    
-    public void majbat() {
+    public void majbat() throws SQLException {
         
-        HashMap<String, Object> element = new HashMap<String, Object>();
+        ResultSet element;
         
-        boolean fin = false;
+        BD bd = new BD();
         
         int i = 0;
-                
-        do {
-            element = select("SELECT * FROM Batiments WHERE idbatiment = ".concat(Integer.toString(i)));
-            
-            Batiment b = new Batiment((int)element.get("idbatiment"), (String)element.get("nomb"), (int)element.get("numb"));
+        
+        element = bd.selectRs("SELECT * FROM batiments;");
+        
+        while(element.next()) {
+            Batiment b = new Batiment((int)element.getInt("idbatiment"), (String)element.getString("nomb"), (int)element.getInt("numb"));
             batiments.add(i,b);
             i++;
-            if(element == null)
-                fin = true;
-        }while(!fin);
+        }
     }
+    
+    public void majsalle() throws SQLException{
         
-    public void majeq(){
+        ResultSet element;
         
-        HashMap<String, Object> element = new HashMap<String, Object>();
-        
-        boolean fin = false;
+        BD bd = new BD();
         
         int i = 0;
         
-        do {
-            element = select("SELECT * FROM Equipements WHERE idequipement = ".concat(Integer.toString(i)));
+        element = bd.selectRs("SELECT * FROM Salle;");
+        
+        while(element.next()) {
+            Salle s = new Salle(null, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etages"));
+            salles.add(i,s);
+            i++;
+        }
+    }
+        
+    public void majeq() throws SQLException{
+        
+        ResultSet element;
+        
+        BD bd = new BD();
+        
+        int i = 0;
+        
+        element = bd.selectRs("SELECT * FROM Equipements;");
+        
+        while(element.next()) {
             
-            if((String)element.get("type") == "Ordinateur"){
-                Ordinateur o = new Ordinateur((String)element.get("nomeq"), (String)element.get("marque"), (String)element.get("modele"),(String)element.get("SN"), (boolean)element.get("active"), (String)element.get("Processeur"), (int)element.get("disque"), (int)element.get("ram"));
+            if("Ordinateur".equals((String)element.getString("type"))){
+                Ordinateur o = new Ordinateur((String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"),(String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("Processeur"), (int)element.getInt("disque"), (int)element.getInt("ram"));
                 ordinateurs.add(i,o);
             } else {
-                Equipement e = new Equipement((String)element.get("nomeq"), (String)element.get("marque"), (String)element.get("modele"), (String)element.get("SN"), (boolean)element.get("active")/*, (String)element.get("type")*/);
+                Equipement e = new Equipement((String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"), (String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("type"));
                 equipements.add(i,e);
             }
             i++;
-            if(element == null)
-                fin = true;
-        }while(!fin);
+           
+        }
     }
     
-    public void majint(){
+    public void majint() throws SQLException{
         
-        do {
-            element = select("SELECT * FROM Interfaces WHERE idint = ".concat(Integer.toString(i)));
+        ResultSet element;
+        
+        BD bd = new BD();
+        
+        int i = 0;
+        
+        element = bd.selectRs("SELECT * FROM Interfaces;");
+        
+        while(element.next()) {
             
-            Salle e = new Salle((int)element.get('idint'),(char)element.get("mac"), (char)element.get("ip"), (char)element.get("nomint"), (int)element.get("idbat"));
-            equipements.add(i,b);
+            Interface in = new Interface((String)element.getString("mac"), (String)element.getString("ip"), (String)element.getString("nomint"), (int)element.getInt("vitesse"));
+            interfaces.add(i,in);
             i++;
-            if(equipements == null)
-                fin = true;
-        }while(!fin);
+            
+        }
         
     }
 
