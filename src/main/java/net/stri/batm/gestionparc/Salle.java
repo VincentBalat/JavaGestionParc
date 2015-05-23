@@ -56,16 +56,25 @@ public class Salle {
         BD bd = new BD();
         
         int i = 0;
+        equipements.clear();
+        ordinateurs.clear();
         
         element = bd.requete("SELECT * FROM Equipements WHERE idsalle = "+id+";");
         
         while(element.next()) {
             
             if("ordinateur".equals((String)element.getString("type"))){
-                Ordinateur o = new Ordinateur(this, (String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"),(String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("Processeur"), (int)element.getInt("disque"), (int)element.getInt("ram"));
+                Ordinateur o = new Ordinateur(this, (String)element.getString("nomeq"), 
+                        (String)element.getString("marque"), (String)element.getString("modele"),
+                        (String)element.getString("SN"), (boolean)element.getBoolean("active"),
+                        (String)element.getString("Processeur"), (int)element.getInt("disque"), 
+                        (int)element.getInt("ram"));
                 ordinateurs.add(i,o);
             } else {
-                Equipement e = new Equipement(this, (String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"), (String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("type"));
+                Equipement e = new Equipement(this, (String)element.getString("nomeq"), 
+                        (String)element.getString("marque"), (String)element.getString("modele"), 
+                        (String)element.getString("SN"), (boolean)element.getBoolean("active"), 
+                        (String)element.getString("type"));
                 equipements.add(i,e);
             }
             i++;

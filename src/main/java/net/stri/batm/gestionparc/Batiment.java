@@ -51,6 +51,7 @@ public class Batiment {
         BD bd = new BD();
         
         int i = 0;
+        salles.clear();
         
         element = bd.requete("SELECT * FROM Salle WHERE idbatiment = " + id);
         

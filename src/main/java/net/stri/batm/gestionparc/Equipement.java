@@ -51,6 +51,8 @@ public class Equipement {
         
         int i = 0;
         
+        interfaces.clear();
+        
         element = bd.requete("SELECT * FROM Interfaces WHERE sn = "+SN+";");
         
         while(element.next()) {
