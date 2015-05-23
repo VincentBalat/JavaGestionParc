@@ -11,6 +11,7 @@ package net.stri.batm.gestionparc;
  */
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -35,6 +36,26 @@ public class Batiment {
 		this.num = num;
 		salles = new ArrayList<Salle>();
 	}
+    
+    public void majsalle(){
+        
+        HashMap<String, Object> element = new HashMap<String, Object>();
+        
+        boolean fin = false;
+        BD bd = new BD();
+        
+        int i = 0;
+        
+        do {
+            element = bd.select("SELECT * FROM Salle WHERE idsalle = ".concat(Integer.toString(i)));
+            
+            Salle s = new Salle((int)element.get("idsalle"), (String)element.get("noms"), (int)element.get("nums"), (int)element.get("idbat"));
+            salles.add(i,s);
+            i++;
+            if(element == null)
+                fin = true;
+        }while(!fin);
+    }
 
     /**
      *

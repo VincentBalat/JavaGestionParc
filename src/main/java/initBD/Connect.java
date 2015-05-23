@@ -52,18 +52,20 @@ public class Connect {
 "       (IdSalle    INT CONSTRAINT PK_IdSalle PRIMARY KEY,\n" +
 "        NomS       VARCHAR(255),\n" +
 "        NumS       INT,\n" +
+"        Etage      INT,\n" +
 "        IdBat      INT CONSTRAINT FK_IdBat REFERENCES Batiments(IdBatiment));\n");
       
       state.execute("CREATE TABLE Equipements\n" +
-"       (IdEquipement INT CONSTRAINT PK_IdEquipement PRIMARY KEY,\n" +
-"        Marque     VARCHAR(255),\n" +
+"       (SN         VARCHAR(255) CONSTRAINT PK_IdEquipement PRIMARY KEY,\n" +     
 "        NomEq      VARCHAR(255),\n" +
+"        Marque     VARCHAR(255),\n" +
+"        Modele     VARCHAR(255),\n" +              
 "        NumEq      INT,\n" +
-"        Type       VARCHAR(255),\n" +
 "        Active     BOOLEAN,\n" +
 "        Processeur VARCHAR(255),\n" +
 "        RAM        INT,\n" +
 "        Disque     INT,\n" +
+"        Type       VARCHAR(255),\n" +
 "        IdSalle    INT CONSTRAINT FK_IdSalle REFERENCES Salles(IdSalle));\n");
       
       state.execute("CREATE TABLE Interfaces\n" +

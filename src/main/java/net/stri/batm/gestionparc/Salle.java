@@ -10,6 +10,7 @@ package net.stri.batm.gestionparc;
  * @author Xavier
  */
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -26,20 +27,42 @@ public class Salle {
 
     /**
      *
-     * @param batiment
      * @param id
      * @param name
      * @param num
      * @param etage
      */
-    public Salle(Batiment batiment, int id, String name, int num, int etage) {
-		this.batiment = batiment;
+    public Salle(int id, String name, int num, int etage) {
 		this.id = id;
 		this.name = name;
 		this.num = num;
 		this.etage = etage;
 		equipements = new ArrayList<Equipement>();
 	}
+    
+    public void majeq(){
+        
+        HashMap<String, Object> element = new HashMap<String, Object>();
+        
+        boolean fin = false;
+        
+        int i = 0;
+        
+        do {
+            element = select("SELECT * FROM Equipements WHERE idequipement = ".concat(Integer.toString(i)));
+            
+            if((String)element.get("type") == "Ordinateur"){
+                Ordinateur o = new Ordinateur((String)element.get("nomeq"), (String)element.get("marque"), (String)element.get("modele"),(String)element.get("SN"), (boolean)element.get("active"), (String)element.get("Processeur"), (int)element.get("disque"), (int)element.get("ram"));
+                ordinateurs.add(i,o);
+            } else {
+                Equipement e = new Equipement((String)element.get("nomeq"), (String)element.get("marque"), (String)element.get("modele"), (String)element.get("SN"), (boolean)element.get("active")/*, (String)element.get("type")*/);
+                equipements.add(i,e);
+            }
+            i++;
+            if(element == null)
+                fin = true;
+        }while(!fin);
+    }
 
     /**
      *
