@@ -15,7 +15,7 @@ public class Interface {
     private String IP;
     private String MAC;
     private int Vitesse;
-    
+        
     public Interface(Object Equipement, String MAC, String IP, String Nom, int Vitesse){
         this.Equipement = Equipement;
         this.Nom = Nom;
@@ -24,6 +24,11 @@ public class Interface {
         this.Vitesse = Vitesse;
     }
 
+    public Object getEquipement() {
+        return Equipement;
+    }
+
+    
     /**
      *
      * @return

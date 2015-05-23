@@ -43,6 +43,12 @@ public class Salle {
                 ordinateurs = new ArrayList<Ordinateur>();
 	}
     
+    /**
+    * La méthode importe depuis la base de données les equipements de la salle.
+    * Elles seront placées dans l'arrayList ordinateur ou equipement selon le type.
+    * @author GasparMeyerfeld
+    */
+    
     public void importequipements() throws SQLException{
         
         ResultSet element;
@@ -51,7 +57,7 @@ public class Salle {
         
         int i = 0;
         
-        element = bd.selectRs("SELECT * FROM Equipements WHERE idsalle = "+id+";");
+        element = bd.requete("SELECT * FROM Equipements WHERE idsalle = "+id+";");
         
         while(element.next()) {
             
@@ -158,6 +164,10 @@ public class Salle {
     public void addEquipement(Equipement equipement) {
 		equipements.add(equipement);
 	}
+    
+    public void addOrdinateur(Ordinateur ordinateur) {
+		ordinateurs.add(ordinateur);
+	}
 
     /**
      *
@@ -168,6 +178,14 @@ public class Salle {
 			System.out.println("This equipement is not in this salle...");
 		} else {
 			equipements.remove(equipement);
+		}
+	}
+    
+    public void removeOrdinateur(Ordinateur ordinateur) {
+		if (!ordinateurs.contains(ordinateur)) {
+			System.out.println("This computer is not in this salle...");
+		} else {
+			ordinateurs.remove(ordinateur);
 		}
 	}
 }

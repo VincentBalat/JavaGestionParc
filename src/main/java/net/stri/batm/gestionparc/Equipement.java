@@ -34,7 +34,14 @@ public class Equipement {
         this.SN = SN;
         this.type = type;
         this.actif = actif;
+        interfaces = new ArrayList<Interface>();
     }
+    
+    /**
+    * La méthode importe depuis la base de données les interfaces de l'équipement.
+    * Elles seront placées dans l'arrayList interfaces.
+    * @author GasparMeyerfeld
+    */
     
     public void importInterfaces() throws SQLException{
         
@@ -44,7 +51,7 @@ public class Equipement {
         
         int i = 0;
         
-        element = bd.selectRs("SELECT * FROM Interfaces WHERE sn = "+SN+";");
+        element = bd.requete("SELECT * FROM Interfaces WHERE sn = "+SN+";");
         
         while(element.next()) {
             
@@ -120,6 +127,20 @@ public class Equipement {
         this.SN = SN;
     }
 
+    public Salle getSalle() {
+        return salle;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public ArrayList<Interface> getInterfaces() {
+        return interfaces;
+    }
+    
+    
+
     /**
      *
      * @return
@@ -136,7 +157,15 @@ public class Equipement {
         this.actif = actif;
     }
     
-    
+    public void addInterface(Interface inter) {
+		interfaces.add(inter);
+	}
       
-    
+    public void removeInterface(Interface inter) {
+		if (!interfaces.contains(inter)) {
+			System.out.println("This interface is not in this equipment...");
+		} else {
+			interfaces.remove(inter);
+		}
+	}
 }

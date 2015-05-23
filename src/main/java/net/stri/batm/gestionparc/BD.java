@@ -59,10 +59,17 @@ public class BD {
         }
     }
     
-    public ResultSet selectRs(String query) {
+    /**
+    * La méthode se connecte à la base de données, et renvoie le résultat de la requete de type SELECT.
+    * @return result
+    * @author GasparMeyerfeld
+    */
+    
+    public ResultSet requete(String query) {
         try{
             
-            Statement init = this.initialisation();
+            Statement init;
+            init = this.initialisation();
             //L'objet ResultSet contient le résultat de la requête SQL
             ResultSet result = init.executeQuery(query);
             

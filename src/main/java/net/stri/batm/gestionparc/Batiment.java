@@ -11,10 +11,8 @@ package net.stri.batm.gestionparc;
  */
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -40,6 +38,12 @@ public class Batiment {
 		salles = new ArrayList<Salle>();
 	}
     
+    /**
+    * La méthode importe depuis la base de données les salles du batiment.
+    * Elles seront placées dans l'arrayList salles.
+    * @author GasparMeyerfeld
+    */
+    
     public void importSalles() throws SQLException{
         
         ResultSet element;
@@ -48,7 +52,7 @@ public class Batiment {
         
         int i = 0;
         
-        element = bd.selectRs("SELECT * FROM Salle WHERE idbatiment = " + id);
+        element = bd.requete("SELECT * FROM Salle WHERE idbatiment = " + id);
         
         while(element.next()) {
             Salle s = new Salle(this, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etages"));
