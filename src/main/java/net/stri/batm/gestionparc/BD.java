@@ -6,13 +6,13 @@
 package net.stri.batm.gestionparc;
 
 import java.sql.*;
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import net.stri.batm.gestionparc.Batiment;
 import net.stri.batm.gestionparc.Salle;
 import net.stri.batm.gestionparc.Equipement;
-import net.stri.batm.gestionparc.Interface;
+import net.stri.batm.gestionparc.Interface;*/
 
 /**
  * La classe BD permet la connexion et l'accès à la base de données
@@ -20,11 +20,11 @@ import net.stri.batm.gestionparc.Interface;
  */
 public class BD {
     
-    private ArrayList<Batiment> batiments;
+    /*private ArrayList<Batiment> batiments;
     private ArrayList<Salle> salles;
     private ArrayList<Equipement> equipements;
     private ArrayList<Ordinateur> ordinateurs;
-    private ArrayList<Interface> interfaces;
+    private ArrayList<Interface> interfaces;*/
     
     /**
      * La méthode initialisation permet la connexion à la base de données.
@@ -33,11 +33,11 @@ public class BD {
      */
     
     public BD(){
-        batiments = new ArrayList<Batiment>();
+        /*batiments = new ArrayList<Batiment>();
         salles = new ArrayList<Salle>(); 
         equipements = new ArrayList<Equipement>(); 
         ordinateurs = new ArrayList<Ordinateur>(); 
-        interfaces = new ArrayList<Interface>(); 
+        interfaces = new ArrayList<Interface>(); */
     }
     
     private Statement initialisation(){
@@ -77,7 +77,7 @@ public class BD {
         
     }
     
-    public HashMap<String, Object> select(String query) {
+    /*public HashMap<String, Object> select(String query) {
         try{
             
             Statement init = this.initialisation();
@@ -130,13 +130,18 @@ public class BD {
         ResultSet element;
         
         BD bd = new BD();
+        Batiment bat = new Batiment(0,null,0);
         
         int i = 0;
         
         element = bd.selectRs("SELECT * FROM Salle;");
         
         while(element.next()) {
-            Salle s = new Salle(null, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etages"));
+            for(Batiment b : batiments){
+                if (b.getId() == (int)element.getInt("idbat"))
+                    bat = b;
+            }
+            Salle s = new Salle(bat, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etages"));
             salles.add(i,s);
             i++;
         }
@@ -147,6 +152,7 @@ public class BD {
         ResultSet element;
         
         BD bd = new BD();
+        Salle sal = new Salle(null,0,null,0,0);
         
         int i = 0;
         
@@ -154,11 +160,16 @@ public class BD {
         
         while(element.next()) {
             
+            for(Salle s : salles){
+                if (s.getId() == (int)element.getInt("idsalle"))
+                    sal = s;
+            }
+            
             if("Ordinateur".equals((String)element.getString("type"))){
-                Ordinateur o = new Ordinateur((String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"),(String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("Processeur"), (int)element.getInt("disque"), (int)element.getInt("ram"));
+                Ordinateur o = new Ordinateur(sal, (String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"),(String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("Processeur"), (int)element.getInt("disque"), (int)element.getInt("ram"));
                 ordinateurs.add(i,o);
             } else {
-                Equipement e = new Equipement((String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"), (String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("type"));
+                Equipement e = new Equipement(sal, (String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"), (String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("type"));
                 equipements.add(i,e);
             }
             i++;
@@ -171,19 +182,30 @@ public class BD {
         ResultSet element;
         
         BD bd = new BD();
-        
+        Equipement eq = new Equipement(null,null,null,null,null,false,null);
+        Ordinateur or = new Ordinateur(null,null,null,null,null,false,null,0,0);
+        Object objet = new Object();
         int i = 0;
         
         element = bd.selectRs("SELECT * FROM Interfaces;");
         
         while(element.next()) {
             
-            Interface in = new Interface((String)element.getString("mac"), (String)element.getString("ip"), (String)element.getString("nomint"), (int)element.getInt("vitesse"));
+            for(Equipement e : equipements){
+                if (e.getSN() == null ? (String)element.getString("SN") == null : e.getSN().equals((String)element.getString("SN")))
+                    objet = e;
+            }
+            for(Ordinateur o : ordinateurs){
+                if (o.getSN() == null ? (String)element.getString("SN") == null : o.getSN().equals((String)element.getString("SN")))
+                    objet = o;
+            }
+            
+            Interface in = new Interface(objet,(String)element.getString("mac"), (String)element.getString("ip"), (String)element.getString("nomint"), (int)element.getInt("vitesse"));
             interfaces.add(i,in);
             i++;
             
         }
         
-    }
+    }*/
 
 }

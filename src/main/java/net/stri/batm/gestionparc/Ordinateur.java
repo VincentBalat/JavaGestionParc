@@ -11,7 +11,7 @@ package net.stri.batm.gestionparc;
  * @author VincentBalat
  */
 public class Ordinateur extends Equipement{
-
+ 
     /**
      *
      */
@@ -29,6 +29,7 @@ public class Ordinateur extends Equipement{
 
     /**
      *
+     * @param salle
      * @param nom
      * @param marque
      * @param modele
@@ -38,8 +39,8 @@ public class Ordinateur extends Equipement{
      * @param DD
      * @param RAM
      */
-    public Ordinateur(String nom, String marque, String modele, String SN, boolean actif, String processeur, int DD, int RAM){
-        super(nom, marque, modele, SN, actif, "Ordinateur");
+    public Ordinateur(Salle salle, String nom, String marque, String modele, String SN, boolean actif, String processeur, int DD, int RAM){
+        super(salle, nom, marque, modele, SN, actif, "Ordinateur");
         this.processeur = processeur;
         this.DD = DD;
         this.RAM = RAM;

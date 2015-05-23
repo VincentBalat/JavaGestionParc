@@ -10,12 +10,14 @@ package net.stri.batm.gestionparc;
  * @author VincentBalat
  */
 public class Interface {
+    private Object Equipement;
     private String Nom;
     private String IP;
     private String MAC;
     private int Vitesse;
     
-    public Interface(String MAC, String IP, String Nom, int Vitesse){
+    public Interface(Object Equipement, String MAC, String IP, String Nom, int Vitesse){
+        this.Equipement = Equipement;
         this.Nom = Nom;
         this.IP = IP;
         this.MAC = MAC;

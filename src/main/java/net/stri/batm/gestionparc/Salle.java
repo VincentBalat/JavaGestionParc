@@ -43,7 +43,7 @@ public class Salle {
                 ordinateurs = new ArrayList<Ordinateur>();
 	}
     
-    public void majeq() throws SQLException{
+    public void importequipements() throws SQLException{
         
         ResultSet element;
         
@@ -56,15 +56,43 @@ public class Salle {
         while(element.next()) {
             
             if("ordinateur".equals((String)element.getString("type"))){
-                Ordinateur o = new Ordinateur((String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"),(String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("Processeur"), (int)element.getInt("disque"), (int)element.getInt("ram"));
+                Ordinateur o = new Ordinateur(this, (String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"),(String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("Processeur"), (int)element.getInt("disque"), (int)element.getInt("ram"));
                 ordinateurs.add(i,o);
             } else {
-                Equipement e = new Equipement((String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"), (String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("type"));
+                Equipement e = new Equipement(this, (String)element.getString("nomeq"), (String)element.getString("marque"), (String)element.getString("modele"), (String)element.getString("SN"), (boolean)element.getBoolean("active"), (String)element.getString("type"));
                 equipements.add(i,e);
             }
             i++;
            
         }
+    }
+
+    public Batiment getBatiment() {
+        return batiment;
+    }
+
+    public ArrayList<Ordinateur> getOrdinateurs() {
+        return ordinateurs;
+    }
+
+    public void setBatiment(Batiment batiment) {
+        this.batiment = batiment;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setEtage(int etage) {
+        this.etage = etage;
+    }
+
+    public void setEquipements(ArrayList<Equipement> equipements) {
+        this.equipements = equipements;
+    }
+
+    public void setOrdinateurs(ArrayList<Ordinateur> ordinateurs) {
+        this.ordinateurs = ordinateurs;
     }
 
     /**

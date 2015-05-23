@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class Equipement {
     
+    private Salle salle;
     private String nom;
     private String marque;
     private String modele;
@@ -25,7 +26,8 @@ public class Equipement {
     private String type;
     private ArrayList<Interface> interfaces;
 
-    public Equipement(String nom, String marque, String modele, String SN, boolean actif, String type) {
+    public Equipement(Salle salle, String nom, String marque, String modele, String SN, boolean actif, String type) {
+        this.salle = salle;
         this.nom = nom;
         this.marque = marque;
         this.modele = modele;
@@ -34,7 +36,7 @@ public class Equipement {
         this.actif = actif;
     }
     
-    public void majint() throws SQLException{
+    public void importInterfaces() throws SQLException{
         
         ResultSet element;
         
@@ -46,7 +48,7 @@ public class Equipement {
         
         while(element.next()) {
             
-            Interface in = new Interface((String)element.getString("mac"), (String)element.getString("ip"), (String)element.getString("nomint"), (int)element.getInt("vitesse"));
+            Interface in = new Interface(this,(String)element.getString("mac"), (String)element.getString("ip"), (String)element.getString("nomint"), (int)element.getInt("vitesse"));
             interfaces.add(i,in);
             i++;
             

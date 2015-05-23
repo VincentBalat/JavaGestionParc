@@ -9,6 +9,8 @@ package net.stri.batm.gestionparc;
  *
  * @author Xavier
  */
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Controller {
@@ -18,6 +20,23 @@ public class Controller {
 		batiments = new ArrayList<>();
 		example();
 	}
+        
+        public void importBatiments() throws SQLException {
+        
+                ResultSet element;
+        
+                BD bd = new BD();
+        
+                int i = 0;
+        
+            element = bd.selectRs("SELECT * FROM batiments;");
+        
+                while(element.next()) {
+                    Batiment b = new Batiment((int)element.getInt("idbatiment"), (String)element.getString("nomb"), (int)element.getInt("numb"));
+                    batiments.add(i,b);
+                    i++;
+                }
+        }
 
 	public void printBatiments() {
 		for (Batiment batiment : batiments) {

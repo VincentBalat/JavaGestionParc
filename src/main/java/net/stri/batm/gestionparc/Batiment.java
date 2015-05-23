@@ -40,7 +40,7 @@ public class Batiment {
 		salles = new ArrayList<Salle>();
 	}
     
-    public void majsalle() throws SQLException{
+    public void importSalles() throws SQLException{
         
         ResultSet element;
         
