@@ -19,7 +19,7 @@ public class Singleton {
 	private static Singleton INSTANCE;
 	private int compteur;
 
-	private Singleton() {
+	Singleton() {
 		compteur = 0;
 	}
 
