@@ -19,8 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Controller {
-	private final ArrayList<Batiment> batiments;
-        private final ArrayList<Salle> salles;
+	private ArrayList<Batiment> batiments;
+        private ArrayList<Salle> salles;
 
 	public Controller() {
 		batiments = new ArrayList<>();

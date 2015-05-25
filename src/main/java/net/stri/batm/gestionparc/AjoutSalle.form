@@ -66,13 +66,15 @@
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="etage" alignment="0" pref="46" max="32767" attributes="0"/>
-                          <Component id="nom_salle" alignment="0" pref="46" max="32767" attributes="0"/>
-                          <Component id="numero" alignment="0" pref="46" max="32767" attributes="0"/>
-                          <Component id="listBat" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="etage" alignment="0" pref="46" max="32767" attributes="0"/>
+                              <Component id="nom_salle" alignment="0" pref="46" max="32767" attributes="0"/>
+                              <Component id="numero" alignment="0" pref="46" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="listBat" min="-2" pref="76" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -174,6 +176,12 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="bat" type="code"/>
+        </Property>
+        <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="0" type="code"/>
+        </Property>
+        <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;Batiment&quot;" type="code"/>
         </Property>
       </Properties>
       <Events>

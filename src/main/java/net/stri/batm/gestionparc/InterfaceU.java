@@ -3,6 +3,7 @@ package net.stri.batm.gestionparc;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,15 +18,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class InterfaceU extends javax.swing.JFrame {
     private Object Interface;
-    private Controller controller = new Controller();
-    private DefaultListModel<String> bat = new DefaultListModel<>();
-    private DefaultListModel<String> sal = new DefaultListModel<>();
+    private Controller controller; 
+    private DefaultListModel<String> bat;
+    private DefaultListModel<String> sal;
     private DefaultTableModel model;
 
     /**
      * Creates new form InterfaceU
      */
     public InterfaceU() {
+        controller = new Controller();
+        bat = new DefaultListModel<>();
+        sal = new DefaultListModel<>();
         UpdateJList();
         initComponents();
     }
@@ -48,9 +52,9 @@ public final class InterfaceU extends javax.swing.JFrame {
         bat.clear();
         for(Batiment b : controller.getBatiments()){
             bat.addElement(b.toString());
-            /*for(Salle s : b.getSalles()){
-                sal.addElement(s);
-            }*/
+            for(Salle s : b.getSalles()){
+                sal.addElement(s.toString());
+            }
         }  
     }
 
@@ -244,6 +248,12 @@ public final class InterfaceU extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         AjoutSalle j = new AjoutSalle(this);
+        try {
+            getController().importBatiments();
+        } catch (ClassNotFoundException | SQLException ex) {
+            ErreurBD err = new ErreurBD();
+            err.setVisible(true);
+        }
         j.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
