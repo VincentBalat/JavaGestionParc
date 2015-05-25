@@ -140,6 +140,6 @@ public class Batiment {
 	}
 
 	public String toString() {
-		return ("Batiment " + name + ", num=" + num);
+		return (num +" : "+ name);
 	}
 }

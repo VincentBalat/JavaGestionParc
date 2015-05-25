@@ -28,7 +28,7 @@ public class InterfaceU extends javax.swing.JFrame {
         initComponents();
     }
     
-    private void UpdateJListBatiment(){
+    public void UpdateJListBatiment(){
         try {
             controller.importBatiments();
         } catch (SQLException ex) {
@@ -38,6 +38,7 @@ public class InterfaceU extends javax.swing.JFrame {
             ErreurBD err = new ErreurBD();
             err.setVisible(true);
         }
+        bat.clear();
         for(Batiment b : controller.getBatiments()){
             bat.addElement(b.toString());
             /*for(Salle s : b.getSalles()){

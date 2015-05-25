@@ -112,8 +112,7 @@ public class AjoutBat extends javax.swing.JFrame {
         }
         else{
             lMessage.setText(" Completer les champs ");
-        } 
-        
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void nombatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombatActionPerformed
