@@ -18,23 +18,27 @@ import javax.swing.table.DefaultTableModel;
 public final class InterfaceU extends javax.swing.JFrame {
     private Object Interface;
     private Controller controller = new Controller();
-    DefaultListModel<String> bat = new DefaultListModel<>();
-    DefaultListModel<String> sal = new DefaultListModel<>();
-    DefaultTableModel model;
+    private DefaultListModel<String> bat = new DefaultListModel<>();
+    private DefaultListModel<String> sal = new DefaultListModel<>();
+    private DefaultTableModel model;
 
     /**
      * Creates new form InterfaceU
      */
     public InterfaceU() {
-        UpdateJListBatiment();
+        UpdateJList();
         initComponents();
     }
 
     public Controller getController() {
         return controller;
     }
+
+    public DefaultListModel<String> getBat() {
+        return bat;
+    }
     
-    public void UpdateJListBatiment(){
+    public void UpdateJList(){
         try {
             controller.importBatiments();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -251,6 +255,7 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

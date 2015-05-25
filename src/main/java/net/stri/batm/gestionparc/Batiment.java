@@ -137,7 +137,7 @@ public class Batiment {
 		} else {
 			salles.remove(salle);
 		}
-	}
+    }
 
 	public String toString() {
 		return (num +" : "+ name);
