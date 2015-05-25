@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  *
  * @author 21408200
  */
-public class InterfaceU extends javax.swing.JFrame {
+public final class InterfaceU extends javax.swing.JFrame {
     private Object Interface;
     private Controller controller = new Controller();
     DefaultListModel<String> bat = new DefaultListModel<>();
@@ -165,7 +165,7 @@ public class InterfaceU extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                 // TODO add your handling code here:
-        AjoutBat j = new AjoutBat();
+        AjoutBat j = new AjoutBat(this);
         j.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
