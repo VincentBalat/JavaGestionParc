@@ -78,11 +78,6 @@ public final class InterfaceU extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         batiment.setModel(bat);
-        batiment.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                batimentMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(batiment);
 
         salle.setModel(new javax.swing.AbstractListModel() {
@@ -228,18 +223,18 @@ public final class InterfaceU extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void batimentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batimentMouseClicked
+    private void batimentMouseClicked(java.awt.event.MouseEvent evt) {                                      
         // TODO add your handling code here:
         
          System.out.println("Mouse-button clicked (pressed and released)!");
          
-    }//GEN-LAST:event_batimentMouseClicked
+    }                                     
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
                 // TODO add your handling code here:
         AjoutBat j = new AjoutBat(this);
         j.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -253,21 +248,9 @@ public final class InterfaceU extends javax.swing.JFrame {
         j.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        AjoutBat j = new AjoutBat();
-        j.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void batimentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batimentMouseClicked
-        // TODO add your handling code here:
-
-        System.out.println("Mouse-button clicked (pressed and released)!");
-    }//GEN-LAST:event_batimentMouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -276,7 +259,11 @@ public final class InterfaceU extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-
+/*
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+*/
     /**
      * @param args the command line arguments
      */
@@ -312,7 +299,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable Table;
+    public javax.swing.JTable Table;
     private javax.swing.JList batiment;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
