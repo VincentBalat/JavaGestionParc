@@ -72,7 +72,16 @@ public class Connect {
 "        Ip         VARCHAR(255),\n" +
 "        NomInt     VARCHAR(255),\n" +
 "        Vitesse    INT,\n" +
-"        IdEq       INT CONSTRAINT FK_IdEq REFERENCES Equipements(IdEquipement));\n");
+"        IdEq       VARCHAR(255) CONSTRAINT FK_IdEq REFERENCES Equipements(SN));\n");
+      
+      state.execute("INSERT INTO batiments\n"+
+"       VALUES (-1, 'autre', null);");
+      
+      state.execute("INSERT INTO salles\n"+
+"       VALUES (-1, 'autre', null, null, -1);");
+      
+      state.execute("INSERT INTO equipements\n"+
+"       VALUES ('-1', 'autre', null, null, null, null, null, null, null, -1);");
 
       state.close();
          

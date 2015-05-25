@@ -198,7 +198,7 @@ public class Controller {
 		}
 		if(bat!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE salles SET idbat ="+null+"where idbat = "+bat.getId()+";");
+                        bd.requete("UPDATE salles SET idbat = -1 where idbat = "+bat.getId()+";");
                         bat.importSalles();
                         bd.requete("DELETE FROM batiments where idbat = "+bat.getId()+";");
 			batiments.remove(bat);
@@ -223,7 +223,7 @@ public class Controller {
 		}
 		if(sal!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE equipements SET idsalle ="+null+"where idsalle = "+sal.getId()+";");
+                        bd.requete("UPDATE equipements SET idsalle =-1 where idsalle = "+sal.getId()+";");
                         sal.importequipements();
                         bd.requete("DELETE FROM salles where idsalle = "+sal.getId()+";");
 			sal.getBatiment().removeSalle(sal);
@@ -247,7 +247,7 @@ public class Controller {
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE interfaces SET ideq ="+null+"where ideq = '"+eq.getSN()+"';");
+                        bd.requete("UPDATE interfaces SET ideq =-1 where ideq = '"+eq.getSN()+"';");
                         eq.importInterfaces();
                         bd.requete("DELETE FROM equipements where ideq = '"+eq.getSN()+"';");
 			eq.getSalle().removeEquipement(eq);
@@ -271,7 +271,7 @@ public class Controller {
 		}
 		if(or!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE interfaces SET ideq ="+null+"where ideq = '"+or.getSN()+"';");
+                        bd.requete("UPDATE interfaces SET ideq =-1 where ideq = '"+or.getSN()+"';");
                         or.importInterfaces();
                         bd.requete("DELETE FROM equipements where sn = '"+or.getSN()+"';");
 			or.getSalle().removeOrdinateur(or);
