@@ -61,6 +61,7 @@ public class BD {
     
     /**
     * La méthode se connecte à la base de données, et renvoie le résultat de la requete de type SELECT.
+     * @param query
     * @return result
     * @author GasparMeyerfeld
     */
@@ -77,7 +78,7 @@ public class BD {
            
            return result;
          
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }

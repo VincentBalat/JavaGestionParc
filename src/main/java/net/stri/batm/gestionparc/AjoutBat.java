@@ -5,6 +5,11 @@
  */
 package net.stri.batm.gestionparc;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.postgresql.util.PSQLException;
+
 /**
  *
  * @author Brice
@@ -120,9 +125,10 @@ public class AjoutBat extends javax.swing.JFrame {
         if(!nombat.getText().trim().equals("")){
 
             int number = Integer.parseInt(numbat.getText());
-            int i = Singleton.getId();
+            int i = mainInt.getBat().getSize();
             mainInt.getController().addBatiment(i,nombat.getText(),number);
             mainInt.UpdateJList();
+            
             this.setVisible(false);
         }
         else{

@@ -37,8 +37,8 @@ public final class AjoutSalle extends javax.swing.JFrame {
         }
         bat.removeAllElements();
         for(Batiment b : mainInt.getController().getBatiments()){
-            bat.addElement(b.toString());
-        }  
+           bat.addElement(b.toString());
+        } 
     }
 
     /**
@@ -192,7 +192,7 @@ public final class AjoutSalle extends javax.swing.JFrame {
 
             int number = Integer.parseInt(numero.getText());
             int stage = Integer.parseInt(etage.getText());
-            int i = Singleton.getId();
+            int i = mainInt.getController().getSalles().size();
             Batiment batiment = null;
             for(Batiment b : mainInt.getController().getBatiments()){
                 if(b.toString() == null ? (String)bat.getSelectedItem() == null : b.toString().equals((String)bat.getSelectedItem()))

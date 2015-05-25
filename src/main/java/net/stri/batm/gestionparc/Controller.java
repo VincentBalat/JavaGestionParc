@@ -20,9 +20,11 @@ import java.util.logging.Logger;
 
 public class Controller {
 	private final ArrayList<Batiment> batiments;
+        private final ArrayList<Salle> salles;
 
 	public Controller() {
 		batiments = new ArrayList<>();
+                salles = listAllSalles();
 		//example();
 	}
         
@@ -61,6 +63,10 @@ public class Controller {
         public ArrayList<Batiment> getBatiments() {
             return batiments;
         }
+
+        public ArrayList<Salle> getSalles() {
+            return salles;
+        }
         
         
 
@@ -85,11 +91,12 @@ public class Controller {
          * @param num 
          */
 
-	public void addBatiment(int id, String name, int num) {
-		Batiment batiment = new Batiment(id, name, num);
-		batiments.add(batiment);
+	public void addBatiment(int id, String name, int num){
                 BD bd = new BD();
                 bd.requete("INSERT INTO batiments VALUES ("+ id +",'"+name+"',"+num+");");
+                
+                Batiment batiment = new Batiment(id, name, num);
+		batiments.add(batiment);
 	}
         
         /**
@@ -461,7 +468,7 @@ public class Controller {
 
 
 	// pour faire les tests
-	private void main() throws ClassNotFoundException {
+	/*private void main() throws ClassNotFoundException {
 		addBatiment(1, "Bat 1", 1);
 		addBatiment(2, "Bat 2", 2);
 		addBatiment(3, "Bat 3", 3);
@@ -492,5 +499,5 @@ public class Controller {
 		printBatiments();
 		System.out.println("Liste des salles");
 		printSalles();
-	}
+	}*/
 }
