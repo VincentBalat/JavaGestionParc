@@ -29,14 +29,15 @@ public final class InterfaceU extends javax.swing.JFrame {
         UpdateJListBatiment();
         initComponents();
     }
+
+    public Controller getController() {
+        return controller;
+    }
     
     public void UpdateJListBatiment(){
         try {
             controller.importBatiments();
-        } catch (SQLException ex) {
-            ErreurBD err = new ErreurBD();
-            err.setVisible(true);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             ErreurBD err = new ErreurBD();
             err.setVisible(true);
         }
@@ -238,7 +239,7 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        AjoutSalle j = new AjoutSalle();
+        AjoutSalle j = new AjoutSalle(this);
         j.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

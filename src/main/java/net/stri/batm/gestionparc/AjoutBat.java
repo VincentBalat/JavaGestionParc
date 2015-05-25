@@ -120,8 +120,8 @@ public class AjoutBat extends javax.swing.JFrame {
 
             int number = Integer.parseInt(numbat.getText());
             int i = Singleton.getId();
-            Controller c = new Controller();
-            c.addBatiment(i,nombat.getText(),number);
+            mainInt.getController().addBatiment(i,nombat.getText(),number);
+            mainInt.UpdateJListBatiment();
             this.setVisible(false);
         }
         else{

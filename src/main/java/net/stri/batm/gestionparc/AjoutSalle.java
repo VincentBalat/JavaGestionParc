@@ -10,12 +10,13 @@ package net.stri.batm.gestionparc;
  * @author Brice
  */
 public class AjoutSalle extends javax.swing.JFrame {
-
+    private InterfaceU mainInt;
     /**
      * Creates new form AjoutSalle
      */
-    public AjoutSalle() {
+    public AjoutSalle(InterfaceU mainInt) {
         initComponents();
+        this.mainInt = mainInt;
     }
 
     /**
@@ -54,6 +55,12 @@ public class AjoutSalle extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        numero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroActionPerformed(evt);
             }
         });
 
@@ -117,12 +124,17 @@ public class AjoutSalle extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -149,7 +161,7 @@ public class AjoutSalle extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AjoutSalle().setVisible(true);
+                new AjoutSalle(mainInt).setVisible(true);
             }
         });
     }
