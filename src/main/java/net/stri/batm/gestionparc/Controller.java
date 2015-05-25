@@ -9,8 +9,11 @@ package net.stri.batm.gestionparc;
  *
  * @author Xavier
  */
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,23 +32,37 @@ public class Controller {
         * @author GasparMeyerfeld
         */
         
-        public void importBatiments() throws SQLException {
+        public void importBatiments() throws ClassNotFoundException, SQLException {
         
-                ResultSet element;
-        
-                BD bd = new BD();
-        
+                Class.forName("org.postgresql.Driver");
+                String url = "jdbc:postgresql://localhost:5432/gestionpark";
+                String user = "postgres";
+                String passwd = "postgres";
+         
+                Connection conn = DriverManager.getConnection(url, user, passwd);
+         
+                //Création d'un objet Statement
+                Statement state = conn.createStatement();
+                
+                ResultSet element = state.executeQuery("SELECT * FROM batiments;");
+            
                 int i = 0;
+                batiments.clear();
         
-                element = bd.requete("SELECT * FROM batiments;");
-        
-                while(element.next()) {
+                 while(element.next()){
                     Batiment b = new Batiment((int)element.getInt("idbatiment"), 
                             (String)element.getString("nomb"), (int)element.getInt("numb"));
                     batiments.add(i,b);
                     i++;
                 }
+                 state.close();
         }
+
+        public ArrayList<Batiment> getBatiments() {
+            return batiments;
+        }
+        
+        
 
 	public void printBatiments() {
 		for (Batiment batiment : batiments) {
@@ -171,7 +188,7 @@ public class Controller {
          * @throws SQLException 
          */
 
-	public void removeBatiment(int id) throws SQLException {
+	public void removeBatiment(int id) throws SQLException, ClassNotFoundException {
 		Batiment bat = null;
 		for(Batiment batiment:batiments){
 			if (batiment.getId()==id){
@@ -195,7 +212,7 @@ public class Controller {
          * @throws SQLException 
          */
         
-	public void removeSalle(int id) throws SQLException {
+	public void removeSalle(int id) throws SQLException, ClassNotFoundException {
 		ArrayList<Salle> salles = listAllSalles();
 		Salle sal = null;
 		for(Salle salle:salles){
@@ -219,7 +236,7 @@ public class Controller {
          * @throws SQLException 
          */
         
-        public void removeEquipement(String sn) throws SQLException {
+        public void removeEquipement(String sn) throws SQLException, ClassNotFoundException {
 		ArrayList<Equipement> equipements = listAllEquipements();
 		Equipement eq = null;
 		for(Equipement equipement:equipements){
@@ -243,7 +260,7 @@ public class Controller {
          * @throws SQLException 
          */
         
-        public void removeOrdinateur(String sn) throws SQLException {
+        public void removeOrdinateur(String sn) throws SQLException, ClassNotFoundException {
 		ArrayList<Ordinateur> ordinateurs = listAllOrdinateurs();
 		Ordinateur or = null;
 		for(Ordinateur ordinateur:ordinateurs){
@@ -308,7 +325,7 @@ public class Controller {
             
         }
         
-        public void modifySalle(int id, Batiment batiment, String name, int num, int etage) throws SQLException{
+        public void modifySalle(int id, Batiment batiment, String name, int num, int etage) throws SQLException, ClassNotFoundException{
             ArrayList<Salle> salles = listAllSalles();
 		Salle sal = null;
 		for(Salle salle:salles){
@@ -325,7 +342,7 @@ public class Controller {
 		}
         }
         
-        public void modifyEquipement(String sn, Salle salle, String name, String marque, String modele, boolean actif, String type) throws SQLException{
+        public void modifyEquipement(String sn, Salle salle, String name, String marque, String modele, boolean actif, String type) throws SQLException, ClassNotFoundException{
             ArrayList<Equipement> equipements = listAllEquipements();
 		Equipement eq = null;
 		for(Equipement equipement:equipements){
@@ -344,7 +361,7 @@ public class Controller {
         }
         
         public void modifyOrdinateur(String sn, Salle salle, String name, String marque, 
-                String modele, boolean actif, String process, int ram, int dd, String type) throws SQLException{
+                String modele, boolean actif, String process, int ram, int dd, String type) throws SQLException, ClassNotFoundException{
             ArrayList<Equipement> equipements = listAllEquipements();
 		Equipement eq = null;
 		for(Equipement equipement:equipements){
@@ -363,7 +380,7 @@ public class Controller {
 		}
         }
         
-        public void modifyInterface(String mac, Object eq, String ip, String name, int speed) throws SQLException {
+        public void modifyInterface(String mac, Object eq, String ip, String name, int speed) throws SQLException, ClassNotFoundException {
 		ArrayList<Interface> interfaces = listAllInterfaces();
 		Interface in = null;
 		for(Interface inter:interfaces){
@@ -444,7 +461,7 @@ public class Controller {
 
 
 	// pour faire les tests
-	private void main() {
+	private void main() throws ClassNotFoundException {
 		addBatiment(1, "Bat 1", 1);
 		addBatiment(2, "Bat 2", 2);
 		addBatiment(3, "Bat 3", 3);

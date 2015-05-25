@@ -10,8 +10,11 @@ package net.stri.batm.gestionparc;
  * @author Xavier
  */
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -44,16 +47,22 @@ public class Batiment {
     * @author GasparMeyerfeld
     */
     
-    public void importSalles() throws SQLException{
+    public void importSalles() throws SQLException, ClassNotFoundException{
         
-        ResultSet element;
-        
-        BD bd = new BD();
-        
+        Class.forName("org.postgresql.Driver");
+        String url = "jdbc:postgresql://localhost:5432/gestionpark";
+        String user = "postgres";
+        String passwd = "postgres";
+         
+        Connection conn = DriverManager.getConnection(url, user, passwd);
+         
+        //Création d'un objet Statement
+        Statement state = conn.createStatement();
+                
+        ResultSet element = state.executeQuery("SELECT * FROM Salle WHERE idbatiment = " + id+";");
+            
         int i = 0;
         salles.clear();
-        
-        element = bd.requete("SELECT * FROM Salle WHERE idbatiment = " + id);
         
         while(element.next()) {
             Salle s = new Salle(this, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etages"));
@@ -131,6 +140,6 @@ public class Batiment {
 	}
 
 	public String toString() {
-		return ("Batiment " + name + ", id=" + id + ", num=" + num);
+		return ("Batiment " + name + ", num=" + num);
 	}
 }

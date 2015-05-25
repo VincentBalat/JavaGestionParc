@@ -1,7 +1,10 @@
 package net.stri.batm.gestionparc;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /*
@@ -43,17 +46,22 @@ public class Equipement {
     * @author GasparMeyerfeld
     */
     
-    public void importInterfaces() throws SQLException{
+    public void importInterfaces() throws SQLException, ClassNotFoundException{
         
-        ResultSet element;
-        
-        BD bd = new BD();
+        Class.forName("org.postgresql.Driver");
+        String url = "jdbc:postgresql://localhost:5432/gestionpark";
+        String user = "postgres";
+        String passwd = "postgres";
+         
+        Connection conn = DriverManager.getConnection(url, user, passwd);
+         
+        //Création d'un objet Statement
+        Statement state = conn.createStatement();
+                
+        ResultSet element = state.executeQuery("SELECT * FROM Interfaces WHERE sn = "+SN+";");
         
         int i = 0;
-        
         interfaces.clear();
-        
-        element = bd.requete("SELECT * FROM Interfaces WHERE sn = "+SN+";");
         
         while(element.next()) {
             
