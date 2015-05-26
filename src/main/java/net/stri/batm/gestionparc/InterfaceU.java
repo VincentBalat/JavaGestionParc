@@ -18,24 +18,31 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class InterfaceU extends javax.swing.JFrame {
     private Object Interface;
-    private Controller controller = new Controller();
-    DefaultListModel<String> bat = new DefaultListModel<>();
-    DefaultListModel<String> sal = new DefaultListModel<>();
-    DefaultTableModel model;
+    private Controller controller; 
+    private DefaultListModel<String> bat;
+    private DefaultListModel<String> sal;
+    private DefaultTableModel model;
 
     /**
      * Creates new form InterfaceU
      */
     public InterfaceU() {
-        UpdateJListBatiment();
+        controller = new Controller();
+        bat = new DefaultListModel<>();
+        sal = new DefaultListModel<>();
+        UpdateJList();
         initComponents();
     }
 
     public Controller getController() {
         return controller;
     }
+
+    public DefaultListModel<String> getBat() {
+        return bat;
+    }
     
-    public void UpdateJListBatiment(){
+    public void UpdateJList(){
         try {
             controller.importBatiments();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -45,9 +52,9 @@ public final class InterfaceU extends javax.swing.JFrame {
         bat.clear();
         for(Batiment b : controller.getBatiments()){
             bat.addElement(b.toString());
-            /*for(Salle s : b.getSalles()){
-                sal.addElement(s);
-            }*/
+            for(Salle s : b.getSalles()){
+                sal.addElement(s.toString());
+            }
         }  
     }
 
@@ -249,17 +256,18 @@ public final class InterfaceU extends javax.swing.JFrame {
                  nomselect = b.getName();
                  numselect = String.valueOf(b.getNum());
                  idselect = String.valueOf(b.getId());
+                }
             }
         
-        ModifBat j = new ModifBat();
-        j.nombat.setText(""+nomselect);
-        j.numbat.setText(""+numselect);
-        j.id.setText("1"+idselect);
+        ModifBat j = new ModifBat(this);
+        j.nombat.setText(nomselect);
+        j.numbat.setText(numselect);
+        j.id.setText(idselect);
         
         j.setVisible(true);
         }
          
-    }
+        
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -295,7 +303,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(InterfaceU.class.getName()).log(Level.SEVERE, null, ex);
             }
-            UpdateJListBatiment();
+            UpdateJList();
         }
         else{
             alert.setText(" Selectionner un Batiment à Supprimer ");

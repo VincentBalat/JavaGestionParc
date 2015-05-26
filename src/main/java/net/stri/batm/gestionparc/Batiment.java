@@ -63,7 +63,7 @@ public class Batiment {
         //Création d'un objet Statement
         Statement state = conn.createStatement();
                 
-        ResultSet element = state.executeQuery("SELECT * FROM Salle WHERE idbatiment = " + id+";");
+        ResultSet element = state.executeQuery("SELECT * FROM salles WHERE idbat = " + id+";");
             
         int i = 0;
         salles.clear();

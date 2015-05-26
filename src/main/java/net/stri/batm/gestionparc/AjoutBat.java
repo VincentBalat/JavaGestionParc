@@ -17,8 +17,8 @@ public class AjoutBat extends javax.swing.JFrame {
      * @param mainInt
      */
     public AjoutBat(InterfaceU mainInt) {
-        initComponents();
         this.mainInt = mainInt;
+        initComponents();
     }
 
     /**
@@ -115,17 +115,18 @@ public class AjoutBat extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        lMessage.setText("  ");
-        if(nombat.getText().trim().equals("")||numbat.getText().trim().equals("") ){
-            lMessage.setText(" Completer les champs ");
+        lMessage.setText("");
+        if(!nombat.getText().trim().equals("")){
+
+            int number = Integer.parseInt(numbat.getText());
+            int i = mainInt.getBat().getSize();
+            mainInt.getController().addBatiment(i,nombat.getText(),number);
+            mainInt.UpdateJList();
+            
+            this.setVisible(false);
         }
         else{
-            
-            int number = Integer.parseInt(numbat.getText());
-            int i = Singleton.getId();
-            mainInt.getController().addBatiment(i,nombat.getText(),number);
-            mainInt.UpdateJListBatiment();
-            this.setVisible(false);
+            lMessage.setText(" Completer les champs ");
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

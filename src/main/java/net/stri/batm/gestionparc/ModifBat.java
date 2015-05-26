@@ -14,14 +14,15 @@ import java.util.logging.Logger;
  * @author Brice
  */
 public class ModifBat extends javax.swing.JFrame {
- private InterfaceU mainInt;   
+    private InterfaceU mainInt;   
     /**
      * Creates new form ModifBat
+     * @param mainInt
      * @param id
      */
-    public ModifBat() {
-        initComponents();
+    public ModifBat(InterfaceU mainInt) {
         this.mainInt = mainInt;
+        initComponents();
         
     }
 
@@ -149,9 +150,10 @@ public class ModifBat extends javax.swing.JFrame {
             try {
                 mainInt.getController().modifyBatiment(idbat,nombat.getText(),number);
             } catch (SQLException ex) {
-                Logger.getLogger(ModifBat.class.getName()).log(Level.SEVERE, null, ex);
+                ErreurBD err = new ErreurBD();
+                err.setVisible(true);
             }
-            mainInt.UpdateJListBatiment();
+            mainInt.UpdateJList();
             this.setVisible(false);
         
         }
@@ -167,7 +169,7 @@ public class ModifBat extends javax.swing.JFrame {
 
      /* @param args the command line arguments*/
      
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -194,7 +196,7 @@ public class ModifBat extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModifBat().setVisible(true);
+                new ModifBat(mainInt).setVisible(true);
             }
         });
     }

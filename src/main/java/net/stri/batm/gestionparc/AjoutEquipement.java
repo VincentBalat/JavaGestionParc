@@ -179,17 +179,16 @@ public class AjoutEquipement extends javax.swing.JFrame {
         // TODO add your handling code here:
         
             lMessage.setText("");
-            InterfaceU u = new InterfaceU();
-            DefaultTableModel model =(DefaultTableModel) u.Table.getModel(); 
+             
             if(!nom.getText().trim().equals("")){
-                u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});
+                
                 this.setVisible(false);
             }
 
             else{
                 lMessage.setText(" Completer les champs ");
             }
-      
+     // u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void salleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salleActionPerformed

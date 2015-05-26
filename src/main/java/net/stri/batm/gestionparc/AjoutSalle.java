@@ -5,18 +5,38 @@
  */
 package net.stri.batm.gestionparc;
 
+import java.sql.SQLException;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author Brice
  */
 public class AjoutSalle extends javax.swing.JFrame {
     private InterfaceU mainInt;
+    private DefaultComboBoxModel bat = new DefaultComboBoxModel();
     /**
      * Creates new form AjoutSalle
      */
     public AjoutSalle(InterfaceU mainInt) {
-        initComponents();
         this.mainInt = mainInt;
+        UpdateJListBatiment();
+        initComponents();
+    }
+    
+     public void UpdateJListBatiment(){
+        try {
+            this.mainInt.getController().importBatiments();
+        } catch (SQLException | ClassNotFoundException ex) {
+            ErreurBD err = new ErreurBD();
+            err.setVisible(true);
+        }
+        bat.removeAllElements();
+        bat.addElement("Batiment");
+        bat.setSelectedItem("Batiment");
+        for(Batiment b : this.mainInt.getController().getBatiments()){
+           bat.addElement(b);
+        } 
     }
 
     /**
@@ -35,8 +55,11 @@ public class AjoutSalle extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         numero = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        etage = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        listBat = new javax.swing.JComboBox();
+        batiment = new javax.swing.JLabel();
+        lMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,37 +91,60 @@ public class AjoutSalle extends javax.swing.JFrame {
 
         jLabel1.setText("Etage");
 
+        listBat.setModel(bat);
+        listBat.setSelectedIndex(0);
+        listBat.setSelectedItem("Batiment");
+        listBat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listBatActionPerformed(evt);
+            }
+        });
+
+        batiment.setText("Batiment");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(148, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(106, 106, 106))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(batiment))
                         .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nom_salle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(127, 127, 127))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(149, 149, 149))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(79, 79, 79))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(listBat, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(etage, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nom_salle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(140, 140, 140))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(lMessage)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listBat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(batiment, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nom_salle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -107,10 +153,12 @@ public class AjoutSalle extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(etage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lMessage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jButton1))
         );
 
@@ -124,12 +172,39 @@ public class AjoutSalle extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        lMessage.setText("");
+        if(!nom_salle.getText().trim().equals("")){
+
+            int number = Integer.parseInt(numero.getText());
+            int stage = Integer.parseInt(etage.getText());
+            int i = mainInt.getController().getSalles().size();
+            Batiment batiment = null;
+            try {
+                mainInt.getController().importBatiments();
+            } catch (ClassNotFoundException | SQLException ex) {
+                ErreurBD j = new ErreurBD();
+                j.setVisible(true);
+            }
+            for(Batiment b : mainInt.getController().getBatiments()){
+                if(b.toString() == null ? (String)bat.getSelectedItem() == null : b.toString().equals((String)bat.getSelectedItem()))
+		batiment = b;
+            }
+            mainInt.getController().addSalle(batiment,i,nom_salle.getText(),number,stage);
+            mainInt.UpdateJList();
+            this.setVisible(false);
+        }
+        else{
+            lMessage.setText(" Completer les champs ");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numeroActionPerformed
+
+    private void listBatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listBatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listBatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,12 +242,15 @@ public class AjoutSalle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel batiment;
+    private javax.swing.JTextField etage;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lMessage;
+    private javax.swing.JComboBox listBat;
     private javax.swing.JTextField nom_salle;
     private javax.swing.JTextField numero;
     // End of variables declaration//GEN-END:variables

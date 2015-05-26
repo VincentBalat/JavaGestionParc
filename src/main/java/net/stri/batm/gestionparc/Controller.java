@@ -19,11 +19,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Controller {
-	private final ArrayList<Batiment> batiments;
+	private ArrayList<Batiment> batiments;
+        private ArrayList<Salle> salles;
 
 	public Controller() {
 		batiments = new ArrayList<>();
-		//example();
+                salles = listAllSalles();
 	}
         
         /**
@@ -63,10 +64,10 @@ public class Controller {
         public ArrayList<Batiment> getBatiments() {
             return batiments;
         }
-        
-        
-        
-        
+
+    public ArrayList<Salle> getSalles() {
+        return salles;
+    }
 
 	public void printBatiments() {
 		for (Batiment batiment : batiments) {
@@ -202,9 +203,11 @@ public class Controller {
 		}
 		if(bat!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE salles SET idbat = null where idbat = "+bat.getId()+";");
-                        bat.importSalles();
-                        bd.requete("DELETE FROM batiments where idbat = "+bat.getId()+";");
+                        if(bd.requete("SELECT *  FROM salles WHERE idbat = "+bat.getId()+";") != null){
+                            bd.requete("DELETE FROM salles WHERE idbat = "+bat.getId()+";");
+                            bat.importSalles();
+                        }
+                        bd.requete("DELETE FROM batiments where idbatiment = "+bat.getId()+";");
 			batiments.remove(bat);
                         
 		}
