@@ -63,16 +63,17 @@ public class Batiment {
         //Création d'un objet Statement
         Statement state = conn.createStatement();
                 
-        ResultSet element = state.executeQuery("SELECT * FROM salles WHERE idbat = " + id+";");
+        ResultSet element = state.executeQuery("SELECT * FROM salles WHERE idbat = "+this.getId()+";");
             
         int i = 0;
         salles.clear();
         
         while(element.next()) {
-            Salle s = new Salle(this, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etages"));
+            Salle s = new Salle(this, (int)element.getInt("idsalle"), (String)element.getString("noms"), (int)element.getInt("nums"), (int)element.getInt("etage"));
             salles.add(i,s);
             i++;
         }
+        state.close();
     }
 
     /**

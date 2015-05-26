@@ -41,13 +41,13 @@ public class Connect {
       state = conn.createStatement();
      /* ResultSet batiments = */
       state.execute("CREATE TABLE batiments\n" +
-"       (idbatiment     INT CONSTRAINT PK_IdBatiment PRIMARY KEY,\n" +
+"       (idbatiment     SERIAL PRIMARY KEY,\n" + //CONSTRAINT PK_IdBatiment
 "        nomb           VARCHAR(255),\n" +
 "        numb           INT);\n");
 
       state = conn.createStatement();
       state.execute("CREATE TABLE salles\n" +
-"       (idsalle    INT CONSTRAINT PK_IdSalle PRIMARY KEY,\n" +
+"       (idsalle    SERIAL PRIMARY KEY,\n" + //CONSTRAINT PK_IdSalle
 "        noms       VARCHAR(255),\n" +
 "        nums       INT,\n" +
 "        etage      INT,\n" +
@@ -66,7 +66,7 @@ public class Connect {
 "        idsalle    INT CONSTRAINT FK_IdSalle REFERENCES salles(idsalle));\n");
       
       state.execute("CREATE TABLE interfaces\n" +
-"       (mac VARCHAR(255) CONSTRAINT PK_Mac PRIMARY KEY,\n" +
+"       (mac        VARCHAR(255) CONSTRAINT PK_Mac PRIMARY KEY,\n" +
 "        ip         VARCHAR(255),\n" +
 "        nomint     VARCHAR(255),\n" +
 "        vitesse    INT,\n" +

@@ -24,7 +24,8 @@ public class Controller {
 
 	public Controller() {
 		batiments = new ArrayList<>();
-                salles = listAllSalles();
+                salles = new ArrayList<>();
+                //salles = listAllSalles();
 	}
         
         /**
@@ -56,10 +57,8 @@ public class Controller {
                     batiments.add(i,b);
                     i++;
                 }
-                 state.close();
+                state.close();
         }
-        
-        
 
         public ArrayList<Batiment> getBatiments() {
             return batiments;
@@ -94,7 +93,7 @@ public class Controller {
 		Batiment batiment = new Batiment(id, name, num);
 		batiments.add(batiment);
                 BD bd = new BD();
-                bd.requete("INSERT INTO batiments VALUES ("+ id +",'"+name+"',"+num+");");
+                bd.requete("INSERT INTO batiments VALUES ('"+name+"',"+num+");");
 	}
         
         /**
@@ -111,7 +110,8 @@ public class Controller {
 		Salle salle = new Salle(batiment, id, name, num, etage);
 		batiment.addSalle(salle);
                 BD bd = new BD();
-                bd.requete("INSERT INTO salles VALUES ("+ id +",'"+name+"',"+num+","+etage+","+batiment.getId()+");");
+                bd.requete("INSERT INTO salles VALUES ('"+name+"',"+num+","+etage+","+batiment.getId()+");");
+                    id++;
 	}
         
         /**

@@ -205,5 +205,10 @@ public class Salle {
 			ordinateurs.remove(ordinateur);
 		}
 	}
+
+    @Override
+    public String toString() {
+        return  (name + " : " + num);
+    }
 }
 
