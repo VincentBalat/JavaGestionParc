@@ -72,6 +72,7 @@ public class ModifBat extends javax.swing.JFrame {
         jLabel1.setText("ID ");
 
         id.setEditable(false);
+        id.setBackground(new java.awt.Color(204, 204, 204));
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idActionPerformed(evt);
