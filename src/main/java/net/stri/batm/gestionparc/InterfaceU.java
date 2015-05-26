@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -111,6 +112,11 @@ public final class InterfaceU extends javax.swing.JFrame {
         jScrollPane1.setViewportView(batiment);
 
         salle.setModel(sal);
+        salle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salleMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(salle);
 
         jButton1.setText("Ajouter");
@@ -362,6 +368,37 @@ public final class InterfaceU extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_batimentMouseClicked
 */
+    private void salleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salleMouseClicked
+        // TODO add your handling code here:
+                if (evt.getClickCount() == 2) {
+            
+        String idselect = null; 
+        String numselect = null;
+        String nomselect = null;
+        String batselect = null;
+        String etaselect = null;
+        
+            for(Salle s : getController().getSalles()){
+                if(s.toString().equals(salle.getSelectedValue().toString())){
+                 nomselect = s.getName();
+                 numselect = String.valueOf(s.getNum());
+                 idselect = String.valueOf(s.getId());
+                 batselect = String.valueOf(s.getBatiment());
+                 etaselect = String.valueOf(s.getEtage());
+                }
+            }
+        
+        ModifSalle j = new ModifSalle(this);
+        j.nom.setText(nomselect);
+        j.numero.setText(numselect);
+        j.id.setText(idselect);
+        j.bat.setText(batselect);
+        j.etage.setText(etaselect);
+       
+        j.setVisible(true);
+        }
+    }//GEN-LAST:event_salleMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -400,7 +437,7 @@ public final class InterfaceU extends javax.swing.JFrame {
     private javax.swing.JLabel ErrAddSalle;
     public javax.swing.JTable Table;
     private javax.swing.JLabel alert;
-    private javax.swing.JList batiment;
+    public javax.swing.JList batiment;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
