@@ -84,6 +84,31 @@ public class BD {
         
     }
     
+    public int getId(String type) throws SQLException, ClassNotFoundException{
+        Class.forName("org.postgresql.Driver");
+        String url = "jdbc:postgresql://localhost:5432/gestionpark";
+        String user = "postgres";
+        String passwd = "postgres";
+        
+        Connection conn = DriverManager.getConnection(url, user, passwd);
+         
+                //Création d'un objet Statement
+        Statement state = conn.createStatement();
+           
+        
+        ResultSet rs = state.executeQuery("SELECT * FROM pk WHERE id = 0;");
+        int id = 0;
+        while(rs.next()){
+            id = (int)rs.getInt(type);
+            id++;
+        }
+
+        requete("UPDATE pk SET "+type+" = "+id+" WHERE id = 0;");
+            
+        state.close();
+        return id;
+    }
+    
     /*public HashMap<String, Object> select(String query) {
         try{
             
