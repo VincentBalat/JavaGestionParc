@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -36,6 +37,14 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     public Controller getController() {
         return controller;
+    }
+
+    public JList getSalle() {
+        return salle;
+    }
+
+    public JList getBatiment() {
+        return batiment;
     }
 
     public DefaultListModel<String> getBat() {
@@ -319,7 +328,7 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AjoutEquipement j = new AjoutEquipement();
+        AjoutEquipement j = new AjoutEquipement(this);
         j.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -186,7 +186,6 @@ public class AjoutSalle extends javax.swing.JFrame {
 
             int number = Integer.parseInt(numero.getText());
             int stage = Integer.parseInt(etage.getText());
-            int i = mainInt.getController().getSalles().size();
             Batiment batiment = null;
             try {
                 mainInt.getController().importBatiments();
@@ -249,6 +248,7 @@ public class AjoutSalle extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new AjoutSalle(mainInt).setVisible(true);
             }

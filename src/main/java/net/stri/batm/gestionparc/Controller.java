@@ -100,7 +100,6 @@ public class Controller {
         /**
          * La méthode ajoute une salle et l'insert dans la base de donnée
          * @param batiment
-         * @param id
          * @param name
          * @param num
          * @param etage 
