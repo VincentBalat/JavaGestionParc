@@ -25,7 +25,7 @@ public class Controller {
 	public Controller() {
 		batiments = new ArrayList<>();
                 salles = new ArrayList<>();
-                //salles = listAllSalles();
+                salles = listAllSalles();
 	}
         
         /**

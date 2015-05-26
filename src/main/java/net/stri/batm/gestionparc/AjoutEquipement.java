@@ -273,7 +273,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AjoutEquipement().setVisible(true);
+               // new AjoutEquipement().setVisible(true);
             }
         });
     }

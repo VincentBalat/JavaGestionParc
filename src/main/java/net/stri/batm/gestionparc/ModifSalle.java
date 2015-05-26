@@ -5,6 +5,9 @@
  */
 package net.stri.batm.gestionparc;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -48,7 +51,7 @@ public class ModifSalle extends javax.swing.JFrame {
         id = new javax.swing.JTextField();
         lMessage = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel7.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel7.setText("MOFICATION SALLE");
@@ -158,6 +161,7 @@ public class ModifSalle extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomActionPerformed
@@ -174,12 +178,16 @@ public class ModifSalle extends javax.swing.JFrame {
             String name = nom.getText();
             int num = Integer.parseInt(numero.getText());
             for(Batiment b : mainInt.getController().getBatiments()){
-                
                 if(b.toString().equals(bat.getText()))
                 bati = b;
             }
               
-            mainInt.getController().ModifySalle(Id, bati, name, num,stage);
+            try {
+                mainInt.getController().modifySalle(Id, bati, name, num,stage);
+            } catch (SQLException | ClassNotFoundException ex) {
+                ErreurBD err = new ErreurBD();
+                err.setVisible(true);
+            }
             mainInt.UpdateJList();
             this.setVisible(false);
     }

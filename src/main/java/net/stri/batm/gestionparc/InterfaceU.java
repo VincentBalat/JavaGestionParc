@@ -381,7 +381,7 @@ public final class InterfaceU extends javax.swing.JFrame {
 */
     private void salleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salleMouseClicked
         // TODO add your handling code here:
-                if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             
         String idselect = null; 
         String numselect = null;
