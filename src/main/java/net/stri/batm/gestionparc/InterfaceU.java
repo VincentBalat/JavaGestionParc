@@ -248,18 +248,12 @@ public final class InterfaceU extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         AjoutSalle j = new AjoutSalle(this);
-        try {
-            getController().importBatiments();
-        } catch (ClassNotFoundException | SQLException ex) {
-            ErreurBD err = new ErreurBD();
-            err.setVisible(true);
-        }
         j.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AjoutEquipement j = new AjoutEquipement();
+        AjoutEquipement j = new AjoutEquipement(this);
         j.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

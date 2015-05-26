@@ -7,8 +7,6 @@ package initBD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 
 /**
@@ -35,48 +33,45 @@ public class Connect {
       //Création d'un objet Statement
       Statement state = conn.createStatement();
 
-      state.execute("DROP TABLE if exists Interfaces ;");
-      state.execute("DROP TABLE if exists Equipements ;");
-      state.execute("DROP TABLE if exists Salles ;");
-      state.execute("DROP TABLE if exists Batiments ;");
+      state.execute("DROP TABLE if exists interfaces ;");
+      state.execute("DROP TABLE if exists equipements ;");
+      state.execute("DROP TABLE if exists salles ;");
+      state.execute("DROP TABLE if exists batiments ;");
       state.close();
       state = conn.createStatement();
      /* ResultSet batiments = */
-      state.execute("CREATE TABLE Batiments\n" +
-"       (IdBatiment     INT CONSTRAINT PK_IdBatiment PRIMARY KEY,\n" +
-"        NomB           VARCHAR(255),\n" +
-"        NumB           INT);\n");
+      state.execute("CREATE TABLE batiments\n" +
+"       (idbatiment     INT CONSTRAINT PK_IdBatiment PRIMARY KEY,\n" +
+"        nomb           VARCHAR(255),\n" +
+"        numb           INT);\n");
 
       state = conn.createStatement();
-      state.execute("CREATE TABLE Salles\n" +
-"       (IdSalle    INT CONSTRAINT PK_IdSalle PRIMARY KEY,\n" +
-"        NomS       VARCHAR(255),\n" +
-"        NumS       INT,\n" +
-"        Etage      INT,\n" +
-"        IdBat      INT CONSTRAINT FK_IdBat REFERENCES Batiments(IdBatiment));\n");
+      state.execute("CREATE TABLE salles\n" +
+"       (idsalle    INT CONSTRAINT PK_IdSalle PRIMARY KEY,\n" +
+"        noms       VARCHAR(255),\n" +
+"        nums       INT,\n" +
+"        etage      INT,\n" +
+"        idbat      INT CONSTRAINT FK_IdBat REFERENCES batiments(idbatiment));\n");
       
-      state.execute("CREATE TABLE Equipements\n" +
-"       (SN         VARCHAR(255) CONSTRAINT PK_IdEquipement PRIMARY KEY,\n" +
-"        NomEq      VARCHAR(255),\n" +
-"        Marque     VARCHAR(255),\n" +
-"        Modele     VARCHAR(255),\n" +
-"        Active     BOOLEAN,\n" +
-"        Processeur VARCHAR(255),\n" +
-"        RAM        INT,\n" +
-"        Disque     INT,\n" +
-"        Type       VARCHAR(255),\n" +
-"        IdSalle    INT CONSTRAINT FK_IdSalle REFERENCES Salles(IdSalle));\n");
+      state.execute("CREATE TABLE equipements\n" +
+"       (sn         VARCHAR(255) CONSTRAINT PK_IdEquipement PRIMARY KEY,\n" +
+"        nomeq      VARCHAR(255),\n" +
+"        marque     VARCHAR(255),\n" +
+"        modele     VARCHAR(255),\n" +
+"        active     BOOLEAN,\n" +
+"        processeur VARCHAR(255),\n" +
+"        ram        INT,\n" +
+"        disque     INT,\n" +
+"        type       VARCHAR(255),\n" +
+"        idsalle    INT CONSTRAINT FK_IdSalle REFERENCES salles(idsalle));\n");
       
-      state.execute("CREATE TABLE Interfaces\n" +
-"       (Mac VARCHAR(255) CONSTRAINT PK_Mac PRIMARY KEY,\n" +
-"        Ip         VARCHAR(255),\n" +
-"        NomInt     VARCHAR(255),\n" +
-"        Vitesse    INT,\n" +
-"        IdEq       VARCHAR(255) CONSTRAINT FK_IdEq REFERENCES Equipements(SN));\n");
-      
-      state.execute("INSERT INTO batiments\n"+
-"       VALUES (-1, 'autre', null);");
-      
+      state.execute("CREATE TABLE interfaces\n" +
+"       (mac VARCHAR(255) CONSTRAINT PK_Mac PRIMARY KEY,\n" +
+"        ip         VARCHAR(255),\n" +
+"        nomint     VARCHAR(255),\n" +
+"        vitesse    INT,\n" +
+"        ideq       VARCHAR(255) CONSTRAINT FK_IdEq REFERENCES equipements(sn));\n");
+         
       state.execute("INSERT INTO salles\n"+
 "       VALUES (-1, 'autre', null, null, -1);");
       

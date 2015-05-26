@@ -133,8 +133,8 @@ public class Controller {
 		salle.addEquipement(equipement);
                 BD bd = new BD();
                 bd.requete("INSERT INTO equipements VALUES ('"+SN+"','"+name+"',"
-                        + "'"+marque+"','"+modele+"',"+active+","+null+","
-                        + null+","+null+",'"+type+"',"+salle.getId()+");");
+                        + "'"+marque+"','"+modele+"',"+active+", null, null, null,"
+                        + "'"+type+"',"+salle.getId()+");");
 	}
         
         /**
@@ -205,9 +205,9 @@ public class Controller {
 		}
 		if(bat!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE salles SET idbat = -1 where idbat = "+bat.getId()+";");
+                        bd.requete("DELETE FROM salles WHERE idbat = "+bat.getId()+";");
                         bat.importSalles();
-                        bd.requete("DELETE FROM batiments where idbat = "+bat.getId()+";");
+                        bd.requete("DELETE FROM batiments WHERE idbatiment = "+bat.getId()+";");
 			batiments.remove(bat);
                         
 		}
@@ -232,7 +232,7 @@ public class Controller {
                         BD bd = new BD();
                         bd.requete("UPDATE equipements SET idsalle =-1 where idsalle = "+sal.getId()+";");
                         sal.importequipements();
-                        bd.requete("DELETE FROM salles where idsalle = "+sal.getId()+";");
+                        bd.requete("DELETE FROM salles WHERE idsalle = "+sal.getId()+";");
 			sal.getBatiment().removeSalle(sal);
 		}
 	}
@@ -254,9 +254,9 @@ public class Controller {
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE interfaces SET ideq =-1 where ideq = '"+eq.getSN()+"';");
+                        bd.requete("DELETE FROM interfaces WHERE ideq = '"+eq.getSN()+"';");
                         eq.importInterfaces();
-                        bd.requete("DELETE FROM equipements where ideq = '"+eq.getSN()+"';");
+                        bd.requete("DELETE FROM equipements WHERE sn = '"+eq.getSN()+"';");
 			eq.getSalle().removeEquipement(eq);
 		}
 	}
@@ -278,7 +278,7 @@ public class Controller {
 		}
 		if(or!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE interfaces SET ideq =-1 where ideq = '"+or.getSN()+"';");
+                        bd.requete("DELETE FROM interfaces WHERE ideq = '"+or.getSN()+"';");
                         or.importInterfaces();
                         bd.requete("DELETE FROM equipements where sn = '"+or.getSN()+"';");
 			or.getSalle().removeOrdinateur(or);
@@ -326,7 +326,7 @@ public class Controller {
             }
             if(batiment != null){
                 BD bd = new BD();
-                bd.requete("UPDATE batiments SET nomb ='"+name+"', numb = "+num+"where idbatiment = '"+id+"';");
+                bd.requete("UPDATE batiments SET nomb = '"+name+"', numb = "+num+" WHERE idbatiment = '"+id+"';");
                 
             }
             
@@ -360,8 +360,8 @@ public class Controller {
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
-                                + "active ='"+actif+"',type = '"+type+"',idsalle = "+salle.getId()
+                        bd.requete("UPDATE equipements SET NomEq = '"+name+"', marque = '"+marque+"' ,modele = '"+modele+"',"
+                                + " active ='"+actif+"', type = '"+type+"', idsalle = "+salle.getId()
                                 + " where ideq = '"+sn+"';");
                         salle.importequipements();
 		}
@@ -380,7 +380,7 @@ public class Controller {
 		if(eq!=null){
                         BD bd = new BD();
                         bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
-                                + "active ='"+actif+"', processeur = "+process+", ram = "+ram+", "
+                                + "active = '"+actif+"', processeur = "+process+", ram = "+ram+", "
                                 + "disque = "+dd+",type = '"+type+"',idsalle = "+salle.getId()
                                 + " where ideq = '"+sn+"';");
                         salle.importequipements();
