@@ -80,6 +80,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
         jLabel3.setText("Marque");
 
+        actif.setSelected(true);
         actif.setText("Actif");
         actif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

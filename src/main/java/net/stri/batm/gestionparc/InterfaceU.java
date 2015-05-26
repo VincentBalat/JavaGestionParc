@@ -559,8 +559,12 @@ public final class InterfaceU extends javax.swing.JFrame {
         String type = (String)eq.getValueAt(ligne, 2);
         String marque = (String)eq.getValueAt(ligne, 3);
         String modele = (String)eq.getValueAt(ligne, 4);
-        String eqsalle = (String)eq.getValueAt(ligne, 5);
-        boolean actif = (boolean) eq.getValueAt(ligne, 6);
+        
+        j.nom.setText(nom);
+        j.numserie.setText(sn);
+        j.type.setText(type);
+        j.marque.setText(marque);
+        j.modele.setText(modele);
         j.setVisible(true);
     }
     /**
