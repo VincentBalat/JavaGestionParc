@@ -156,6 +156,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                 "Name", "Type", "Marque", "Modele", "Salle", "Actif"
             }
         ));
+        Table.setEnabled(false);
         jScrollPane4.setViewportView(Table);
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
@@ -457,7 +458,7 @@ public final class InterfaceU extends javax.swing.JFrame {
     private javax.swing.JLabel ErrAddSalle;
     public javax.swing.JTable Table;
     private javax.swing.JLabel alert;
-    public javax.swing.JList batiment;
+    private javax.swing.JList batiment;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
