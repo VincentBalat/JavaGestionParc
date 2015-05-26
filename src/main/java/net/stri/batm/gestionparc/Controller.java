@@ -205,6 +205,13 @@ public class Controller {
 		}
 		if(bat!=null){
                         BD bd = new BD();
+                        for (Salle s : bat.getSalles()){
+                            if(bd.requete("SELECT *  FROM equipements WHERE idsalle = "+s.getId()+";") != null){
+                                bd.requete("UPDATE equipements SET idsalle = 0 WHERE idsalle = "+s.getId()+";");
+                                s.importequipements();
+                            }
+                        }
+                        
                         if(bd.requete("SELECT *  FROM salles WHERE idbat = "+bat.getId()+";") != null){
                             bd.requete("DELETE FROM salles WHERE idbat = "+bat.getId()+";");
                             bat.importSalles();
@@ -232,7 +239,7 @@ public class Controller {
 		}
 		if(sal!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE equipements SET idsalle ="+null+"where idsalle = "+sal.getId()+";");
+                        bd.requete("UPDATE equipements SET idsalle = 0 where idsalle = "+sal.getId()+";");
                         sal.importequipements();
                         bd.requete("DELETE FROM salles where idsalle = "+sal.getId()+";");
 			sal.getBatiment().removeSalle(sal);

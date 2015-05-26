@@ -298,12 +298,30 @@ public final class InterfaceU extends javax.swing.JFrame {
     private void batimentMouseClicked(java.awt.event.MouseEvent evt) {                                      
         // TODO add your handling code here:
         
-        
+        Batiment bb = null;
         for (Batiment b : controller.getBatiments()){
                 if (b.toString().equals((String) batiment.getSelectedValue())){
                     UpdateJListSalle(b);
+                    bb = b;
                 }
         }
+        for (int i = eq.getRowCount() - 1; i > -1; i--) {
+            eq.removeRow(i);
+        }
+        for (Salle s : bb.getSalles()){
+            try {
+                s.importequipements();
+            } catch (SQLException | ClassNotFoundException ex) {
+                ErreurBD err = new ErreurBD();
+                err.setVisible(true);
+            }
+            for(Equipement e : s.getEquipements()){
+                Object[] obj = {e.getNom(),e.getType(),e.getMarque(),e.getModele(), e.isActif()};
+                eq.addRow(obj);
+            }
+        }
+        
+        
 
         if (evt.getClickCount() == 2) {
             

@@ -80,6 +80,12 @@ public class Connect {
       
       state.execute("INSERT INTO pk\n"+
 "       VALUES (0, 0, 0);");
+      
+      state.execute("INSERT INTO batiments\n"+
+"       VALUES (0,'autre', 0);");
+      
+      state.execute("INSERT INTO salles\n"+
+"       VALUES (0,'autre', 0, 0, 0);");
          
       state.close();
          

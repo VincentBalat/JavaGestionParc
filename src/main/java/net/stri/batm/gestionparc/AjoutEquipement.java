@@ -220,6 +220,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
             
             mainInt.getController().addEquipement(salle, sn.getText(), nom.getText(), marque.getText(), modele.getText(), rootPaneCheckingEnabled, null);
             mainInt.UpdateJList();
+            mainInt.UpdateJTableEq(salle);
             this.setVisible(false);
         }
         else{
