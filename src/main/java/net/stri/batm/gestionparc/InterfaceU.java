@@ -388,16 +388,25 @@ public final class InterfaceU extends javax.swing.JFrame {
         String nomselect = null;
         String batselect = null;
         String etaselect = null;
-        
-            for(Salle s : getController().getSalles()){
-                if(s.toString().equals(salle.getSelectedValue().toString())){
-                 nomselect = s.getName();
-                 numselect = String.valueOf(s.getNum());
-                 idselect = String.valueOf(s.getId());
-                 batselect = String.valueOf(s.getBatiment());
-                 etaselect = String.valueOf(s.getEtage());
-                }
+        Batiment Bati = null;
+        Salle sa = null;
+            for(Batiment b : this.getController().getBatiments()){
+                if(b.toString().equals(this.getBatiment().getSelectedValue()))
+                    Bati = b;
             }
+            
+            for(Salle s : Bati.getSalles()){
+                if(s.toString().equals(this.getSalle().getSelectedValue()))
+                    sa = s;
+            }
+            
+                 nomselect = sa.getName();
+                 numselect = String.valueOf(sa.getNum());
+                 idselect = String.valueOf(sa.getId());
+                 batselect = String.valueOf(sa.getBatiment());
+                 etaselect = String.valueOf(sa.getEtage());
+                
+            
         
         ModifSalle j = new ModifSalle(this);
         j.nom.setText(nomselect);
