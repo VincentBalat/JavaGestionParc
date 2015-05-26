@@ -6,7 +6,8 @@
 package net.stri.batm.gestionparc;
 
 /**
- *
+ * Cette classe définit les interfaces réseaux présentes sur les différents équipements.
+ * Ces interfaces sont ensuite stockées dans des arrayList des instances de Ordinateur ou d'Equipement
  * @author VincentBalat
  */
 public class Interface {
@@ -17,7 +18,9 @@ public class Interface {
     private int Vitesse;
         
     /**
-     *
+     * Constructeur.
+     * Une interface est définie par l'équipement auquel elle appartient, ainsi que par son adresse MAC, 
+     * son adresse IP, son nom et sa vitesse.
      * @param Equipement
      * @param MAC
      * @param IP
@@ -33,8 +36,8 @@ public class Interface {
     }
 
     /**
-     *
-     * @return
+     * Retourne le nom de l'equipement sur lequel est connecté l'interface
+     * @return equipement
      */
     public Object getEquipement() {
         return Equipement;
@@ -42,15 +45,15 @@ public class Interface {
 
     
     /**
-     *
-     * @return
+     * Retourne le nom de l'interface
+     * @return nom
      */
     public String getNom() {
         return Nom;
     }
 
     /**
-     *
+     * Permet de modifier le nom de l'interface
      * @param Nom
      */
     public void setNom(String Nom) {
@@ -58,15 +61,15 @@ public class Interface {
     }
 
     /**
-     *
-     * @return
+     * Retourne l'adresse IP associée à l'interface
+     * @return IP
      */
     public String getIP() {
         return IP;
     }
 
     /**
-     *
+     * Permet de modifier l'adresse IP de l'interface
      * @param IP
      */
     public void setIP(String IP) {
@@ -74,15 +77,15 @@ public class Interface {
     }
 
     /**
-     *
-     * @return
+     * Retourne l'adresse MAC associée à l'interface
+     * @return MAC
      */
     public String getMAC() {
         return MAC;
     }
 
     /**
-     *
+     * Permet de modifier l'adresse MAC de l'interface
      * @param MAC
      */
     public void setMAC(String MAC) {
@@ -90,15 +93,15 @@ public class Interface {
     }
 
     /**
-     *
-     * @return
+     * Retourne la vitesse réseau maximale de l'interface
+     * @return Vitesse
      */
     public int getVitesse() {
         return Vitesse;
     }
 
     /**
-     *
+     * Permet de modifier la vitesse réseau de l'interface
      * @param Vitesse
      */
     public void setVitesse(int Vitesse) {

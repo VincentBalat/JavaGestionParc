@@ -6,7 +6,7 @@
 package net.stri.batm.gestionparc;
 
 /**
- *
+ * Cette classe permet d'afficher d'éventuelles erreurs liés à la connexion avec la base de données.
  * @author Gaspar
  */
 public class ErreurBD extends javax.swing.JFrame {
