@@ -22,7 +22,7 @@ public final class InterfaceU extends javax.swing.JFrame {
     private Controller controller; 
     private DefaultListModel<String> bat;
     private DefaultListModel<String> sal;
-    private DefaultTableModel model;
+    private DefaultTableModel eq;
 
     /**
      * Creates new form InterfaceU
@@ -31,6 +31,12 @@ public final class InterfaceU extends javax.swing.JFrame {
         controller = new Controller();
         bat = new DefaultListModel<>();
         sal = new DefaultListModel<>();
+        eq = new DefaultTableModel();
+        eq.addColumn("Nom");
+        eq.addColumn("Type");
+        eq.addColumn("Marque");
+        eq.addColumn("Modèle");
+        eq.addColumn("Actif");
         UpdateJList();
         initComponents();
     }
@@ -77,6 +83,22 @@ public final class InterfaceU extends javax.swing.JFrame {
         }
         for(Salle s : selectBat.getSalles()){
                 sal.addElement(s.toString());
+        }
+    }
+    
+    public void UpdateJTableEq(Salle selectSal){
+        for (int i = eq.getRowCount() - 1; i > -1; i--) {
+            eq.removeRow(i);
+        }
+        try {
+            selectSal.importequipements();
+        } catch (SQLException | ClassNotFoundException ex) {
+            ErreurBD err = new ErreurBD();
+            err.setVisible(true);
+        }
+        for(Equipement e : selectSal.getEquipements()){
+            Object[] obj = {e.getNom(),e.getType(),e.getMarque(),e.getModele(), e.isActif()};
+            eq.addRow(obj);
         }
     }
 
@@ -325,7 +347,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         // TODO add your handling code here:
         ErrAddSalle.setText("");
         if(controller.getBatiments().isEmpty())
-            ErrAddSalle.setText(" Completer les champs ");
+            ErrAddSalle.setText(" Completez les champs ");
         else {
             AjoutSalle j = new AjoutSalle(this);
         j.setVisible(true);
@@ -360,7 +382,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             sal.clear();
         }
         else{
-            alert.setText(" Selectionner un Batiment à Supprimer ");
+            alert.setText(" Selectionnez un Batiment à Supprimer ");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -382,6 +404,20 @@ public final class InterfaceU extends javax.swing.JFrame {
 */
     private void salleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salleMouseClicked
         // TODO add your handling code here:
+        Batiment bb = null;
+        
+        for (Batiment b : controller.getBatiments()){
+                if (b.toString().equals((String) batiment.getSelectedValue())){
+                    bb = b;
+                }
+        }
+        
+        for (Salle s : bb.getSalles()){
+                if (s.toString().equals((String) salle.getSelectedValue())){
+                    this.UpdateJTableEq(s);
+                }
+        }
+        
         if (evt.getClickCount() == 2) {
             
         String idselect = null; 

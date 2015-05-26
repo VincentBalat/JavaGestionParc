@@ -212,7 +212,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
                 if(s.toString().equals(mainInt.getSalle().getSelectedValue()))
                     salle = s;
             }
-            
+            this.sall.setText(salle.getName());
             
             mainInt.getController().addEquipement(salle, sn.getText(), nom.getText(), marque.getText(), modele.getText(), rootPaneCheckingEnabled, null);
             mainInt.UpdateJList();
