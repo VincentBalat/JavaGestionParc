@@ -8,14 +8,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *          Utilitaire de Gestion de Parc Informatique
+ * Travail réalisé dans le cadre de l'UPSSITECH spécialité STRI
+ *   Promo 2017, Groupe Alessandrini, Balat, Meyerfeld, Tauran
  */
 
 
 /**
- * Superclasse pour tous les équipements 
+ * Superclasse pour tous les équipements. 
+ * Cette classe est utilisée pour les équipements qui ne possèdent pas de RAM ou de disque dur.
+ * On utilisera la classe Ordinateur le cas échéant.
  * @author VincentBalat
  */
 public class Equipement {
@@ -30,7 +32,9 @@ public class Equipement {
     private ArrayList<Interface> interfaces;
 
     /**
-     *
+     * Constructeur.
+     * Un équipement est constitué d'une marque, d'un nom, d'un modele, d'un numéro de série,
+     * ainsi que d'un état (actif/passif) et d'un type. De plus, il est localisé dans une salle.
      * @param salle
      * @param nom
      * @param marque
@@ -86,15 +90,15 @@ public class Equipement {
     }
     
     /**
-     *
-     * @return
+     * Retourne le nom de l'équipement
+     * @return nom
      */
     public String getNom() {
         return nom;
     }
 
     /**
-     *
+     * Attribue un nom à l'équipement
      * @param nom
      */
     public void setNom(String nom) {
@@ -102,15 +106,15 @@ public class Equipement {
     }
 
     /**
-     *
-     * @return
+     * Retourne la marque de l'équipement
+     * @return marque
      */
     public String getMarque() {
         return marque;
     }
 
     /**
-     *
+     * Attribue une marque à l'équipement
      * @param marque
      */
     public void setMarque(String marque) {
@@ -118,15 +122,15 @@ public class Equipement {
     }
 
     /**
-     *
-     * @return
+     * Retourne le modèle de l'équipement
+     * @return modele
      */
     public String getModele() {
         return modele;
     }
 
     /**
-     *
+     * Attribue un modèle de l'équipement
      * @param modele
      */
     public void setModele(String modele) {
@@ -134,15 +138,15 @@ public class Equipement {
     }
 
     /**
-     *
-     * @return
+     * Retourne le numéro de série de l'équipement
+     * @return sn
      */
     public String getSN() {
         return SN;
     }
 
     /**
-     *
+     * Attribue un numéro de série à l'équipement
      * @param SN
      */
     public void setSN(String SN) {
@@ -150,8 +154,8 @@ public class Equipement {
     }
 
     /**
-     *
-     * @return
+     * Retourne le numéro de la salle où est situé l'équipement
+     * @return salle
      */
     public Salle getSalle() {
         return salle;
