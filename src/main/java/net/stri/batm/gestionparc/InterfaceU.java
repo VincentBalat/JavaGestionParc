@@ -203,9 +203,7 @@ public final class InterfaceU extends javax.swing.JFrame {
 
         Table.setModel(eq);
         Table.setToolTipText("");
-        Table.setCellSelectionEnabled(false);
         Table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Table.setRowSelectionAllowed(true);
         Table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
