@@ -553,7 +553,7 @@ public final class InterfaceU extends javax.swing.JFrame {
     }//GEN-LAST:event_salleMouseClicked
 
     private void TableMouseClicked(java.awt.event.MouseEvent evt) {
-        ModifEquip j = new ModifEquip();
+        ModifEquip j = new ModifEquip(this);
         int ligne = this.Table.getSelectedRow();
         String sn = (String)eq.getValueAt(ligne, 0);
         String nom = (String)eq.getValueAt(ligne, 1);
@@ -562,12 +562,6 @@ public final class InterfaceU extends javax.swing.JFrame {
         String modele = (String)eq.getValueAt(ligne, 4);
         String eqsalle = (String)eq.getValueAt(ligne, 5);
         boolean actif = (boolean) eq.getValueAt(ligne, 6);
-        
-        
-        //j.numserie.setText( //
-        
-        
-        
         j.setVisible(true);
     }
     /**
