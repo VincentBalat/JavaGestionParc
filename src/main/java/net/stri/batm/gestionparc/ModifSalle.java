@@ -189,6 +189,7 @@ public class ModifSalle extends javax.swing.JFrame {
                 err.setVisible(true);
             }
             mainInt.UpdateJList();
+            mainInt.UpdateJListSalle(bati);
             this.setVisible(false);
     }
         else{
