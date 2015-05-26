@@ -89,6 +89,7 @@ public class ModifSalle extends javax.swing.JFrame {
 
         jLabel4.setText("ID");
 
+        id.setEditable(false);
         id.setBackground(new java.awt.Color(204, 204, 204));
 
         lMessage.setFont(new java.awt.Font("Calibri", 0, 13)); // NOI18N
