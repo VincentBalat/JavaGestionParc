@@ -19,12 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Controller {
-	private ArrayList<Batiment> batiments;
-        private ArrayList<Salle> salles;
+	private final ArrayList<Batiment> batiments;
 
 	public Controller() {
 		batiments = new ArrayList<>();
-                salles = listAllSalles();
 		//example();
 	}
         
@@ -59,14 +57,14 @@ public class Controller {
                 }
                  state.close();
         }
+        
+        
 
         public ArrayList<Batiment> getBatiments() {
             return batiments;
         }
-
-        public ArrayList<Salle> getSalles() {
-            return salles;
-        }
+        
+        
         
         
 
@@ -91,12 +89,11 @@ public class Controller {
          * @param num 
          */
 
-	public void addBatiment(int id, String name, int num){
+	public void addBatiment(int id, String name, int num) {
+		Batiment batiment = new Batiment(id, name, num);
+		batiments.add(batiment);
                 BD bd = new BD();
                 bd.requete("INSERT INTO batiments VALUES ("+ id +",'"+name+"',"+num+");");
-                
-                Batiment batiment = new Batiment(id, name, num);
-		batiments.add(batiment);
 	}
         
         /**
@@ -133,8 +130,8 @@ public class Controller {
 		salle.addEquipement(equipement);
                 BD bd = new BD();
                 bd.requete("INSERT INTO equipements VALUES ('"+SN+"','"+name+"',"
-                        + "'"+marque+"','"+modele+"',"+active+", null, null, null,"
-                        + "'"+type+"',"+salle.getId()+");");
+                        + "'"+marque+"','"+modele+"',"+active+","+null+","
+                        + null+","+null+",'"+type+"',"+salle.getId()+");");
 	}
         
         /**
@@ -205,9 +202,9 @@ public class Controller {
 		}
 		if(bat!=null){
                         BD bd = new BD();
-                        bd.requete("DELETE FROM salles WHERE idbat = "+bat.getId()+";");
+                        bd.requete("UPDATE salles SET idbat = null where idbat = "+bat.getId()+";");
                         bat.importSalles();
-                        bd.requete("DELETE FROM batiments WHERE idbatiment = "+bat.getId()+";");
+                        bd.requete("DELETE FROM batiments where idbat = "+bat.getId()+";");
 			batiments.remove(bat);
                         
 		}
@@ -230,9 +227,9 @@ public class Controller {
 		}
 		if(sal!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE equipements SET idsalle =-1 where idsalle = "+sal.getId()+";");
+                        bd.requete("UPDATE equipements SET idsalle ="+null+"where idsalle = "+sal.getId()+";");
                         sal.importequipements();
-                        bd.requete("DELETE FROM salles WHERE idsalle = "+sal.getId()+";");
+                        bd.requete("DELETE FROM salles where idsalle = "+sal.getId()+";");
 			sal.getBatiment().removeSalle(sal);
 		}
 	}
@@ -254,9 +251,9 @@ public class Controller {
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("DELETE FROM interfaces WHERE ideq = '"+eq.getSN()+"';");
+                        bd.requete("UPDATE interfaces SET ideq ="+null+"where ideq = '"+eq.getSN()+"';");
                         eq.importInterfaces();
-                        bd.requete("DELETE FROM equipements WHERE sn = '"+eq.getSN()+"';");
+                        bd.requete("DELETE FROM equipements where ideq = '"+eq.getSN()+"';");
 			eq.getSalle().removeEquipement(eq);
 		}
 	}
@@ -278,7 +275,7 @@ public class Controller {
 		}
 		if(or!=null){
                         BD bd = new BD();
-                        bd.requete("DELETE FROM interfaces WHERE ideq = '"+or.getSN()+"';");
+                        bd.requete("UPDATE interfaces SET ideq ="+null+"where ideq = '"+or.getSN()+"';");
                         or.importInterfaces();
                         bd.requete("DELETE FROM equipements where sn = '"+or.getSN()+"';");
 			or.getSalle().removeOrdinateur(or);
@@ -326,7 +323,7 @@ public class Controller {
             }
             if(batiment != null){
                 BD bd = new BD();
-                bd.requete("UPDATE batiments SET nomb = '"+name+"', numb = "+num+" WHERE idbatiment = '"+id+"';");
+                bd.requete("UPDATE batiments SET nomb ='"+name+"', numb = "+num+"where idbatiment = '"+id+"';");
                 
             }
             
@@ -360,8 +357,8 @@ public class Controller {
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE equipements SET NomEq = '"+name+"', marque = '"+marque+"' ,modele = '"+modele+"',"
-                                + " active ='"+actif+"', type = '"+type+"', idsalle = "+salle.getId()
+                        bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
+                                + "active ='"+actif+"',type = '"+type+"',idsalle = "+salle.getId()
                                 + " where ideq = '"+sn+"';");
                         salle.importequipements();
 		}
@@ -380,7 +377,7 @@ public class Controller {
 		if(eq!=null){
                         BD bd = new BD();
                         bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
-                                + "active = '"+actif+"', processeur = "+process+", ram = "+ram+", "
+                                + "active ='"+actif+"', processeur = "+process+", ram = "+ram+", "
                                 + "disque = "+dd+",type = '"+type+"',idsalle = "+salle.getId()
                                 + " where ideq = '"+sn+"';");
                         salle.importequipements();
@@ -468,7 +465,7 @@ public class Controller {
 
 
 	// pour faire les tests
-	/*private void main() throws ClassNotFoundException {
+	private void main() throws ClassNotFoundException {
 		addBatiment(1, "Bat 1", 1);
 		addBatiment(2, "Bat 2", 2);
 		addBatiment(3, "Bat 3", 3);
@@ -499,5 +496,5 @@ public class Controller {
 		printBatiments();
 		System.out.println("Liste des salles");
 		printSalles();
-	}*/
+	}
 }

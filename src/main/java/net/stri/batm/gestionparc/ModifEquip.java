@@ -56,7 +56,7 @@ public class ModifEquip extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
 
         jLabel1.setText("Modele");
@@ -106,7 +106,8 @@ public class ModifEquip extends javax.swing.JFrame {
 
         jLabel6.setText("Type");
 
-        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("MODIFIER EQUIPEMENT");
 
         supprimer.setText("Ajout Interface");
@@ -213,8 +214,8 @@ public class ModifEquip extends javax.swing.JFrame {
                 .addGap(246, 246, 246))
             .addGroup(layout.createSequentialGroup()
                 .addGap(111, 111, 111)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addGap(119, 119, 119)
                 .addComponent(jLabel8)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -274,9 +275,8 @@ public class ModifEquip extends javax.swing.JFrame {
                         .addComponent(jLabel12)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(modifier)
-                        .addComponent(jButton1))
+                    .addComponent(modifier)
+                    .addComponent(jButton1)
                     .addComponent(supprimer))
                 .addGap(32, 32, 32))
         );

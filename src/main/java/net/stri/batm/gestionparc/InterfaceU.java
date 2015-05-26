@@ -1,9 +1,9 @@
 package net.stri.batm.gestionparc;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,31 +18,24 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class InterfaceU extends javax.swing.JFrame {
     private Object Interface;
-    private Controller controller; 
-    private DefaultListModel<String> bat;
-    private DefaultListModel<String> sal;
-    private DefaultTableModel model;
+    private Controller controller = new Controller();
+    DefaultListModel<String> bat = new DefaultListModel<>();
+    DefaultListModel<String> sal = new DefaultListModel<>();
+    DefaultTableModel model;
 
     /**
      * Creates new form InterfaceU
      */
     public InterfaceU() {
-        controller = new Controller();
-        bat = new DefaultListModel<>();
-        sal = new DefaultListModel<>();
-        UpdateJList();
+        UpdateJListBatiment();
         initComponents();
     }
 
     public Controller getController() {
         return controller;
     }
-
-    public DefaultListModel<String> getBat() {
-        return bat;
-    }
     
-    public void UpdateJList(){
+    public void UpdateJListBatiment(){
         try {
             controller.importBatiments();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -52,11 +45,12 @@ public final class InterfaceU extends javax.swing.JFrame {
         bat.clear();
         for(Batiment b : controller.getBatiments()){
             bat.addElement(b.toString());
-            for(Salle s : b.getSalles()){
-                sal.addElement(s.toString());
-            }
+            /*for(Salle s : b.getSalles()){
+                sal.addElement(s);
+            }*/
         }  
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,17 +77,18 @@ public final class InterfaceU extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        alert = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         batiment.setModel(bat);
+        batiment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                batimentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(batiment);
 
-        salle.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Salle 1", "Salle 2", "Salle 3", "Salle 4", "Salle 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(salle);
 
         jButton1.setText("Ajouter");
@@ -127,7 +122,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(Table);
 
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel5.setText("GESTION DE PARCS INFORMATIQUES");
 
         jButton5.setText("Supprimer");
@@ -151,14 +146,17 @@ public final class InterfaceU extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel2.setText("BATIMENTS :");
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setText("SALLES :");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel3.setText("EQUIPEMENTS :");
+
+        alert.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        alert.setForeground(new java.awt.Color(255, 51, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,39 +164,42 @@ public final class InterfaceU extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(214, 214, 214))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 724, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(39, 39, 39)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel3)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(32, 32, 32))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(214, 214, 214))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,9 +214,11 @@ public final class InterfaceU extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(alert, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -225,7 +228,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6)
                     .addComponent(jButton4))
-                .addGap(28, 28, 28))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -235,9 +238,29 @@ public final class InterfaceU extends javax.swing.JFrame {
     private void batimentMouseClicked(java.awt.event.MouseEvent evt) {                                      
         // TODO add your handling code here:
         
-         System.out.println("Mouse-button clicked (pressed and released)!");
+        if (evt.getClickCount() == 2) {
+            
+        String idselect = null; 
+        String numselect = null;
+        String nomselect = null ;
+        
+              for (Batiment b : controller.getBatiments()){
+                if (b.toString().equals((String) batiment.getSelectedValue())){
+                 nomselect = b.getName();
+                 numselect = String.valueOf(b.getNum());
+                 idselect = String.valueOf(b.getId());
+            }
+        
+        ModifBat j = new ModifBat();
+        j.nombat.setText(""+nomselect);
+        j.numbat.setText(""+numselect);
+        j.id.setText("1"+idselect);
+        
+        j.setVisible(true);
+        }
          
-    }                                     
+    }
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
                 // TODO add your handling code here:
@@ -253,13 +276,30 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AjoutEquipement j = new AjoutEquipement(this);
+        AjoutEquipement j = new AjoutEquipement();
         j.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+        int id = 0;
+        alert.setText("");
+        if(!batiment.getSelectedValue().toString().equals("")){
+            for (Batiment b : controller.getBatiments()){
+                if (b.toString().equals((String)batiment.getSelectedValue()))
+                id= b.getId();
+            }  
+            
+            try {
+                getController().removeBatiment(id);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(InterfaceU.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            UpdateJListBatiment();
+        }
+        else{
+            alert.setText(" Selectionner un Batiment à Supprimer ");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -273,6 +313,10 @@ public final class InterfaceU extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void batimentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batimentMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_batimentMouseClicked
 */
     /**
      * @param args the command line arguments
@@ -310,6 +354,7 @@ public final class InterfaceU extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable Table;
+    private javax.swing.JLabel alert;
     private javax.swing.JList batiment;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

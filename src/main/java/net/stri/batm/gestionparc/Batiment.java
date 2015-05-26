@@ -40,6 +40,10 @@ public class Batiment {
 		this.num = num;
 		salles = new ArrayList<Salle>();
 	}
+
+    Batiment() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     /**
     * La méthode importe depuis la base de données les salles du batiment.
@@ -137,7 +141,7 @@ public class Batiment {
 		} else {
 			salles.remove(salle);
 		}
-    }
+	}
 
 	public String toString() {
 		return (num +" : "+ name);

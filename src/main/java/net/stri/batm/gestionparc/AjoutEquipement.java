@@ -5,7 +5,6 @@
  */
 package net.stri.batm.gestionparc;
 
-import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -15,13 +14,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Brice
  */
 public class AjoutEquipement extends javax.swing.JFrame {
-    InterfaceU mainInt;
+
     /**
      * Creates new form AjoutEquipement
      */
-    public AjoutEquipement(InterfaceU MainInt) {
-        this.mainInt = mainInt;
-        //UpdateJListBatiment();
+    public AjoutEquipement() {
         initComponents();
     }
 
@@ -49,7 +46,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         type = new javax.swing.JComboBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lMessage.setForeground(new java.awt.Color(255, 51, 51));
 
@@ -94,7 +91,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
         jLabel4.setText("Salle");
 
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 36)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel5.setText("AJOUT EQUIPEMENT");
 
         jLabel6.setText("Type");
@@ -105,8 +102,14 @@ public class AjoutEquipement extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(actif))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,14 +133,8 @@ public class AjoutEquipement extends javax.swing.JFrame {
                                 .addComponent(lMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(actif))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel5)
+                        .addGap(89, 89, 89))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,32 +177,19 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
             lMessage.setText("");
-        /*if(!nom_salle.getText().trim().equals("")){
+            InterfaceU u = new InterfaceU();
+            DefaultTableModel model =(DefaultTableModel) u.Table.getModel(); 
+            if(!nom.getText().trim().equals("")){
+                u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});
+                this.setVisible(false);
+            }
 
-            int number = Integer.parseInt(numero.getText());
-            int stage = Integer.parseInt(etage.getText());
-            int i = mainInt.getController().getSalles().size();
-            Batiment batiment = null;
-            try {
-                mainInt.getController().importBatiments();
-            } catch (ClassNotFoundException | SQLException ex) {
-                ErreurBD j = new ErreurBD();
-                j.setVisible(true);
+            else{
+                lMessage.setText(" Completer les champs ");
             }
-            for(Batiment b : mainInt.getController().getBatiments()){
-                if(b.toString() == null ? (String)bat.getSelectedItem() == null : b.toString().equals((String)bat.getSelectedItem()))
-		batiment = b;
-            }
-            mainInt.getController().addSalle(batiment,i,nom_salle.getText(),number,stage);
-            mainInt.UpdateJList();
-            this.setVisible(false);
-        }
-        else{
-            lMessage.setText(" Completer les champs ");
-        }
-            
-            u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});*/
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void salleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salleActionPerformed
@@ -254,7 +238,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new AjoutEquipement().setVisible(true);
+                new AjoutEquipement().setVisible(true);
             }
         });
     }
