@@ -170,14 +170,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             }
         });
 
-        Table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Type", "Marque", "Modele", "Salle", "Actif"
-            }
-        ));
+        Table.setModel(eq);
         Table.setEnabled(false);
         jScrollPane4.setViewportView(Table);
 
