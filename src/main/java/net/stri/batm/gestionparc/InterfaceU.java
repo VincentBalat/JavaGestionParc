@@ -1,5 +1,6 @@
 package net.stri.batm.gestionparc;
 
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -7,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.table.DefaultTableModel;
+import static org.eclipse.persistence.expressions.ExpressionOperator.All;
 
 /*
  * To change this template, choose Tools | Templates
@@ -32,6 +34,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         bat = new DefaultListModel<>();
         sal = new DefaultListModel<>();
         eq = new DefaultTableModel();
+        eq.addColumn("Num Série");
         eq.addColumn("Nom");
         eq.addColumn("Type");
         eq.addColumn("Marque");
@@ -97,7 +100,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             err.setVisible(true);
         }
         for(Equipement e : selectSal.getEquipements()){
-            Object[] obj = {e.getNom(),e.getType(),e.getMarque(),e.getModele(), e.isActif()};
+            Object[] obj = {e.getSN(),e.getNom(),e.getType(),e.getMarque(),e.getModele(), e.isActif()};
             eq.addRow(obj);
         }
     }
@@ -172,8 +175,16 @@ public final class InterfaceU extends javax.swing.JFrame {
         });
 
         Table.setModel(eq);
-        Table.setEnabled(false);
+        Table.setToolTipText("");
+        Table.setCellSelectionEnabled(false);
+        Table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Table.setRowSelectionAllowed(true);
         Table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(Table);
 
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
@@ -221,7 +232,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -231,7 +242,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,7 +262,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ErrAddSalle)
@@ -382,12 +393,10 @@ public final class InterfaceU extends javax.swing.JFrame {
         // TODO add your handling code here:
         ErrAddEq.setText("");
         ErrAddSalle.setText("");
-        if(!salle.isCursorSet()){
-            ErrAddEq.setText("Veuillez sélelectionner une salle");
-        }else{
-            AjoutEquipement j = new AjoutEquipement(this);
-            j.setVisible(true);
-        }
+
+        AjoutEquipement j = new AjoutEquipement(this);
+        j.sall.setText((String) this.salle.getSelectedValue());
+        j.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -516,6 +525,24 @@ public final class InterfaceU extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_salleMouseClicked
 
+    private void TableMouseClicked(java.awt.event.MouseEvent evt) {
+        ModifEquip j = new ModifEquip();
+        int ligne = this.Table.getSelectedRow();
+        String sn = (String)eq.getValueAt(ligne, 0);
+        String nom = (String)eq.getValueAt(ligne, 1);
+        String type = (String)eq.getValueAt(ligne, 2);
+        String marque = (String)eq.getValueAt(ligne, 3);
+        String modele = (String)eq.getValueAt(ligne, 4);
+        String eqsalle = (String)eq.getValueAt(ligne, 5);
+        boolean actif = (boolean) eq.getValueAt(ligne, 6);
+        
+        
+        //j.numserie.setText( //
+        
+        
+        
+        j.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
