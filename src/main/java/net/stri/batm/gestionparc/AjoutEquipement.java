@@ -21,7 +21,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
      */
     public AjoutEquipement(InterfaceU MainInt) {
         this.mainInt = mainInt;
-        UpdateJListBatiment();
+        //UpdateJListBatiment();
         initComponents();
     }
 
@@ -181,7 +181,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
             lMessage.setText("");
-        if(!nom_salle.getText().trim().equals("")){
+        /*if(!nom_salle.getText().trim().equals("")){
 
             int number = Integer.parseInt(numero.getText());
             int stage = Integer.parseInt(etage.getText());
@@ -205,7 +205,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
             lMessage.setText(" Completer les champs ");
         }
             
-            u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});
+            u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void salleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salleActionPerformed
@@ -254,7 +254,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AjoutEquipement().setVisible(true);
+                //new AjoutEquipement().setVisible(true);
             }
         });
     }
