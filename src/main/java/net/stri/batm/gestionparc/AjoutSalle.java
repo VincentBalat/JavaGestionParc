@@ -6,6 +6,8 @@
 package net.stri.batm.gestionparc;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -184,7 +186,6 @@ public class AjoutSalle extends javax.swing.JFrame {
 
             int number = Integer.parseInt(numero.getText());
             int stage = Integer.parseInt(etage.getText());
-            int i = mainInt.getController().getSalles().size();
             Batiment batiment = null;
             try {
                 mainInt.getController().importBatiments();
@@ -196,7 +197,12 @@ public class AjoutSalle extends javax.swing.JFrame {
                 if(b.toString().equals(listBat.getSelectedItem().toString()))
                     batiment = b;
             }
-            mainInt.getController().addSalle(batiment, i, nom_salle.getText(), number,stage);
+            try {
+                mainInt.getController().addSalle(batiment, nom_salle.getText(), number,stage);
+            } catch (SQLException | ClassNotFoundException ex) {
+                ErreurBD err = new ErreurBD();
+                err.setVisible(true);
+            }
             mainInt.UpdateJList();
             this.setVisible(false);
         }
@@ -242,6 +248,7 @@ public class AjoutSalle extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new AjoutSalle(mainInt).setVisible(true);
             }

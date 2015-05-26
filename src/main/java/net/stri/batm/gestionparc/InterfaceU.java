@@ -39,6 +39,14 @@ public final class InterfaceU extends javax.swing.JFrame {
         return controller;
     }
 
+    public JList getSalle() {
+        return salle;
+    }
+
+    public JList getBatiment() {
+        return batiment;
+    }
+
     public DefaultListModel<String> getBat() {
         return bat;
     }
@@ -325,7 +333,7 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AjoutEquipement j = new AjoutEquipement();
+        AjoutEquipement j = new AjoutEquipement(this);
         j.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 

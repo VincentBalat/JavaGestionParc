@@ -5,6 +5,10 @@
  */
 package net.stri.batm.gestionparc;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Brice
@@ -120,7 +124,12 @@ public class AjoutBat extends javax.swing.JFrame {
 
             int number = Integer.parseInt(numbat.getText());
             int i = mainInt.getBat().getSize();
-            mainInt.getController().addBatiment(i,nombat.getText(),number);
+            try {
+                mainInt.getController().addBatiment(nombat.getText(),number);
+            } catch (SQLException | ClassNotFoundException ex) {
+                ErreurBD err = new ErreurBD();
+                err.setVisible(true);
+            }
             mainInt.UpdateJList();
             
             this.setVisible(false);

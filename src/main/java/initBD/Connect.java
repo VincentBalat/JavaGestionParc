@@ -37,17 +37,18 @@ public class Connect {
       state.execute("DROP TABLE if exists equipements ;");
       state.execute("DROP TABLE if exists salles ;");
       state.execute("DROP TABLE if exists batiments ;");
+      state.execute("DROP TABLE if exists pk ;");
       state.close();
       state = conn.createStatement();
      /* ResultSet batiments = */
       state.execute("CREATE TABLE batiments\n" +
-"       (idbatiment     SERIAL PRIMARY KEY,\n" + //CONSTRAINT PK_IdBatiment
+"       (idbatiment     INT CONSTRAINT PK_IdBatiment PRIMARY KEY,\n" +
 "        nomb           VARCHAR(255),\n" +
 "        numb           INT);\n");
 
       state = conn.createStatement();
       state.execute("CREATE TABLE salles\n" +
-"       (idsalle    SERIAL PRIMARY KEY,\n" + //CONSTRAINT PK_IdSalle
+"       (idsalle    INT CONSTRAINT PK_IdSalle PRIMARY KEY,\n" + //
 "        noms       VARCHAR(255),\n" +
 "        nums       INT,\n" +
 "        etage      INT,\n" +
@@ -71,13 +72,15 @@ public class Connect {
 "        nomint     VARCHAR(255),\n" +
 "        vitesse    INT,\n" +
 "        ideq       VARCHAR(255) CONSTRAINT FK_IdEq REFERENCES equipements(sn));\n");
-         
-      state.execute("INSERT INTO salles\n"+
-"       VALUES (-1, 'autre', null, null, -1);");
       
-      state.execute("INSERT INTO equipements\n"+
-"       VALUES ('-1', 'autre', null, null, null, null, null, null, null, -1);");
-
+      state.execute("CREATE TABLE pk\n" +
+"       (id         INT CONSTRAINT PK_id PRIMARY KEY,\n" +
+"        batiment   INT,\n" +
+"        salle      INT);\n");
+      
+      state.execute("INSERT INTO pk\n"+
+"       VALUES (0, 0, 0);");
+         
       state.close();
          
     } catch (Exception e) {

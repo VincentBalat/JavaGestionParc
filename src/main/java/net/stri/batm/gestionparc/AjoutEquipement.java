@@ -5,6 +5,7 @@
  */
 package net.stri.batm.gestionparc;
 
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -14,11 +15,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Brice
  */
 public class AjoutEquipement extends javax.swing.JFrame {
-
+    InterfaceU mainInt;
     /**
      * Creates new form AjoutEquipement
+     * @param mainInt
      */
-    public AjoutEquipement() {
+    public AjoutEquipement(InterfaceU mainInt) {
+        this.mainInt = mainInt;
         initComponents();
     }
 
@@ -45,6 +48,8 @@ public class AjoutEquipement extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         type = new javax.swing.JComboBox();
+        sn = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,6 +103,14 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
         type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Routeur", "Ordinateur", " " }));
 
+        sn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                snActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Numéro de série");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,9 +120,9 @@ public class AjoutEquipement extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addComponent(actif))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,13 +135,16 @@ public class AjoutEquipement extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(marque, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(modele, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(sn, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(nom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
@@ -140,8 +156,12 @@ public class AjoutEquipement extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -168,7 +188,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
                 .addComponent(actif)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(45, 45, 45))
+                .addGap(15, 15, 15))
         );
 
         pack();
@@ -177,17 +197,19 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-            lMessage.setText("");
-             
-            if(!nom.getText().trim().equals("")){
-                
-                this.setVisible(false);
-            }
-
-            else{
-                lMessage.setText(" Completer les champs ");
-            }
+        lMessage.setText("");
+        if(!nom.getText().trim().equals("")){
+            mainInt.getSalle().getSelectedValue();
+            Salle salle = null;
+            mainInt.getBatiment().getSelectedValue()
+            for(Salle s : )
+            mainInt.getController().addEquipement(salle, null, null, null, null, rootPaneCheckingEnabled, null);
+            mainInt.UpdateJList();
+            this.setVisible(false);
+        }
+        else{
+            lMessage.setText(" Completer les champs ");
+        }
      // u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -206,6 +228,10 @@ public class AjoutEquipement extends javax.swing.JFrame {
     private void nomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomActionPerformed
+
+    private void snActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_snActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_snActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,11 +277,13 @@ public class AjoutEquipement extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lMessage;
     private javax.swing.JTextField marque;
     private javax.swing.JTextField modele;
     private javax.swing.JTextField nom;
     private javax.swing.JComboBox salle;
+    private javax.swing.JTextField sn;
     private javax.swing.JComboBox type;
     // End of variables declaration//GEN-END:variables
 }

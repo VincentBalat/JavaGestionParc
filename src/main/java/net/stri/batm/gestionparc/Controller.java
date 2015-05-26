@@ -51,7 +51,7 @@ public class Controller {
                 int i = 0;
                 batiments.clear();
         
-                 while(element.next()){
+                while(element.next()){
                     Batiment b = new Batiment((int)element.getInt("idbatiment"), 
                             (String)element.getString("nomb"), (int)element.getInt("numb"));
                     batiments.add(i,b);
@@ -89,29 +89,31 @@ public class Controller {
          * @param num 
          */
 
-	public void addBatiment(int id, String name, int num) {
-		Batiment batiment = new Batiment(id, name, num);
+	public void addBatiment(String name, int num) throws SQLException, ClassNotFoundException {
+                BD bd = new BD();	
+                int id = bd.getId("batiment");
+                Batiment batiment = new Batiment(id, name, num);
 		batiments.add(batiment);
-                BD bd = new BD();
-                bd.requete("INSERT INTO batiments VALUES ('"+name+"',"+num+");");
+                bd.requete("INSERT INTO batiments VALUES ("+id+",'"+name+"',"+num+");");
 	}
         
         /**
          * La méthode ajoute une salle et l'insert dans la base de donnée
          * @param batiment
-         * @param id
          * @param name
          * @param num
          * @param etage 
          */
 
-	public void addSalle(Batiment batiment, int id, String name, int num,
-			int etage) {
+	public void addSalle(Batiment batiment, String name, int num,
+			int etage) throws SQLException, ClassNotFoundException {
+                BD bd = new BD();
+                int id = bd.getId("salle");
 		Salle salle = new Salle(batiment, id, name, num, etage);
 		batiment.addSalle(salle);
-                BD bd = new BD();
-                bd.requete("INSERT INTO salles VALUES ('"+name+"',"+num+","+etage+","+batiment.getId()+");");
-                    id++;
+                
+                bd.requete("INSERT INTO salles VALUES ("+id+", '"+name+"',"+num+","+etage+","+batiment.getId()+");");
+                
 	}
         
         /**
@@ -466,42 +468,4 @@ public class Controller {
 		return interfaces;
 	}
 
-
-	// pour faire les tests
-	private void main() throws ClassNotFoundException {
-		addBatiment(1, "Bat 1", 1);
-		addBatiment(2, "Bat 2", 2);
-		addBatiment(3, "Bat 3", 3);
-		addSalle(batiments.get(0), 1, "Salle 1", 1, 0);
-		addSalle(batiments.get(0), 2, "Salle 2", 2, 0);
-		addSalle(batiments.get(0), 3, "Salle 3", 3, 0);
-		addSalle(batiments.get(1), 4, "Salle 1", 1, 0);
-		addSalle(batiments.get(1), 5, "Salle 2", 2, 0);
-		addSalle(batiments.get(1), 6, "Salle 3", 3, 0);
-		addSalle(batiments.get(2), 7, "Salle 1", 1, 0);
-		addSalle(batiments.get(2), 8, "Salle 2", 2, 0);
-		addSalle(batiments.get(2), 9, "Salle 3", 3, 0);
-		System.out.println("Liste des batiments");
-		printBatiments();
-		System.out.println("Liste des salles");
-		printSalles();
-		
-            try {
-                removeSalle(8);
-                removeSalle(7);
-                removeBatiment(1);
-            } catch (SQLException ex) {
-                System.out.println("Erreur de base de donnée");
-            }
-		
-		
-		System.out.println("Liste des batiments");
-		printBatiments();
-		System.out.println("Liste des salles");
-		printSalles();
-	}
-
-    void ModifySalle(int Id, Batiment bati, String name, int num, int stage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
