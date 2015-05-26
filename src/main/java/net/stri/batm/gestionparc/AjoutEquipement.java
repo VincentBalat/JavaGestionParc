@@ -5,6 +5,7 @@
  */
 package net.stri.batm.gestionparc;
 
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -14,11 +15,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Brice
  */
 public class AjoutEquipement extends javax.swing.JFrame {
-
+    InterfaceU mainInt;
     /**
      * Creates new form AjoutEquipement
      */
-    public AjoutEquipement(InterfaceU) {
+    public AjoutEquipement(InterfaceU MainInt) {
+        this.mainInt = mainInt;
+        UpdateJListBatiment();
         initComponents();
     }
 
@@ -178,16 +181,31 @@ public class AjoutEquipement extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
             lMessage.setText("");
-            InterfaceU u = new InterfaceU();
-            DefaultTableModel model =(DefaultTableModel) u.Table.getModel(); 
-            if(!nom.getText().trim().equals("")){
-                u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});
-                this.setVisible(false);
-            }
+        if(!nom_salle.getText().trim().equals("")){
 
-            else{
-                lMessage.setText(" Completer les champs ");
+            int number = Integer.parseInt(numero.getText());
+            int stage = Integer.parseInt(etage.getText());
+            int i = mainInt.getController().getSalles().size();
+            Batiment batiment = null;
+            try {
+                mainInt.getController().importBatiments();
+            } catch (ClassNotFoundException | SQLException ex) {
+                ErreurBD j = new ErreurBD();
+                j.setVisible(true);
             }
+            for(Batiment b : mainInt.getController().getBatiments()){
+                if(b.toString() == null ? (String)bat.getSelectedItem() == null : b.toString().equals((String)bat.getSelectedItem()))
+		batiment = b;
+            }
+            mainInt.getController().addSalle(batiment,i,nom_salle.getText(),number,stage);
+            mainInt.UpdateJList();
+            this.setVisible(false);
+        }
+        else{
+            lMessage.setText(" Completer les champs ");
+        }
+            
+            u.model.addRow(new Object[]{nom.getText(),type.getSelectedItem().toString(),marque.getText(),modele.getText(),salle.getSelectedItem().toString(),actif.isSelected()});
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void salleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salleActionPerformed
