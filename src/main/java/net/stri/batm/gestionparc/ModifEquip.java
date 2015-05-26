@@ -59,7 +59,7 @@ public class ModifEquip extends javax.swing.JFrame {
         }
         for(Interface i : selectEq.getInterfaces()){
             Object[] obj = {i.getNom(),i.getMAC(),i.getIP(),i.getVitesse()};
-            eq.addRow(obj);
+            interf.addRow(obj);
         }
     }
     /**
