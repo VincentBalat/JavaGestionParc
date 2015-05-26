@@ -1,14 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *          Utilitaire de Gestion de Parc Informatique
+ * Travail réalisé dans le cadre de l'UPSSITECH spécialité STRI
+ *   Promo 2017, Groupe Alessandrini, Balat, Meyerfeld, Tauran
  */
 package net.stri.batm.gestionparc;
 
-/**
- *
- * @author Xavier
- */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Le controller centralise toutes les méthodes d'accès aux différentes classes.
+ * Il permet de faire le lien entre l'interface utilisateur et les fonctionnalités. 
+ * C'est également lui qui contrôle les données.
  * @author Vince
  */
 public class Controller {
@@ -27,7 +26,7 @@ public class Controller {
         private ArrayList<Salle> salles;
 
     /**
-     *
+     *Constructeur (batiments, salles)
      */
     public Controller() {
 		batiments = new ArrayList<>();
@@ -70,23 +69,23 @@ public class Controller {
         }
 
     /**
-     *
-     * @return
+     * Retourne la liste des batiments existants
+     * @return batiments
      */
     public ArrayList<Batiment> getBatiments() {
             return batiments;
         }
 
     /**
-     *
-     * @return
+     * Retourne la liste des salles existantes
+     * @return salles
      */
     public ArrayList<Salle> getSalles() {
         return salles;
     }
 
     /**
-     *
+     * Permet d'afficher la liste des batiments existants
      */
     public void printBatiments() {
 		for (Batiment batiment : batiments) {
@@ -95,7 +94,7 @@ public class Controller {
 	}
 
     /**
-     *
+     * Permet d'afficher la liste des salles existantes
      */
     public void printSalles() {
 		for (Batiment batiment : batiments) {
@@ -357,7 +356,8 @@ public class Controller {
 	}      
         
     /**
-     *
+     * Permet de modifier un ou plusieurs attributs d'un batiment désigné par son id. 
+     * Effectue la requete sql afin de mettre à jour la base de données
      * @param id
      * @param name
      * @param num
@@ -380,7 +380,8 @@ public class Controller {
         }
         
     /**
-     *
+     * Permet de modifier un ou plusieurs attributs d'une salle désigné par son id. 
+     * Effectue la requete sql afin de mettre à jour la base de données
      * @param id
      * @param batiment
      * @param name
@@ -407,7 +408,8 @@ public class Controller {
         }
         
     /**
-     *
+     * Permet de modifier un ou plusieurs attributs d'un équipement désigné par son numéro de série (sn). 
+     * Effectue la requete sql afin de mettre à jour la base de données
      * @param sn
      * @param salle
      * @param name
@@ -437,7 +439,8 @@ public class Controller {
         }
         
     /**
-     *
+     * Permet de modifier un ou plusieurs attributs d'un équipement désigné par son numéro de série (sn). 
+     * Effectue la requete sql afin de mettre à jour la base de données
      * @param sn
      * @param salle
      * @param name
@@ -472,7 +475,8 @@ public class Controller {
         }
         
     /**
-     *
+     * Permet de modifier un ou plusieurs attributs d'un équipement désigné par son adresse mac. 
+     * Effectue la requete sql afin de mettre à jour la base de données
      * @param mac
      * @param eq
      * @param ip

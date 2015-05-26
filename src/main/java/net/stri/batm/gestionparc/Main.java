@@ -1,9 +1,9 @@
 package net.stri.batm.gestionparc;
 
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *          Utilitaire de Gestion de Parc Informatique
+ * Travail réalisé dans le cadre de l'UPSSITECH spécialité STRI
+ *   Promo 2017, Groupe Alessandrini, Balat, Meyerfeld, Tauran
  */
 
 
