@@ -200,9 +200,19 @@ public class AjoutEquipement extends javax.swing.JFrame {
         lMessage.setText("");
         if(!nom.getText().trim().equals("")){
             mainInt.getSalle().getSelectedValue();
+            Batiment batiment = null;
             Salle salle = null;
-            mainInt.getBatiment().getSelectedValue()
-            for(Salle s : )
+            
+            for(Batiment b : mainInt.getController().getBatiments()){
+                if(b.toString().equals(mainInt.getBatiment().getSelectedValue()))
+                    batiment = b;
+            }
+            
+            for(Salle s : batiment.getSalles()){
+                if(s.toString().equals(mainInt.getSalle().getSelectedValue()))
+                    salle = s;
+            }
+            
             mainInt.getController().addEquipement(salle, null, null, null, null, rootPaneCheckingEnabled, null);
             mainInt.UpdateJList();
             this.setVisible(false);

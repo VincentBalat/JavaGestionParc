@@ -203,7 +203,7 @@ public class AjoutSalle extends javax.swing.JFrame {
                 ErreurBD err = new ErreurBD();
                 err.setVisible(true);
             }
-            mainInt.UpdateJList();
+            mainInt.UpdateJListSalle(batiment);
             this.setVisible(false);
         }
         else{

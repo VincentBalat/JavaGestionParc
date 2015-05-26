@@ -339,8 +339,10 @@ public final class InterfaceU extends javax.swing.JFrame {
         ErrAddSalle.setText("");
         if(!batiment.getSelectedValue().toString().equals("")){
             for (Batiment b : controller.getBatiments()){
-                if (b.toString().equals((String)batiment.getSelectedValue()))
-                id= b.getId();
+                if (b.toString().equals((String)batiment.getSelectedValue())){
+                    id= b.getId();
+                    
+                }
             }  
             
             try {
@@ -349,6 +351,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                 Logger.getLogger(InterfaceU.class.getName()).log(Level.SEVERE, null, ex);
             }
             UpdateJList();
+            sal.clear();
         }
         else{
             alert.setText(" Selectionner un Batiment à Supprimer ");
