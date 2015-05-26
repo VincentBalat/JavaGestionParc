@@ -11,7 +11,11 @@ package net.stri.batm.gestionparc;
  */
 public class STRI {
 
-	public static void main(String[] args) {
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 		new Controller(); // controller de l'IHM (enfin je sais pas trop comment
 							// t'es sencé faire)
 	}

@@ -31,6 +31,7 @@ public class Salle {
         private ArrayList<Ordinateur> ordinateurs;
 
     /**
+     * @param batiment
      * @param id
      * @param name
      * @param num
@@ -50,6 +51,8 @@ public class Salle {
     * La méthode importe depuis la base de données les equipements de la salle.
     * Elles seront placées dans l'arrayList ordinateur ou equipement selon le type.
     * @author GasparMeyerfeld
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
     */
     
     public void importequipements() throws SQLException, ClassNotFoundException{
@@ -90,30 +93,58 @@ public class Salle {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Batiment getBatiment() {
         return batiment;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Ordinateur> getOrdinateurs() {
         return ordinateurs;
     }
 
+    /**
+     *
+     * @param batiment
+     */
     public void setBatiment(Batiment batiment) {
         this.batiment = batiment;
     }
 
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     *
+     * @param etage
+     */
     public void setEtage(int etage) {
         this.etage = etage;
     }
 
+    /**
+     *
+     * @param equipements
+     */
     public void setEquipements(ArrayList<Equipement> equipements) {
         this.equipements = equipements;
     }
 
+    /**
+     *
+     * @param ordinateurs
+     */
     public void setOrdinateurs(ArrayList<Ordinateur> ordinateurs) {
         this.ordinateurs = ordinateurs;
     }
@@ -182,6 +213,10 @@ public class Salle {
 		equipements.add(equipement);
 	}
     
+    /**
+     *
+     * @param ordinateur
+     */
     public void addOrdinateur(Ordinateur ordinateur) {
 		ordinateurs.add(ordinateur);
 	}
@@ -198,6 +233,10 @@ public class Salle {
 		}
 	}
     
+    /**
+     *
+     * @param ordinateur
+     */
     public void removeOrdinateur(Ordinateur ordinateur) {
 		if (!ordinateurs.contains(ordinateur)) {
 			System.out.println("This computer is not in this salle...");

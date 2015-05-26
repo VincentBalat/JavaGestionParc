@@ -29,6 +29,16 @@ public class Equipement {
     private String type;
     private ArrayList<Interface> interfaces;
 
+    /**
+     *
+     * @param salle
+     * @param nom
+     * @param marque
+     * @param modele
+     * @param SN
+     * @param actif
+     * @param type
+     */
     public Equipement(Salle salle, String nom, String marque, String modele, String SN, boolean actif, String type) {
         this.salle = salle;
         this.nom = nom;
@@ -44,6 +54,8 @@ public class Equipement {
     * La méthode importe depuis la base de données les interfaces de l'équipement.
     * Elles seront placées dans l'arrayList interfaces.
     * @author GasparMeyerfeld
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
     */
     
     public void importInterfaces() throws SQLException, ClassNotFoundException{
@@ -137,14 +149,26 @@ public class Equipement {
         this.SN = SN;
     }
 
+    /**
+     *
+     * @return
+     */
     public Salle getSalle() {
         return salle;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Interface> getInterfaces() {
         return interfaces;
     }
@@ -167,10 +191,18 @@ public class Equipement {
         this.actif = actif;
     }
     
+    /**
+     *
+     * @param inter
+     */
     public void addInterface(Interface inter) {
 		interfaces.add(inter);
 	}
       
+    /**
+     *
+     * @param inter
+     */
     public void removeInterface(Interface inter) {
 		if (!interfaces.contains(inter)) {
 			System.out.println("This interface is not in this equipment...");

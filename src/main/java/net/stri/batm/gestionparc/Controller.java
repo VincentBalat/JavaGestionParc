@@ -18,11 +18,18 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Vince
+ */
 public class Controller {
 	private ArrayList<Batiment> batiments;
         private ArrayList<Salle> salles;
 
-	public Controller() {
+    /**
+     *
+     */
+    public Controller() {
 		batiments = new ArrayList<>();
                 salles = new ArrayList<>();
                 salles = listAllSalles();
@@ -32,6 +39,8 @@ public class Controller {
         * La méthode importe depuis la base de données tout les batiments.
         * Elles seront placées dans l'arrayList batiments.
         * @author GasparMeyerfeld
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
         */
         
         public void importBatiments() throws ClassNotFoundException, SQLException {
@@ -60,21 +69,35 @@ public class Controller {
                 state.close();
         }
 
-        public ArrayList<Batiment> getBatiments() {
+    /**
+     *
+     * @return
+     */
+    public ArrayList<Batiment> getBatiments() {
             return batiments;
         }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Salle> getSalles() {
         return salles;
     }
 
-	public void printBatiments() {
+    /**
+     *
+     */
+    public void printBatiments() {
 		for (Batiment batiment : batiments) {
 			System.out.println(batiment.toString());
 		}
 	}
 
-	public void printSalles() {
+    /**
+     *
+     */
+    public void printSalles() {
 		for (Batiment batiment : batiments) {
 			for (Salle salle : batiment.getSalles()) {
 				System.out.println(salle.toString());
@@ -87,6 +110,8 @@ public class Controller {
          * @param id
          * @param name
          * @param num 
+     * @throws java.sql.SQLException 
+     * @throws java.lang.ClassNotFoundException 
          */
 
 	public void addBatiment(String name, int num) throws SQLException, ClassNotFoundException {
@@ -103,6 +128,8 @@ public class Controller {
          * @param name
          * @param num
          * @param etage 
+     * @throws java.sql.SQLException 
+     * @throws java.lang.ClassNotFoundException 
          */
 
 	public void addSalle(Batiment batiment, String name, int num,
@@ -193,6 +220,7 @@ public class Controller {
          * Supprime un batiment, le supprime de sa base de donnée, et met la valeure null dans idbat des salles de ce batiment
          * @param id
          * @throws SQLException 
+     * @throws java.lang.ClassNotFoundException 
          */
 
 	public void removeBatiment(int id) throws SQLException, ClassNotFoundException {
@@ -226,6 +254,7 @@ public class Controller {
          * Supprime une salle, la supprime de sa base de donnée, et met la valeure null dans idsalle des equipements de cette salles
          * @param id
          * @throws SQLException 
+     * @throws java.lang.ClassNotFoundException 
          */
         
 	public void removeSalle(int id) throws SQLException, ClassNotFoundException {
@@ -250,6 +279,7 @@ public class Controller {
          * Supprime un equipement, le supprime de sa base de donnée, et met la valeure null dans ideq des interfaces de cet equipement
          * @param sn
          * @throws SQLException 
+     * @throws java.lang.ClassNotFoundException 
          */
         
         public void removeEquipement(String sn) throws SQLException, ClassNotFoundException {
@@ -274,6 +304,7 @@ public class Controller {
          * Supprime un ordinateur, le supprime de sa base de donnée, et met la valeure null dans ideq des interfaces de cet equipement
          * @param sn
          * @throws SQLException 
+     * @throws java.lang.ClassNotFoundException 
          */
         
         public void removeOrdinateur(String sn) throws SQLException, ClassNotFoundException {
@@ -325,7 +356,14 @@ public class Controller {
 		}
 	}      
         
-        public void modifyBatiment(int id, String name, int num) throws SQLException{
+    /**
+     *
+     * @param id
+     * @param name
+     * @param num
+     * @throws SQLException
+     */
+    public void modifyBatiment(int id, String name, int num) throws SQLException{
             Batiment batiment = null;
             for(Batiment b : batiments){
                 if (b.getId()==id){
@@ -341,7 +379,17 @@ public class Controller {
             
         }
         
-        public void modifySalle(int id, Batiment batiment, String name, int num, int etage) throws SQLException, ClassNotFoundException{
+    /**
+     *
+     * @param id
+     * @param batiment
+     * @param name
+     * @param num
+     * @param etage
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void modifySalle(int id, Batiment batiment, String name, int num, int etage) throws SQLException, ClassNotFoundException{
             ArrayList<Salle> salles = listAllSalles();
 		Salle sal = null;
 		for(Salle salle:salles){
@@ -358,7 +406,19 @@ public class Controller {
 		}
         }
         
-        public void modifyEquipement(String sn, Salle salle, String name, String marque, String modele, boolean actif, String type) throws SQLException, ClassNotFoundException{
+    /**
+     *
+     * @param sn
+     * @param salle
+     * @param name
+     * @param marque
+     * @param modele
+     * @param actif
+     * @param type
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void modifyEquipement(String sn, Salle salle, String name, String marque, String modele, boolean actif, String type) throws SQLException, ClassNotFoundException{
             ArrayList<Equipement> equipements = listAllEquipements();
 		Equipement eq = null;
 		for(Equipement equipement:equipements){
@@ -376,7 +436,22 @@ public class Controller {
 		}
         }
         
-        public void modifyOrdinateur(String sn, Salle salle, String name, String marque, 
+    /**
+     *
+     * @param sn
+     * @param salle
+     * @param name
+     * @param marque
+     * @param modele
+     * @param actif
+     * @param process
+     * @param ram
+     * @param dd
+     * @param type
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void modifyOrdinateur(String sn, Salle salle, String name, String marque, 
                 String modele, boolean actif, String process, int ram, int dd, String type) throws SQLException, ClassNotFoundException{
             ArrayList<Equipement> equipements = listAllEquipements();
 		Equipement eq = null;
@@ -396,7 +471,17 @@ public class Controller {
 		}
         }
         
-        public void modifyInterface(String mac, Object eq, String ip, String name, int speed) throws SQLException, ClassNotFoundException {
+    /**
+     *
+     * @param mac
+     * @param eq
+     * @param ip
+     * @param name
+     * @param speed
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public void modifyInterface(String mac, Object eq, String ip, String name, int speed) throws SQLException, ClassNotFoundException {
 		ArrayList<Interface> interfaces = listAllInterfaces();
 		Interface in = null;
 		for(Interface inter:interfaces){
