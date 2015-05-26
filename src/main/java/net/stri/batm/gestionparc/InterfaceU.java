@@ -44,22 +44,41 @@ public final class InterfaceU extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     *
+     * @return
+     */
     public Controller getController() {
         return controller;
     }
 
+    /**
+     *
+     * @return
+     */
     public JList getSalle() {
         return salle;
     }
 
+    /**
+     *
+     * @return
+     */
     public JList getBatiment() {
         return batiment;
     }
 
+    /**
+     *
+     * @return
+     */
     public DefaultListModel<String> getBat() {
         return bat;
     }
     
+    /**
+     *
+     */
     public void UpdateJList(){
         try {
             controller.importBatiments();
@@ -76,6 +95,10 @@ public final class InterfaceU extends javax.swing.JFrame {
         }  
     }
     
+    /**
+     *
+     * @param selectBat
+     */
     public void UpdateJListSalle(Batiment selectBat){
         sal.clear();
         try {
@@ -89,6 +112,10 @@ public final class InterfaceU extends javax.swing.JFrame {
         }
     }
     
+    /**
+     *
+     * @param selectSal
+     */
     public void UpdateJTableEq(Salle selectSal){
         for (int i = eq.getRowCount() - 1; i > -1; i--) {
             eq.removeRow(i);

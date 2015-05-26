@@ -21,6 +21,7 @@ public class ModifSalle extends javax.swing.JFrame {
 
     /**
      * Creates new form ModifSalle
+     * @param mainInt
      */
     public ModifSalle(InterfaceU mainInt) {
         this.mainInt = mainInt;

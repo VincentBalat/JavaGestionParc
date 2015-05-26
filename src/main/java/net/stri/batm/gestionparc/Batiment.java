@@ -49,6 +49,8 @@ public class Batiment {
     * La méthode importe depuis la base de données les salles du batiment.
     * Elles seront placées dans l'arrayList salles.
     * @author GasparMeyerfeld
+     * @throws java.sql.SQLException
+     * @throws java.lang.ClassNotFoundException
     */
     
     public void importSalles() throws SQLException, ClassNotFoundException{

@@ -19,6 +19,7 @@ public class AjoutSalle extends javax.swing.JFrame {
     private DefaultComboBoxModel bat = new DefaultComboBoxModel();
     /**
      * Creates new form AjoutSalle
+     * @param mainInt
      */
     public AjoutSalle(InterfaceU mainInt) {
         this.mainInt = mainInt;
@@ -26,7 +27,10 @@ public class AjoutSalle extends javax.swing.JFrame {
         initComponents();
     }
     
-     public void UpdateJListBatiment(){
+    /**
+     *
+     */
+    public void UpdateJListBatiment(){
         try {
             this.mainInt.getController().importBatiments();
         } catch (SQLException | ClassNotFoundException ex) {

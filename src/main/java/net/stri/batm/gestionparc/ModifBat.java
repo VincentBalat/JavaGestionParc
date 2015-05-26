@@ -18,7 +18,6 @@ public class ModifBat extends javax.swing.JFrame {
     /**
      * Creates new form ModifBat
      * @param mainInt
-     * @param id
      */
     public ModifBat(InterfaceU mainInt) {
         this.mainInt = mainInt;
@@ -169,6 +168,12 @@ public class ModifBat extends javax.swing.JFrame {
 
 
      /* @param args the command line arguments*/
+
+    /**
+     *
+     * @param args
+     */
+    
      
     public void main(String args[]) {
         /* Set the Nimbus look and feel */

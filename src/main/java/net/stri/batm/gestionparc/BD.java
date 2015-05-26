@@ -29,7 +29,6 @@ public class BD {
     /**
      * La méthode initialisation permet la connexion à la base de données.
      * Elle est utilisée seulement par les methodes d'accès ou d'insertion de la classe.
-     * @return Le Statement retourné est utilisé pour la connexion
      */
     
     public BD(){
@@ -61,6 +60,7 @@ public class BD {
     
     /**
     * La méthode se connecte à la base de données, et renvoie le résultat de la requete de type SELECT.
+     * @param query
     * @return result
     * @author GasparMeyerfeld
     */
@@ -84,6 +84,13 @@ public class BD {
         
     }
     
+    /**
+     *
+     * @param type
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public int getId(String type) throws SQLException, ClassNotFoundException{
         Class.forName("org.postgresql.Driver");
         String url = "jdbc:postgresql://localhost:5432/gestionpark";
