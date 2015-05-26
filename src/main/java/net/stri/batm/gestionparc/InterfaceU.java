@@ -403,6 +403,34 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        int Id = 0;
+        Batiment Bati = null;
+        Salle sa = null;
+        alert.setText("");
+        ErrAddSalle.setText("");
+        if(!batiment.getSelectedValue().toString().equals("")){
+            for(Batiment b : this.getController().getBatiments()){
+                if(b.toString().equals(this.getBatiment().getSelectedValue()))
+                    Bati = b;
+            }
+            
+            for(Salle s : Bati.getSalles()){
+                if(s.toString().equals(this.getSalle().getSelectedValue()))
+                    sa = s;
+            }
+            Id = sa.getId();
+        try {
+            controller.removeSalle(Id);
+        } catch (SQLException | ClassNotFoundException ex) {
+             ErreurBD err = new ErreurBD();
+                err.setVisible(true);
+        }
+        }
+        else{
+            alert.setText(" Selectionnez un Batiment à Supprimer ");
+        }
+            
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 /*
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
