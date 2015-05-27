@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Interface permettant d'ajouter un batiment.
  * @author Brice
  */
 public class AjoutBat extends javax.swing.JFrame {

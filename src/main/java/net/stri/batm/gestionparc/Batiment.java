@@ -5,10 +5,6 @@
  */
 package net.stri.batm.gestionparc;
 
-/**
- *
- * @author Xavier
- */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
+/**
+ * La classe Batiment définit un batiment qui comportera des salles.
+ * @author Vince
+ */
 public class Batiment {
 
 	private int id;
@@ -26,7 +25,7 @@ public class Batiment {
 	private ArrayList<Salle> salles;
 
     /**
-     *
+     * Un batiment est définit par son id, son nom et son numéro
      * @param id
      * @param name
      * @param num
