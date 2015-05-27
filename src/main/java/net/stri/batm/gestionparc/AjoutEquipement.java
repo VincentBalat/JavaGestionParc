@@ -110,6 +110,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
         jLabel7.setText("Numéro de série");
 
+        sall.setEditable(false);
         sall.setBackground(new java.awt.Color(204, 204, 204));
         sall.setToolTipText("");
         sall.addActionListener(new java.awt.event.ActionListener() {

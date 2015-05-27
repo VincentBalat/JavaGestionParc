@@ -260,21 +260,20 @@ public final class InterfaceU extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(214, 214, 214))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton5)
+                                .addGap(214, 717, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(328, 328, 328))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(alert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(41, 41, 41)
+                        .addComponent(alert, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ErrAddEq, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(143, 143, 143))
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +292,11 @@ public final class InterfaceU extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(32, 32, 32))))
+                        .addGap(155, 155, 155))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(253, 253, 253))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,15 +311,15 @@ public final class InterfaceU extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(alert, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ErrAddSalle)
                         .addGap(6, 6, 6))
-                    .addComponent(ErrAddEq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ErrAddEq, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(alert, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -326,7 +329,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5)
                     .addComponent(jButton4))
-                .addGap(19, 19, 19))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -396,33 +399,37 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ErrAddEq.setText("");
-        ErrAddSalle.setText("");
-        if(controller.getBatiments().isEmpty())
-            ErrAddSalle.setText(" Completez les champs ");
+        alert.setText("");
+        
+        if(this.batiment.isSelectionEmpty()==true)
+            alert.setText("Selectionner un Batiment pour ajouter une Salle");
         else {
             AjoutSalle j = new AjoutSalle(this);
         j.setVisible(true);
         }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        ErrAddEq.setText("");
-        ErrAddSalle.setText("");
-        
+
+        alert.setText("");
+        if(!salle.isSelectionEmpty()== true){
         AjoutEquipement j = new AjoutEquipement(this);
         j.sall.setText((String) this.salle.getSelectedValue());
         j.setVisible(true);
+        }
+        else{
+          alert.setText("Selectionner une Salle pour ajouter un Equipement"); 
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         int id = 0;
         alert.setText("");
-        ErrAddSalle.setText("");
-        ErrAddEq.setText("");
-        if(!batiment.getSelectedValue().toString().equals("")){
+
+        if(!batiment.isSelectionEmpty() == true){
             for (Batiment b : controller.getBatiments()){
                 if (b.toString().equals((String)batiment.getSelectedValue())){
                     id= b.getId();
@@ -440,7 +447,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             sal.clear();
         }
         else{
-            alert.setText(" Selectionnez un Batiment à Supprimer ");
+            alert.setText(" Selectionner un Batiment à Supprimer ");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -451,7 +458,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         Salle sa = null;
         alert.setText("");
         ErrAddSalle.setText("");
-        if(!batiment.getSelectedValue().toString().equals("")){
+        if(!batiment.isSelectionEmpty() == true){
             for(Batiment b : this.getController().getBatiments()){
                 if(b.toString().equals(this.getBatiment().getSelectedValue()))
                     Bati = b;
@@ -471,7 +478,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             }
         }
         else{
-            alert.setText(" Selectionnez un Batiment à Supprimer ");
+            alert.setText(" Selectionner un Batiment à Supprimer ");
         }
             
         
