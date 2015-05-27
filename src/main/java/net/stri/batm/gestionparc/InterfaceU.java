@@ -550,7 +550,6 @@ public final class InterfaceU extends javax.swing.JFrame {
 
     private void TableMouseClicked(java.awt.event.MouseEvent evt) {
         
-            ModifEquip j = new ModifEquip(this);
             int ligne = this.Table.getSelectedRow();
             String sn = (String)eq.getValueAt(ligne, 0);
             String nom = (String)eq.getValueAt(ligne, 1);
@@ -558,22 +557,25 @@ public final class InterfaceU extends javax.swing.JFrame {
             String marque = (String)eq.getValueAt(ligne, 3);
             String modele = (String)eq.getValueAt(ligne, 4);
             
-            Equipement equ = null;
-            for(Equipement e : this.getController().listAllEquipements()){
-                if(e.getSN().equals(sn))
-                    equ = e;
+            if(type == "Ordinateur"){
+                ModifOrdi j = new ModifOrdi(this);
+                j.nom.setText(nom);
+                j.numserie.setText(sn);
+                j.type.setText(type);
+                j.marque.setText(marque);
+                j.modele.setText(modele);
+                j.setVisible(true);
             }
-            
-            j.UpdateJTableIn(equ);
-        
-            j.nom.setText(nom);
-            j.numserie.setText(sn);
-            j.type.setText(type);
-            j.marque.setText(marque);
-            j.modele.setText(modele);
-            j.setVisible(true);
-
-        
+            else{
+                ModifEquip j = new ModifEquip(this);
+                j.nom.setText(nom);
+                j.numserie.setText(sn);
+                j.type.setText(type);
+                j.marque.setText(marque);
+                j.modele.setText(modele);
+                j.setVisible(true);
+                
+            }
     }
 
     public JTable getTable() {
