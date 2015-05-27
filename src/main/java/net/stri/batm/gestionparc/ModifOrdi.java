@@ -28,6 +28,7 @@ public class ModifOrdi extends javax.swing.JFrame {
 
     /**
      * Creates new form ModifOrdi
+     * @param mainInt
      */
     public ModifOrdi(InterfaceU mainInt) {
         this.mainInt = mainInt;
@@ -41,7 +42,10 @@ public class ModifOrdi extends javax.swing.JFrame {
         initComponents();
     }
 
-        public void UpdateJListSalle(){
+    /**
+     * Actualise la liste des salles
+     */
+    public void UpdateJListSalle(){
         
         sal.removeAllElements();
         //sal.addElement("Salle");
@@ -51,10 +55,18 @@ public class ModifOrdi extends javax.swing.JFrame {
             sal.addElement(s);
     }
 
+    /**
+     * Retourne l'instance de la fenetre père
+     * @return mainInt
+     */
     public InterfaceU getMainInt() {
         return mainInt;
     }
 
+    /**
+     * Actualise la liste des interfaces de l'ordinateur
+     * @param selectEq
+     */
     public void UpdateJTableIn(Equipement selectEq){
         for (int i = interf.getRowCount() - 1; i > -1; i--) {
             interf.removeRow(i);

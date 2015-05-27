@@ -579,6 +579,10 @@ public final class InterfaceU extends javax.swing.JFrame {
             }
     }
 
+    /**
+     * Retourne la table contenant les equipements
+     * @return Table
+     */
     public JTable getTable() {
         return Table;
     }

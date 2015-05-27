@@ -169,7 +169,6 @@ public class Controller {
          * @param name
          * @param marque
          * @param modele
-         * @param num
          * @param active
          * @param process
          * @param ram
