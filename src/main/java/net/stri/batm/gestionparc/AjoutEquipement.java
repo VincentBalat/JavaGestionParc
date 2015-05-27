@@ -80,6 +80,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
         jLabel3.setText("Marque");
 
+        actif.setSelected(true);
         actif.setText("Actif");
         actif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,7 +216,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
                 
             this.sall.setText(salle.getName());
             
-            mainInt.getController().addEquipement(salle, sn.getText(), nom.getText(), marque.getText(), modele.getText(), rootPaneCheckingEnabled, null);
+            mainInt.getController().addEquipement(salle, sn.getText(), nom.getText(), marque.getText(), modele.getText(), actif.isSelected(), (String)type.getSelectedItem());
             mainInt.UpdateJList();
             mainInt.UpdateJTableEq(salle);
             this.setVisible(false);

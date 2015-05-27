@@ -155,7 +155,6 @@ public final class InterfaceU extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -174,6 +173,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         jScrollPane1.setViewportView(batiment);
 
         salle.setModel(sal);
+        salle.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         salle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 salleMouseClicked(evt);
@@ -204,9 +204,8 @@ public final class InterfaceU extends javax.swing.JFrame {
 
         Table.setModel(eq);
         Table.setToolTipText("");
-        Table.setCellSelectionEnabled(false);
         Table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Table.setRowSelectionAllowed(true);
+        Table.setDoubleBuffered(true);
         Table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -229,13 +228,6 @@ public final class InterfaceU extends javax.swing.JFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Supprimer");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
             }
         });
 
@@ -271,9 +263,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(214, 214, 214))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(329, 329, 329)
@@ -335,7 +325,6 @@ public final class InterfaceU extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5)
-                    .addComponent(jButton6)
                     .addComponent(jButton4))
                 .addGap(19, 19, 19))
         );
@@ -421,7 +410,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         // TODO add your handling code here:
         ErrAddEq.setText("");
         ErrAddSalle.setText("");
-
+        
         AjoutEquipement j = new AjoutEquipement(this);
         j.sall.setText((String) this.salle.getSelectedValue());
         j.setVisible(true);
@@ -444,7 +433,8 @@ public final class InterfaceU extends javax.swing.JFrame {
             try {
                 getController().removeBatiment(id);
             } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(InterfaceU.class.getName()).log(Level.SEVERE, null, ex);
+                ErreurBD err = new ErreurBD();
+                err.setVisible(true);
             }
             UpdateJList();
             sal.clear();
@@ -453,10 +443,6 @@ public final class InterfaceU extends javax.swing.JFrame {
             alert.setText(" Selectionnez un Batiment à Supprimer ");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -554,16 +540,23 @@ public final class InterfaceU extends javax.swing.JFrame {
     }//GEN-LAST:event_salleMouseClicked
 
     private void TableMouseClicked(java.awt.event.MouseEvent evt) {
-        ModifEquip j = new ModifEquip(this);
-        int ligne = this.Table.getSelectedRow();
-        String sn = (String)eq.getValueAt(ligne, 0);
-        String nom = (String)eq.getValueAt(ligne, 1);
-        String type = (String)eq.getValueAt(ligne, 2);
-        String marque = (String)eq.getValueAt(ligne, 3);
-        String modele = (String)eq.getValueAt(ligne, 4);
-        String eqsalle = (String)eq.getValueAt(ligne, 5);
-        boolean actif = (boolean) eq.getValueAt(ligne, 6);
-        j.setVisible(true);
+        
+            ModifEquip j = new ModifEquip(this);
+            int ligne = this.Table.getSelectedRow();
+            String sn = (String)eq.getValueAt(ligne, 0);
+            String nom = (String)eq.getValueAt(ligne, 1);
+            String type = (String)eq.getValueAt(ligne, 2);
+            String marque = (String)eq.getValueAt(ligne, 3);
+            String modele = (String)eq.getValueAt(ligne, 4);
+        
+            j.nom.setText(nom);
+            j.numserie.setText(sn);
+            j.type.setText(type);
+            j.marque.setText(marque);
+            j.modele.setText(modele);
+            j.setVisible(true);
+
+        
     }
     /**
      * @param args the command line arguments
@@ -610,7 +603,6 @@ public final class InterfaceU extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

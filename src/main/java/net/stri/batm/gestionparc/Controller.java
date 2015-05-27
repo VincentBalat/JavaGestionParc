@@ -205,7 +205,7 @@ public class Controller {
                     Equipement eq = (Equipement)objet;
                     eq.addInterface(inter);
                     bd.requete("INSERT INTO interfaces VALUES ('"+mac+"','"+ip+"',"
-                                + "'"+name+"',"+speed+","+eq.getSN()+");");
+                                + "'"+name+"', "+speed+", '"+eq.getSN()+"');");
                 } else if (objet instanceof Ordinateur){
                     Ordinateur or = (Ordinateur)objet;
                     or.addInterface(inter);
@@ -524,7 +524,7 @@ public class Controller {
 		return salles;
 	}
         
-        private ArrayList<Equipement> listAllEquipements() {
+        public ArrayList<Equipement> listAllEquipements() {
 		ArrayList<Equipement> equipements = new ArrayList<>();
                 ArrayList<Salle> salles = listAllSalles();
 		for (Salle s : salles) {

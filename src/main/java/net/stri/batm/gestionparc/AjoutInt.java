@@ -5,16 +5,20 @@
  */
 package net.stri.batm.gestionparc;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Gaspar
  */
 public class AjoutInt extends javax.swing.JFrame {
+    private ModifEquip modEq;
 
     /**
      * Creates new form AjoutInt
      */
-    public AjoutInt() {
+    public AjoutInt(ModifEquip modEq) {
+        this.modEq = modEq;
         initComponents();
     }
 
@@ -37,8 +41,9 @@ public class AjoutInt extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         ajout = new javax.swing.JButton();
+        lMessage = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         mac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +68,8 @@ public class AjoutInt extends javax.swing.JFrame {
                 ajoutActionPerformed(evt);
             }
         });
+
+        lMessage.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,13 +99,17 @@ public class AjoutInt extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(ajout)
-                .addGap(147, 147, 147))
+                .addGap(141, 141, 141))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(226, 226, 226)
+                .addComponent(lMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,12 +126,15 @@ public class AjoutInt extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(speed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ajout)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void macActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_macActionPerformed
@@ -129,13 +143,31 @@ public class AjoutInt extends javax.swing.JFrame {
 
     private void ajoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutActionPerformed
         // TODO add your handling code here:
-        
+        lMessage.setText("");
+        if(!mac.getText().trim().equals("")){
+            int i=0;
+            int vitesse = Integer.parseInt(speed.getText());
+            
+            Equipement equi = null;
+            for(Equipement e : modEq.getMainInt().getController().listAllEquipements()){
+                if(e.getSN().equals(modEq.numserie.getText()))
+                    equi = e;
+            }
+            modEq.getMainInt().getController().addInterface((Equipement)equi, mac.getText(),
+                    ip.getText(), nom.getText(), vitesse);
+            modEq.UpdateJTableEq(equi);
+            
+            this.setVisible(false);
+        }
+        else{
+            lMessage.setText(" Completer les champs ");
+        }
     }//GEN-LAST:event_ajoutActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -161,8 +193,9 @@ public class AjoutInt extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new AjoutInt().setVisible(true);
+                new AjoutInt(modEq).setVisible(true);
             }
         });
     }
@@ -175,6 +208,7 @@ public class AjoutInt extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lMessage;
     private javax.swing.JTextField mac;
     private javax.swing.JTextField nom;
     private javax.swing.JTextField speed;
