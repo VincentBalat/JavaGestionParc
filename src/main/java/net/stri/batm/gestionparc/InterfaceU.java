@@ -174,6 +174,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         jScrollPane1.setViewportView(batiment);
 
         salle.setModel(sal);
+        salle.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         salle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 salleMouseClicked(evt);
@@ -205,6 +206,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         Table.setModel(eq);
         Table.setToolTipText("");
         Table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Table.setDoubleBuffered(true);
         Table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -419,7 +421,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         // TODO add your handling code here:
         ErrAddEq.setText("");
         ErrAddSalle.setText("");
-
+        
         AjoutEquipement j = new AjoutEquipement(this);
         j.sall.setText((String) this.salle.getSelectedValue());
         j.setVisible(true);
@@ -552,20 +554,23 @@ public final class InterfaceU extends javax.swing.JFrame {
     }//GEN-LAST:event_salleMouseClicked
 
     private void TableMouseClicked(java.awt.event.MouseEvent evt) {
-        ModifEquip j = new ModifEquip(this);
-        int ligne = this.Table.getSelectedRow();
-        String sn = (String)eq.getValueAt(ligne, 0);
-        String nom = (String)eq.getValueAt(ligne, 1);
-        String type = (String)eq.getValueAt(ligne, 2);
-        String marque = (String)eq.getValueAt(ligne, 3);
-        String modele = (String)eq.getValueAt(ligne, 4);
         
-        j.nom.setText(nom);
-        j.numserie.setText(sn);
-        j.type.setText(type);
-        j.marque.setText(marque);
-        j.modele.setText(modele);
-        j.setVisible(true);
+            ModifEquip j = new ModifEquip(this);
+            int ligne = this.Table.getSelectedRow();
+            String sn = (String)eq.getValueAt(ligne, 0);
+            String nom = (String)eq.getValueAt(ligne, 1);
+            String type = (String)eq.getValueAt(ligne, 2);
+            String marque = (String)eq.getValueAt(ligne, 3);
+            String modele = (String)eq.getValueAt(ligne, 4);
+        
+            j.nom.setText(nom);
+            j.numserie.setText(sn);
+            j.type.setText(type);
+            j.marque.setText(marque);
+            j.modele.setText(modele);
+            j.setVisible(true);
+
+        
     }
     /**
      * @param args the command line arguments
