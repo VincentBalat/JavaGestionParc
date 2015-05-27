@@ -31,6 +31,10 @@ public class ModifEquip extends javax.swing.JFrame {
         interf.addColumn("Vitesse");
         initComponents();
     }
+
+    public InterfaceU getMainInt() {
+        return mainInt;
+    }
     
     public void UpdateJListSalle(){
         
@@ -343,7 +347,7 @@ public class ModifEquip extends javax.swing.JFrame {
 
     private void addIntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIntActionPerformed
         // TODO add your handling code here:
-        AjoutInt j = new AjoutInt(mainInt);
+        AjoutInt j = new AjoutInt(this);
         j.setVisible(true);
     }//GEN-LAST:event_addIntActionPerformed
 
