@@ -88,8 +88,7 @@ public final class InterfaceU extends javax.swing.JFrame {
         try {
             controller.importBatiments();
         } catch (SQLException | ClassNotFoundException ex) {
-            ErreurBD err = new ErreurBD();
-            err.setVisible(true);
+            
         }
         bat.clear();
         for(Batiment b : controller.getBatiments()){
@@ -415,6 +414,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             alert.setText("Selectionner un Batiment pour ajouter une Salle");
         else {
             AjoutSalle j = new AjoutSalle(this);
+            j.listBat.setText((String)batiment.getSelectedValue());
         j.setVisible(true);
         }
         
