@@ -53,7 +53,7 @@ public class ModifEquip extends javax.swing.JFrame {
             sal.addElement(s);
     }
 
-    public void UpdateJTableEq(Equipement selectEq){
+    public void UpdateJTableIn(Equipement selectEq){
         for (int i = interf.getRowCount() - 1; i > -1; i--) {
             interf.removeRow(i);
         }
@@ -82,7 +82,7 @@ public class ModifEquip extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         modifier = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        act = new javax.swing.JCheckBox();
         lMessage = new javax.swing.JLabel();
         modele = new javax.swing.JTextField();
         nom = new javax.swing.JTextField();
@@ -95,10 +95,10 @@ public class ModifEquip extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableint = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        supint = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         numserie = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        modifint = new javax.swing.JButton();
         type = new javax.swing.JTextField();
         sup = new javax.swing.JButton();
 
@@ -118,11 +118,11 @@ public class ModifEquip extends javax.swing.JFrame {
 
         jLabel3.setText("Marque");
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Actif");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        act.setSelected(true);
+        act.setText("Actif");
+        act.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                actActionPerformed(evt);
             }
         });
 
@@ -171,7 +171,12 @@ public class ModifEquip extends javax.swing.JFrame {
         tableint.setEnabled(false);
         jScrollPane1.setViewportView(tableint);
 
-        jButton1.setText("Supprimer Interface");
+        supint.setText("Supprimer Interface");
+        supint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supintActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Numero Série");
 
@@ -183,10 +188,10 @@ public class ModifEquip extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Modifier");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        modifint.setText("Modifier");
+        modifint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                modifintActionPerformed(evt);
             }
         });
 
@@ -213,8 +218,7 @@ public class ModifEquip extends javax.swing.JFrame {
                 .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(119, 119, 119)
+                        .addGap(478, 478, 478)
                         .addComponent(jLabel8))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -228,12 +232,12 @@ public class ModifEquip extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addInt)
-                                .addGap(24, 24, 24)
-                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(modifint)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))
+                                .addComponent(supint))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -254,15 +258,20 @@ public class ModifEquip extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(sup)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(modifier)
-                                .addGap(12, 12, 12))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(118, 118, 118)
-                                .addComponent(jCheckBox1)))))
-                .addGap(34, 482, Short.MAX_VALUE))
+                                .addComponent(act)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sup)
+                                .addGap(18, 18, 18)
+                                .addComponent(modifier)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(34, 200, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(159, 159, 159))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,14 +281,20 @@ public class ModifEquip extends javax.swing.JFrame {
                         .addGap(289, 289, 289)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(32, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(numserie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel13)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(numserie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -296,26 +311,20 @@ public class ModifEquip extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
                                     .addComponent(modele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(12, 12, 12))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(101, 101, 101)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(12, 12, 12)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(salle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
-                                .addComponent(jCheckBox1))
+                                .addComponent(act))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(addInt)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton3))
+                                    .addComponent(supint)
+                                    .addComponent(modifint))
                                 .addGap(16, 16, 16)))))
                 .addComponent(lMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -331,22 +340,36 @@ public class ModifEquip extends javax.swing.JFrame {
 
     private void modifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifierActionPerformed
         // TODO add your handling code here:
-        //DefaultTableModel model = {DefaultTableModel} InterfaceU.jTable1.getModel();
-        //if(!nom.getText().trim().equals("")){
-            //InterfaceU.jTable1.addRow(new Object[]{nom.getText(),});
-            //int number = Integer.parseInt(numbat.getText());
-            //int i = Singleton.getId();
-            //Controller c = new Controller();
-
-        //}
-        //else{
-        //    lMessage.setText(" Completer les champs ");
-        //}
+        
+        String msn = null;
+        String mnom = null;
+        String mtype = null;
+        String mmarque = null;
+        String mmodele = null;
+        Salle msalle = null ;
+        boolean mactif = true;
+        msn = String.valueOf(numserie.getText());
+        mnom = nom.getText();
+        mtype = type.getText();
+        mmarque = marque.getText();
+        mmodele = modele.getText();
+        msalle = (Salle) salle.getSelectedItem();
+        if(act.isSelected()== false)
+            mactif = false;   
+        lMessage.setText("");
+        try {
+            mainInt.getController().modifyEquipement(msn, msalle,mnom, mmarque, mmodele, mactif, mtype);
+        } catch (SQLException | ClassNotFoundException ex) {
+             ErreurBD err = new ErreurBD();
+             err.setVisible(true);
+        }
+        
+        
     }//GEN-LAST:event_modifierActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void actActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_actActionPerformed
 
     private void modeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeleActionPerformed
         // TODO add your handling code here:
@@ -370,9 +393,33 @@ public class ModifEquip extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_numserieActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void modifintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifintActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        int ligne = this.tableint.getRowCount();
+        Equipement equ = null;
+        for(Equipement e : mainInt.getController().listAllEquipements()){
+            if(e.getSN().equals(this.numserie.getText()))
+                equ = e;
+        }
+        for(int j=0; j>ligne ;j++){
+                String mint = (String) interf.getValueAt(j,0);
+                String mmac = (String) interf.getValueAt(j,1);
+                String mip = (String) interf.getValueAt(j,2);
+                int mvitesse = Integer.valueOf((String)interf.getValueAt(j,3)) ;
+                
+                
+ 
+                    try {
+                        mainInt.getController().modifyInterface(mmac, equ, mip, mint, mvitesse );
+                    } catch (ClassNotFoundException | SQLException ex) {
+                       ErreurBD err = new ErreurBD();
+                       err.setVisible(true);
+                    }
+                } 
+
+        
+     
+    }//GEN-LAST:event_modifintActionPerformed
 
     private void addIntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addIntMouseClicked
         // TODO add your handling code here:
@@ -384,7 +431,7 @@ public class ModifEquip extends javax.swing.JFrame {
 
     private void supActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supActionPerformed
         // TODO add your handling code here:
-        String idI = String.valueOf(numserie.getText());
+        String idI = numserie.getText();
         lMessage.setText("");
         try {
             mainInt.getController().removeEquipement(idI);
@@ -393,8 +440,23 @@ public class ModifEquip extends javax.swing.JFrame {
              err.setVisible(true);
         }
         
+        mainInt.UpdateJTableEq(null);
+        this.setVisible(false);
         
     }//GEN-LAST:event_supActionPerformed
+
+    private void supintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supintActionPerformed
+        // TODO add your handling code here:
+        int ligne = this.tableint.getSelectedRow();
+        String mac = (String) interf.getValueAt(ligne, 1);
+        try {
+            mainInt.getController().removeInterface(mac);
+        } catch (SQLException ex) {
+            ErreurBD err = new ErreurBD();
+             err.setVisible(true);
+        }
+
+    }//GEN-LAST:event_supintActionPerformed
 
     /**
      * @param args the command line arguments
@@ -433,10 +495,8 @@ public class ModifEquip extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JCheckBox act;
     private javax.swing.JButton addInt;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    public javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -451,10 +511,12 @@ public class ModifEquip extends javax.swing.JFrame {
     public javax.swing.JTextField marque;
     public javax.swing.JTextField modele;
     private javax.swing.JButton modifier;
+    private javax.swing.JButton modifint;
     public javax.swing.JTextField nom;
     public javax.swing.JTextField numserie;
     public javax.swing.JComboBox salle;
     private javax.swing.JButton sup;
+    private javax.swing.JButton supint;
     private javax.swing.JTable tableint;
     public javax.swing.JTextField type;
     // End of variables declaration//GEN-END:variables

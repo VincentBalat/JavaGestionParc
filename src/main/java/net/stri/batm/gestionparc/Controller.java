@@ -285,16 +285,16 @@ public class Controller {
 		ArrayList<Equipement> equipements = listAllEquipements();
 		Equipement eq = null;
 		for(Equipement equipement:equipements){
-			if (equipement.getSN() == null ? sn == null : equipement.getSN().equals(sn)){
+			if (equipement.getSN().equals(sn)){
 				eq = equipement;
 				break;
 			}
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE interfaces SET ideq ="+null+"where ideq = '"+eq.getSN()+"';");
+                        bd.requete("DELETE FROM interfaces where ideq = '"+sn+"';");
                         eq.importInterfaces();
-                        bd.requete("DELETE FROM equipements where ideq = '"+eq.getSN()+"';");
+                        bd.requete("DELETE FROM equipements where sn = '"+sn+"';");
 			eq.getSalle().removeEquipement(eq);
 		}
 	}
@@ -317,9 +317,9 @@ public class Controller {
 		}
 		if(or!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE interfaces SET ideq ="+null+"where ideq = '"+or.getSN()+"';");
+                        bd.requete("DELETE FROM interfaces where ideq = '"+sn+"';");
                         or.importInterfaces();
-                        bd.requete("DELETE FROM equipements where sn = '"+or.getSN()+"';");
+                        bd.requete("DELETE FROM equipements where sn = '"+sn+"';");
 			or.getSalle().removeOrdinateur(or);
 		}
 	}
@@ -341,7 +341,7 @@ public class Controller {
 		}
 		if(in!=null){
                         BD bd = new BD();
-                        bd.requete("DELETE FROM interfaces where mac = '"+in.getMAC()+"';");
+                        bd.requete("DELETE FROM interfaces where mac = '"+mac+"';");
 			
                         Object obj = in.getEquipement();
                         if (obj instanceof Ordinateur){
@@ -373,7 +373,7 @@ public class Controller {
             }
             if(batiment != null){
                 BD bd = new BD();
-                bd.requete("UPDATE batiments SET nomb ='"+name+"', numb = "+num+"where idbatiment = '"+id+"';");
+                bd.requete("UPDATE batiments SET nomb ='"+name+"', numb = "+num+" where idbatiment = '"+id+"';");
                 
             }
             
@@ -431,9 +431,9 @@ public class Controller {
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
-                                + "active ='"+actif+"',type = '"+type+"',idsalle = "+salle.getId()
-                                + " where ideq = '"+sn+"';");
+                        bd.requete("UPDATE equipements SET nomeq = '"+name+"', marque = '"+marque+"', modele = '"+modele+"',"
+                                + "active = '"+actif+"',  type = '"+type+"', idsalle = "+salle.getId()
+                                + " where sn = '"+sn+"';");
                         salle.importequipements();
 		}
         }
@@ -466,10 +466,10 @@ public class Controller {
 		}
 		if(eq!=null){
                         BD bd = new BD();
-                        bd.requete("UPDATE equipements SET NomEq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
+                        bd.requete("UPDATE equipements SET nomeq ='"+name+"',marque ='"+marque+"',modele ='"+modele+"',"
                                 + "active ='"+actif+"', processeur = "+process+", ram = "+ram+", "
                                 + "disque = "+dd+",type = '"+type+"',idsalle = "+salle.getId()
-                                + " where ideq = '"+sn+"';");
+                                + " where sn = '"+sn+"';");
                         salle.importequipements();
 		}
         }
@@ -500,13 +500,13 @@ public class Controller {
                         Object obj = in.getEquipement();
                         if (obj instanceof Ordinateur){
                             Ordinateur ord = (Ordinateur)obj;
-                            bd.requete("UPDATE interface SET ip ='"+ip+"',nomint ='"+name+"',vitesse ="+speed
+                            bd.requete("UPDATE interface SET ip ='"+ip+"', nomint ='"+name+"', vitesse ="+speed
                                 + "ideq = '"+ord.getSN()+"' where mac = '"+mac+"';");
                             ord.importInterfaces();
                         }
                         else if (obj instanceof Equipement){
                             Equipement equ = (Equipement)obj;
-                            bd.requete("UPDATE interface SET ip ='"+ip+"',nomint ='"+name+"',vitesse ="+speed
+                            bd.requete("UPDATE interface SET ip ='"+ip+"', nomint ='"+name+"',vitesse ="+speed
                                 + "ideq = '"+equ.getSN()+"' where mac = '"+mac+"';");
                             equ.importInterfaces();
                         }
@@ -514,7 +514,7 @@ public class Controller {
 	} 
         
 
-	private ArrayList<Salle> listAllSalles() {
+	public ArrayList<Salle> listAllSalles() {
 		ArrayList<Salle> salles = new ArrayList<>();
 		for (Batiment batiment : batiments) {
 			for (Salle salle : batiment.getSalles()) {

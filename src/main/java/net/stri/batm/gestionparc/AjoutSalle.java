@@ -14,7 +14,7 @@ import javax.swing.DefaultComboBoxModel;
  *
  * @author Brice
  */
-public class AjoutSalle extends javax.swing.JFrame {
+public final class AjoutSalle extends javax.swing.JFrame {
     private InterfaceU mainInt;
     private DefaultComboBoxModel bat = new DefaultComboBoxModel();
     /**

@@ -74,7 +74,7 @@ public class Equipement {
         //Création d'un objet Statement
         Statement state = conn.createStatement();
                 
-        ResultSet element = state.executeQuery("SELECT * FROM Interfaces WHERE sn = "+SN+";");
+        ResultSet element = state.executeQuery("SELECT * FROM interfaces WHERE ideq = '"+SN+"';");
         
         int i = 0;
         interfaces.clear();
