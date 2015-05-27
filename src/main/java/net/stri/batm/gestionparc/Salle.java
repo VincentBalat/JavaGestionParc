@@ -6,7 +6,7 @@
 package net.stri.batm.gestionparc;
 
 /**
- *
+ * Cette classe définit les salles qui sont listées dans les Batiments.
  * @author Xavier
  */
 import java.sql.Connection;
@@ -16,10 +16,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author Vince
- */
 public class Salle {
 
 	private Batiment batiment;
@@ -31,6 +27,7 @@ public class Salle {
         private ArrayList<Ordinateur> ordinateurs;
 
     /**
+     * Une classe est définie par le batiment auquel elle appartient, son id, son nom, son numéro et son étage.
      * @param batiment
      * @param id
      * @param name
@@ -94,23 +91,23 @@ public class Salle {
     }
 
     /**
-     *
-     * @return
+     * Retourne le batiment dans lequel se trouve la salle
+     * @return batiment
      */
     public Batiment getBatiment() {
         return batiment;
     }
 
     /**
-     *
-     * @return
+     * Retourne l'Arraylist des ordinateurs présents dans la salle
+     * @return ordinateurs
      */
     public ArrayList<Ordinateur> getOrdinateurs() {
         return ordinateurs;
     }
 
     /**
-     *
+     * Permet de modifier le batiment de la salle
      * @param batiment
      */
     public void setBatiment(Batiment batiment) {
@@ -118,7 +115,7 @@ public class Salle {
     }
 
     /**
-     *
+     * Permet de modifier l'id de la salle
      * @param id
      */
     public void setId(int id) {
@@ -126,7 +123,7 @@ public class Salle {
     }
 
     /**
-     *
+     * Permet de modifier l'étage de la salle
      * @param etage
      */
     public void setEtage(int etage) {
@@ -134,7 +131,7 @@ public class Salle {
     }
 
     /**
-     *
+     * Permet de modifier l'ArrayList des équipements présents dans la salle.
      * @param equipements
      */
     public void setEquipements(ArrayList<Equipement> equipements) {
@@ -142,7 +139,7 @@ public class Salle {
     }
 
     /**
-     *
+     * Permet de modifier l'ArrayList des ordinateurs présents dans la salle.
      * @param ordinateurs
      */
     public void setOrdinateurs(ArrayList<Ordinateur> ordinateurs) {
@@ -150,15 +147,15 @@ public class Salle {
     }
 
     /**
-     *
-     * @return
+     * Retourne le nom de la salle.
+     * @return name
      */
     public String getName() {
 		return name;
 	}
 
     /**
-     *
+     * Permet de modifier le nom de la salle
      * @param name
      */
     public void setName(String name) {
@@ -166,15 +163,15 @@ public class Salle {
 	}
 
     /**
-     *
-     * @return
+     * Retourne le numéro de la salle
+     * @return num
      */
     public int getNum() {
 		return num;
 	}
 
     /**
-     *
+     * Permet de mettre à jour le numéro de la salle.
      * @param num
      */
     public void setNum(int num) {
@@ -182,31 +179,31 @@ public class Salle {
     }
 
     /**
-     *
-     * @return
+     * Retourne l'id de la salle
+     * @return id
      */
     public int getId() {
 		return id;
 	}
 
     /**
-     *
-     * @return
+     * Retourne l'étage de la salle
+     * @return etage
      */
     public int getEtage() {
 		return etage;
 	}
 
     /**
-     *
-     * @return
+     * Retourne l'ArrayList contenant les équipements présent dans la salle
+     * @return equipements
      */
     public ArrayList<Equipement> getEquipements() {
 		return equipements;
 	}
 
     /**
-     *
+     * Permet d'ajouter un équipement dans l'ArrrayList des équipements de la salle
      * @param equipement
      */
     public void addEquipement(Equipement equipement) {
@@ -214,7 +211,7 @@ public class Salle {
 	}
     
     /**
-     *
+     * Permet d'ajouter un ordinateur dans l'ArrrayList des ordinateurs de la salle
      * @param ordinateur
      */
     public void addOrdinateur(Ordinateur ordinateur) {
@@ -222,7 +219,7 @@ public class Salle {
 	}
 
     /**
-     *
+     * Permet de supprimer un équipement de l'ArrayList equipements de la salle
      * @param equipement
      */
     public void removeEquipement(Equipement equipement) {
@@ -234,7 +231,7 @@ public class Salle {
 	}
     
     /**
-     *
+     * Permet de supprimer un ordinateur de l'ArrayList ordinateurs de la salle
      * @param ordinateur
      */
     public void removeOrdinateur(Ordinateur ordinateur) {

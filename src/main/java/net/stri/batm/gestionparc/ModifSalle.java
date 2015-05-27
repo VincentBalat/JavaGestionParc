@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- *
+ * Interface Graphique permettant de modifier les attributs des salles
  * @author Brice
  */
 public class ModifSalle extends javax.swing.JFrame {

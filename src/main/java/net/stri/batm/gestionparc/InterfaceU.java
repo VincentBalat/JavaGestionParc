@@ -17,8 +17,9 @@ import static org.eclipse.persistence.expressions.ExpressionOperator.All;
  */
 
 /**
- *
- * @author 21408200
+ * Interface Utilisateur principale qui permet à l'utilisateur d'acceder à toutes les autres interfaces.
+ * 
+ * @author Brice
  */
 public final class InterfaceU extends javax.swing.JFrame {
     private Object Interface;
@@ -46,31 +47,33 @@ public final class InterfaceU extends javax.swing.JFrame {
     }
 
     /**
-     *
-     * @return
+     * retourne le controller
+     * @return controller
      */
     public Controller getController() {
         return controller;
     }
 
     /**
-     *
-     * @return
+     * Retour la Jlist des salles
+     * @return salle
      */
     public JList getSalle() {
         return salle;
     }
 
     /**
-     *
-     * @return
+     * Retourne la JList des batiments
+     * @return batiment
      */
     public JList getBatiment() {
         return batiment;
     }
 
     /**
-     *
+     * retourne le DefaultListModel contenant les batiments.
+     * le type DefaultListModel permet de stocker la liste depuis une ArrayList 
+     * en vue de l'afficher dans une JList
      * @return
      */
     public DefaultListModel<String> getBat() {
@@ -78,7 +81,7 @@ public final class InterfaceU extends javax.swing.JFrame {
     }
     
     /**
-     *
+     * Permet d'actualiser la liste des batiments affichée sur l'interface graphique.
      */
     public void UpdateJList(){
         try {
@@ -97,7 +100,10 @@ public final class InterfaceU extends javax.swing.JFrame {
     }
     
     /**
-     *
+     * Permet l'actualisation de l'affichage des listes des salles par exemple 
+     * lorsque un batiment est sélectionné.
+     * Ainsi, si le batiment U3 est sélectionné dans la liste des batiments, 
+     * seules les salles de ce batiment apparaitront.
      * @param selectBat
      */
     public void UpdateJListSalle(Batiment selectBat){
@@ -114,7 +120,10 @@ public final class InterfaceU extends javax.swing.JFrame {
     }
     
     /**
-     *
+     * Permet l'actualisation de l'affichage des équipements présent dans les salles 
+     * et les batiments lorsqu'un d'eux est sélectionné.
+     * Ainsi, si le batiment U3 est sélectionné dans la liste des batiments, 
+     * seuls les équipements de ce batiment apparaitront.
      * @param selectSal
      */
     public void UpdateJTableEq(Salle selectSal){

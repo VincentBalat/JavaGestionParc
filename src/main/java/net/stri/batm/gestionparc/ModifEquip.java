@@ -12,7 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Interface Graphique permettant de modifier les attributs des Equipements
  * @author Brice
  */
 public class ModifEquip extends javax.swing.JFrame {

@@ -162,16 +162,16 @@ public class Equipement {
     }
 
     /**
-     *
-     * @return
+     * Retourne le type de l'équipement
+     * @return type
      */
     public String getType() {
         return type;
     }
 
     /**
-     *
-     * @return
+     * Retourne l'ArrayList contenant les interfaces réseau de l'équipement
+     * @return interfaces
      */
     public ArrayList<Interface> getInterfaces() {
         return interfaces;
@@ -180,15 +180,15 @@ public class Equipement {
     
 
     /**
-     *
-     * @return
+     * Retourne l'état de l'équipement (TRUE : Actif / FALSE : Non Actif)
+     * @return actif
      */
     public boolean isActif() {
         return actif;
     }
 
     /**
-     *
+     * Permet d'activer ou de désactiver l'équipement (TRUE : Actif / FALSE : Non Actif)
      * @param actif
      */
     public void setActif(boolean actif) {
@@ -196,7 +196,8 @@ public class Equipement {
     }
     
     /**
-     *
+     * Permet d'ajouter une interface réseau à l'arrayList interfaces de l'équipement.
+     * Prend un paramètre l'interface à ajouter
      * @param inter
      */
     public void addInterface(Interface inter) {
@@ -204,7 +205,8 @@ public class Equipement {
 	}
       
     /**
-     *
+     * Permet de supprimer une interface réseau à l'arrayList interfaces de l'équipement.
+     * Prend en paramètre l'interface à supprimer
      * @param inter
      */
     public void removeInterface(Interface inter) {
