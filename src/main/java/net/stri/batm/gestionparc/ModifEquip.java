@@ -95,7 +95,6 @@ public final class ModifEquip extends javax.swing.JFrame {
         supint = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         numserie = new javax.swing.JTextField();
-        modifint = new javax.swing.JButton();
         type = new javax.swing.JTextField();
         sup = new javax.swing.JButton();
 
@@ -184,13 +183,6 @@ public final class ModifEquip extends javax.swing.JFrame {
             }
         });
 
-        modifint.setText("Modifier");
-        modifint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifintActionPerformed(evt);
-            }
-        });
-
         type.setEditable(false);
         type.setBackground(new java.awt.Color(204, 204, 204));
         type.addActionListener(new java.awt.event.ActionListener() {
@@ -224,8 +216,6 @@ public final class ModifEquip extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addInt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(modifint)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(supint))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -307,7 +297,7 @@ public final class ModifEquip extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
                                     .addComponent(modele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(salle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -319,8 +309,7 @@ public final class ModifEquip extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(addInt)
-                                    .addComponent(supint)
-                                    .addComponent(modifint))
+                                    .addComponent(supint))
                                 .addGap(16, 16, 16)))))
                 .addComponent(lMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -392,34 +381,6 @@ public final class ModifEquip extends javax.swing.JFrame {
     private void numserieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numserieActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numserieActionPerformed
-
-    private void modifintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifintActionPerformed
-        // TODO add your handling code here:
-        int ligne = this.tableint.getRowCount();
-        Equipement equ = null;
-        for(Equipement e : mainInt.getController().listAllEquipements()){
-            if(e.getSN().equals(this.numserie.getText()))
-                equ = e;
-        }
-        for(int j=0; j>ligne ;j++){
-                String mint = (String) interf.getValueAt(j,0);
-                String mmac = (String) interf.getValueAt(j,1);
-                String mip = (String) interf.getValueAt(j,2);
-                int mvitesse = Integer.valueOf((String)interf.getValueAt(j,3)) ;
-                
-                
- 
-                    try {
-                        mainInt.getController().modifyInterface(mmac, equ, mip, mint, mvitesse );
-                    } catch (ClassNotFoundException | SQLException ex) {
-                       ErreurBD err = new ErreurBD();
-                       err.setVisible(true);
-                    }
-                } 
-
-        
-     
-    }//GEN-LAST:event_modifintActionPerformed
 
     private void addIntMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addIntMouseClicked
         // TODO add your handling code here:
@@ -524,7 +485,6 @@ public final class ModifEquip extends javax.swing.JFrame {
     public javax.swing.JTextField marque;
     public javax.swing.JTextField modele;
     private javax.swing.JButton modifier;
-    private javax.swing.JButton modifint;
     public javax.swing.JTextField nom;
     public javax.swing.JTextField numserie;
     public javax.swing.JComboBox salle;

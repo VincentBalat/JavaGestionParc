@@ -16,6 +16,7 @@ public class AjoutInt extends javax.swing.JFrame {
 
     /**
      * Creates new form AjoutInt
+     * @param modEq
      */
     public AjoutInt(ModifEquip modEq) {
         this.modEq = modEq;
@@ -145,7 +146,7 @@ public class AjoutInt extends javax.swing.JFrame {
         // TODO add your handling code here:
         lMessage.setText("");
         if(!mac.getText().trim().equals("")){
-            int i=0;
+            
             int vitesse = Integer.parseInt(speed.getText());
             
             Equipement equi = null;
