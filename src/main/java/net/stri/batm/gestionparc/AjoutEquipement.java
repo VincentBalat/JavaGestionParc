@@ -206,8 +206,15 @@ public class AjoutEquipement extends javax.swing.JFrame {
             Salle salle = null;
             
             for(Salle s : mainInt.getController().listAllSalles()){
-                if(s.toString().equals(sall.getText()))
+                if(s.toString().equals(mainInt.getSalle().getSelectedValue()))
                     salle = s;
+            }
+            
+            if(salle == null){
+                for(Salle s : mainInt.getController().listAllSalles()){
+                if(s.toString().equals("autre : 0"))
+                    salle = s;
+                }
             }
                 
             this.sall.setText(salle.getName());

@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import static org.eclipse.persistence.expressions.ExpressionOperator.All;
 
@@ -556,6 +557,14 @@ public final class InterfaceU extends javax.swing.JFrame {
             String type = (String)eq.getValueAt(ligne, 2);
             String marque = (String)eq.getValueAt(ligne, 3);
             String modele = (String)eq.getValueAt(ligne, 4);
+            
+            Equipement equ = null;
+            for(Equipement e : this.getController().listAllEquipements()){
+                if(e.getSN().equals(sn))
+                    equ = e;
+            }
+            
+            j.UpdateJTableIn(equ);
         
             j.nom.setText(nom);
             j.numserie.setText(sn);
@@ -565,6 +574,10 @@ public final class InterfaceU extends javax.swing.JFrame {
             j.setVisible(true);
 
         
+    }
+
+    public JTable getTable() {
+        return Table;
     }
     /**
      * @param args the command line arguments

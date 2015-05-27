@@ -31,13 +31,7 @@ public final class ModifEquip extends javax.swing.JFrame {
         interf.addColumn("@MAC");
         interf.addColumn("@IP");
         interf.addColumn("Vitesse");
-        Equipement equ = null;
-        for(Equipement e : mainInt.getController().listAllEquipements()){
-            if(e.getSN().equals(this.numserie.getText()))
-                equ = e;
-        }
         
-        this.UpdateJTableIn(equ);
         UpdateJListSalle();
         initComponents();
     }
