@@ -31,6 +31,7 @@ public class ModifEquip extends javax.swing.JFrame {
         interf.addColumn("@MAC");
         interf.addColumn("@IP");
         interf.addColumn("Vitesse");
+        UpdateJListSalle();
         initComponents();
     }
 
@@ -41,15 +42,10 @@ public class ModifEquip extends javax.swing.JFrame {
     public void UpdateJListSalle(){
         
         sal.removeAllElements();
-        sal.addElement("Salle");
+        //sal.addElement("Salle");
         sal.setSelectedItem(this.mainInt.getSalle().getSelectedValue());
-        Batiment bb = null;
-        
-        for(Batiment b : this.mainInt.getController().getBatiments()){
-           if(b.toString().equals(this.mainInt.getBatiment().getSelectedValue()))
-               bb = b;
-        }
-        for(Salle s : bb.getSalles())
+              
+        for(Salle s : mainInt.getController().listAllSalles())
             sal.addElement(s);
     }
 
@@ -218,17 +214,13 @@ public class ModifEquip extends javax.swing.JFrame {
                 .addGap(142, 142, 142)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(478, 478, 478)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(salle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(modele, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(type, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(marque, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addInt)
@@ -236,7 +228,14 @@ public class ModifEquip extends javax.swing.JFrame {
                                 .addComponent(modifint)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(supint))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(478, 478, 478)
+                                .addComponent(jLabel8))
+                            .addComponent(salle, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(30, 30, 30))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -291,7 +290,6 @@ public class ModifEquip extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(numserie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13))
@@ -353,7 +351,11 @@ public class ModifEquip extends javax.swing.JFrame {
         mtype = type.getText();
         mmarque = marque.getText();
         mmodele = modele.getText();
-        msalle = (Salle) salle.getSelectedItem();
+        
+        for(Salle s : mainInt.getController().listAllSalles()){
+            if(s.toString().equals(salle.getSelectedItem()))
+                msalle = s;
+        }
         if(act.isSelected()== false)
             mactif = false;   
         lMessage.setText("");
@@ -363,8 +365,8 @@ public class ModifEquip extends javax.swing.JFrame {
              ErreurBD err = new ErreurBD();
              err.setVisible(true);
         }
-        
-        
+        mainInt.UpdateJTableEq(msalle);
+        this.setVisible(false);
     }//GEN-LAST:event_modifierActionPerformed
 
     private void actActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actActionPerformed
@@ -439,8 +441,13 @@ public class ModifEquip extends javax.swing.JFrame {
              ErreurBD err = new ErreurBD();
              err.setVisible(true);
         }
+        Salle sall = null;
+        for(Salle s : mainInt.getController().listAllSalles()){
+            if(s.toString().equals(mainInt.getSalle().getSelectedValue()))
+                sall = s;
+        }
         
-        mainInt.UpdateJTableEq(null);
+        mainInt.UpdateJTableEq(sall);
         this.setVisible(false);
         
     }//GEN-LAST:event_supActionPerformed
