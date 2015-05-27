@@ -47,10 +47,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="listBat" pref="87" max="32767" attributes="0"/>
-                          <Component id="nom_salle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nom_salle" alignment="0" pref="87" max="32767" attributes="0"/>
                           <Component id="numero" alignment="0" max="32767" attributes="0"/>
                           <Component id="etage" alignment="0" max="32767" attributes="0"/>
+                          <Component id="listBat" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                   </Group>
@@ -75,10 +75,10 @@
                       <Component id="alerte" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="listBat" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="batiment" alignment="1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="batiment" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="listBat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -148,22 +148,6 @@
         <Property name="text" type="java.lang.String" value="Etage"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="listBat">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="bat" type="code"/>
-        </Property>
-        <Property name="selectedIndex" type="int" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="0" type="code"/>
-        </Property>
-        <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="&quot;Batiment&quot;" type="code"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listBatActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="batiment">
       <Properties>
         <Property name="text" type="java.lang.String" value="Batiment"/>
@@ -172,6 +156,20 @@
     <Component class="javax.swing.JLabel" name="lMessage">
     </Component>
     <Component class="javax.swing.JLabel" name="alerte">
+    </Component>
+    <Component class="javax.swing.JTextField" name="listBat">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="cc" type="rgb"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listBatActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

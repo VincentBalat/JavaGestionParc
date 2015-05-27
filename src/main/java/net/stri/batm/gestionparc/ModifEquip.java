@@ -360,8 +360,7 @@ public final class ModifEquip extends javax.swing.JFrame {
         try {
             mainInt.getController().modifyEquipement(msn, msalle,mnom, mmarque, mmodele, mactif, mtype);
         } catch (SQLException | ClassNotFoundException ex) {
-             ErreurBD err = new ErreurBD();
-             err.setVisible(true);
+             
         }
         mainInt.UpdateJTableEq(msalle);
         this.setVisible(false);
@@ -408,8 +407,7 @@ public final class ModifEquip extends javax.swing.JFrame {
         try {
             mainInt.getController().removeEquipement(idI);
         } catch (SQLException | ClassNotFoundException ex) {
-             ErreurBD err = new ErreurBD();
-             err.setVisible(true);
+             
         }
         Salle sall = null;
         for(Salle s : mainInt.getController().listAllSalles()){

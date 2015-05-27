@@ -116,6 +116,8 @@ public class BD {
         return id;
     }
     
+    //Méthodes non utilisé permettant d'insérer le résultat d'une requête dans un hashmap
+    
     /*public HashMap<String, Object> select(String query) {
         try{
             
@@ -146,6 +148,8 @@ public class BD {
         }
         
     }
+    
+    //Mise à jour des classes avec les éléments de la base de données
     
     public void majbat() throws SQLException {
         

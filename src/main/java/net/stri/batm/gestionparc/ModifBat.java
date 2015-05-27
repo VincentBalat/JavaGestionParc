@@ -150,8 +150,6 @@ public class ModifBat extends javax.swing.JFrame {
             try {
                 mainInt.getController().modifyBatiment(idbat,nombat.getText(),number);
             } catch (SQLException ex) {
-                ErreurBD err = new ErreurBD();
-                err.setVisible(true);
             }
             mainInt.UpdateJList();
             this.setVisible(false);

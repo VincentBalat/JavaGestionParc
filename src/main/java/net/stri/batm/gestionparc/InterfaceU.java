@@ -557,14 +557,14 @@ public final class InterfaceU extends javax.swing.JFrame {
             String marque = (String)eq.getValueAt(ligne, 3);
             String modele = (String)eq.getValueAt(ligne, 4);
             
-            if(type == "Ordinateur"){
-                ModifOrdi j = new ModifOrdi(this);
-                j.nom.setText(nom);
-                j.numserie.setText(sn);
-                j.type.setText(type);
-                j.marque.setText(marque);
-                j.modele.setText(modele);
-                j.setVisible(true);
+            if(type.equalsIgnoreCase("Ordinateur")==true){
+                ModifOrdi l = new ModifOrdi(this);
+                l.nom.setText(nom);
+                l.numserie.setText(sn);
+                l.type.setText(type);
+                l.marque.setText(marque);
+                l.modele.setText(modele);
+                l.setVisible(true);
             }
             else{
                 ModifEquip j = new ModifEquip(this);

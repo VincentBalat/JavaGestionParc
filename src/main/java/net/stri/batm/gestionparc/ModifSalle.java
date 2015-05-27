@@ -188,8 +188,7 @@ public class ModifSalle extends javax.swing.JFrame {
             try {
                 mainInt.getController().modifySalle(Id, bati, name, num,stage);
             } catch (SQLException | ClassNotFoundException ex) {
-                ErreurBD err = new ErreurBD();
-                err.setVisible(true);
+                
             }
             mainInt.UpdateJList();
             mainInt.UpdateJListSalle(bati);

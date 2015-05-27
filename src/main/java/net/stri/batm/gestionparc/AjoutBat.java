@@ -127,8 +127,7 @@ public class AjoutBat extends javax.swing.JFrame {
             try {
                 mainInt.getController().addBatiment(nombat.getText(),number);
             } catch (SQLException | ClassNotFoundException ex) {
-                ErreurBD err = new ErreurBD();
-                err.setVisible(true);
+                
             }
             mainInt.UpdateJList();
             

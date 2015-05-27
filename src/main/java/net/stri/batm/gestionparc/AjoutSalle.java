@@ -34,13 +34,18 @@ public final class AjoutSalle extends javax.swing.JFrame {
         try {
             this.mainInt.getController().importBatiments();
         } catch (SQLException | ClassNotFoundException ex) {
-            ErreurBD err = new ErreurBD();
-            err.setVisible(true);
+            
         }
         bat.removeAllElements();
         for(Batiment b : this.mainInt.getController().getBatiments()){
            bat.addElement(b);
         }
+        /*Batiment bb = null;
+        for(Batiment b : this.mainInt.getController().getBatiments()){
+            if(b.toString().equals((String)this.mainInt.getBatiment().getSelectedInde()))
+                bb = b;
+        }*/
+        //bat.setSelectedItem(this.mainInt.getBatiment().getSelectedIndex());
     }
 
     /**
@@ -61,10 +66,10 @@ public final class AjoutSalle extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         etage = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        listBat = new javax.swing.JComboBox();
         batiment = new javax.swing.JLabel();
         lMessage = new javax.swing.JLabel();
         alerte = new javax.swing.JLabel();
+        listBat = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -96,16 +101,15 @@ public final class AjoutSalle extends javax.swing.JFrame {
 
         jLabel1.setText("Etage");
 
-        listBat.setModel(bat);
-        listBat.setSelectedIndex(0);
-        listBat.setSelectedItem("Batiment");
+        batiment.setText("Batiment");
+
+        listBat.setEditable(false);
+        listBat.setBackground(new java.awt.Color(204, 204, 204));
         listBat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listBatActionPerformed(evt);
             }
         });
-
-        batiment.setText("Batiment");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,10 +136,10 @@ public final class AjoutSalle extends javax.swing.JFrame {
                             .addComponent(batiment))
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(listBat, 0, 87, Short.MAX_VALUE)
-                            .addComponent(nom_salle)
+                            .addComponent(nom_salle, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                             .addComponent(numero)
-                            .addComponent(etage))
+                            .addComponent(etage)
+                            .addComponent(listBat))
                         .addGap(129, 129, 129))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -151,10 +155,10 @@ public final class AjoutSalle extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(alerte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(listBat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(batiment, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(batiment)
+                    .addComponent(listBat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nom_salle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,18 +197,16 @@ public final class AjoutSalle extends javax.swing.JFrame {
             try {
                 mainInt.getController().importBatiments();
             } catch (ClassNotFoundException | SQLException ex) {
-                ErreurBD j = new ErreurBD();
-                j.setVisible(true);
+               
             }
             for(Batiment b : mainInt.getController().getBatiments()){
-                if(b.toString().equals(listBat.getSelectedItem().toString()))
+                if(b.toString().equals(listBat.getText()))
                     batiment = b;
             }
             try {
                 mainInt.getController().addSalle(batiment, nom_salle.getText(), number,stage);
             } catch (SQLException | ClassNotFoundException ex) {
-                ErreurBD err = new ErreurBD();
-                err.setVisible(true);
+               
             }
             mainInt.UpdateJListSalle(batiment);
             this.setVisible(false);
@@ -268,7 +270,7 @@ public final class AjoutSalle extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lMessage;
-    private javax.swing.JComboBox listBat;
+    public javax.swing.JTextField listBat;
     private javax.swing.JTextField nom_salle;
     private javax.swing.JTextField numero;
     // End of variables declaration//GEN-END:variables
