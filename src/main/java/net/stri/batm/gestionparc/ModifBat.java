@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Interface Graphique permettant de modifier les attributs des batiments
  * @author Brice
  */
 public class ModifBat extends javax.swing.JFrame {

@@ -38,8 +38,6 @@ public final class AjoutSalle extends javax.swing.JFrame {
             err.setVisible(true);
         }
         bat.removeAllElements();
-        bat.addElement("Batiment");
-        bat.setSelectedItem("Batiment");
         for(Batiment b : this.mainInt.getController().getBatiments()){
            bat.addElement(b);
         }
