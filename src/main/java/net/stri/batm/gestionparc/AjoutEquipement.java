@@ -95,7 +95,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
 
         jLabel6.setText("Type");
 
-        type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Routeur", "Ordinateur", "Switch", "Routeur", "Imprimente", "Scanner", "Serveur", "Telephone", "Tablette", "Borne Wifi", " ", " " }));
+        type.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Routeur", "Ordinateur", "Switch", "Imprimente", "Scanner", "Serveur", "Telephone", "Tablette", "Borne Wifi", " ", " " }));
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
@@ -201,16 +201,11 @@ public class AjoutEquipement extends javax.swing.JFrame {
         lMessage.setText("");
         if(!nom.getText().trim().equals("")){
             mainInt.getSalle().getSelectedValue();
-            Batiment batiment = null;
+            
             Salle salle = null;
             
-            for(Batiment b : mainInt.getController().getBatiments()){
-                if(b.toString().equals(mainInt.getBatiment().getSelectedValue()))
-                    batiment = b;
-            }
-            
-            for(Salle s : batiment.getSalles()){
-                if(s.toString().equals(mainInt.getSalle().getSelectedValue()))
+            for(Salle s : mainInt.getController().listAllSalles()){
+                if(s.toString().equals(sall.getText()))
                     salle = s;
             }
                 

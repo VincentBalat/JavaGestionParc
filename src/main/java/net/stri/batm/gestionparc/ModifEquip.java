@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * Interface Graphique permettant de modifier les attributs des Equipements
  * @author Brice
  */
-public class ModifEquip extends javax.swing.JFrame {
+public final class ModifEquip extends javax.swing.JFrame {
     private DefaultTableModel eq;
     private InterfaceU mainInt;
     private DefaultTableModel interf;
@@ -31,6 +31,13 @@ public class ModifEquip extends javax.swing.JFrame {
         interf.addColumn("@MAC");
         interf.addColumn("@IP");
         interf.addColumn("Vitesse");
+        Equipement equ = null;
+        for(Equipement e : mainInt.getController().listAllEquipements()){
+            if(e.getSN().equals(this.numserie.getText()))
+                equ = e;
+        }
+        
+        this.UpdateJTableIn(equ);
         UpdateJListSalle();
         initComponents();
     }
@@ -164,7 +171,6 @@ public class ModifEquip extends javax.swing.JFrame {
         });
 
         tableint.setModel(interf);
-        tableint.setEnabled(false);
         jScrollPane1.setViewportView(tableint);
 
         supint.setText("Supprimer Interface");
@@ -286,9 +292,7 @@ public class ModifEquip extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(numserie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,8 +312,8 @@ public class ModifEquip extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
-                                    .addComponent(modele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(12, 12, 12)))
+                                    .addComponent(modele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(salle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -462,6 +466,14 @@ public class ModifEquip extends javax.swing.JFrame {
             ErreurBD err = new ErreurBD();
              err.setVisible(true);
         }
+        
+        Equipement equ = null;
+        for(Equipement e : mainInt.getController().listAllEquipements()){
+            if(e.getSN().equals(this.numserie.getText()))
+                equ = e;
+        }
+        
+        this.UpdateJTableIn(equ);
 
     }//GEN-LAST:event_supintActionPerformed
 
