@@ -217,8 +217,7 @@ public class AjoutEquipement extends javax.swing.JFrame {
                 }
             }
                 
-            this.sall.setText(salle.getName());
-            
+            this.sall.setText(salle.getName());            
             mainInt.getController().addEquipement(salle, sn.getText(), nom.getText(), marque.getText(), modele.getText(), actif.isSelected(), (String)type.getSelectedItem());
             mainInt.UpdateJList();
             mainInt.UpdateJTableEq(salle);

@@ -202,7 +202,6 @@ public class ModifOrdi extends javax.swing.JFrame {
         });
 
         tableint.setModel(interf);
-        tableint.setEnabled(false);
         jScrollPane1.setViewportView(tableint);
 
         jLabel5.setText("RAM");
@@ -262,10 +261,7 @@ public class ModifOrdi extends javax.swing.JFrame {
                                 .addComponent(act)
                                 .addGap(88, 88, 88)
                                 .addComponent(lMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(25, 25, 25)
-                                .addComponent(numserie, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel13)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel6)
@@ -276,7 +272,10 @@ public class ModifOrdi extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(126, 126, 126)
                                 .addComponent(jLabel7)))
-                        .addGap(0, 156, Short.MAX_VALUE)))
+                        .addGap(0, 184, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(numserie, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(532, 532, 532)))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -449,7 +448,7 @@ public class ModifOrdi extends javax.swing.JFrame {
 
     private void addIntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIntActionPerformed
         // TODO add your handling code here:
-        AjoutIntOrdi j = new AjoutIntOrdi();
+        AjoutIntOrdi j = new AjoutIntOrdi(this);
         j.setVisible(true);
     }//GEN-LAST:event_addIntActionPerformed
 

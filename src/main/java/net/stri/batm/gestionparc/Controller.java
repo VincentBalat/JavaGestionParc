@@ -178,13 +178,13 @@ public class Controller {
          */
         
         public void addOrdinateur(Salle salle, String SN, String name, 
-                        String marque, String modele, int num, boolean active, 
+                        String marque, String modele, boolean active, 
                         String process, int ram, int dd, String type) {
 		Ordinateur ordinateur = new Ordinateur(salle, name, marque, modele, SN, active, process, ram, dd);
 		salle.addOrdinateur(ordinateur);
                 BD bd = new BD();
                 bd.requete("INSERT INTO ordinateurs VALUES ('"+SN+"','"+name+"',"
-                        + "'"+marque+"','"+modele+"',"+num+","+active+","+process+","
+                        + "'"+marque+"','"+modele+"',"+active+","+process+","
                         + ram+","+dd+",'"+type+"',"+salle.getId()+");");
 	}
         

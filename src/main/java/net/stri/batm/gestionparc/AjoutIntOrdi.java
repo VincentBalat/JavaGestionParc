@@ -17,15 +17,14 @@ public class AjoutIntOrdi extends javax.swing.JFrame {
 
     /**
      * Creates new form AjoutIntOrdi
+     * @param modEq
      */
     public AjoutIntOrdi(ModifOrdi modEq) {
         this.modEq = modEq;
         initComponents();
     }
 
-    AjoutIntOrdi() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +47,7 @@ public class AjoutIntOrdi extends javax.swing.JFrame {
         lMessage = new javax.swing.JLabel();
         mac = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel11.setText("@Mac");
 
@@ -139,6 +138,7 @@ public class AjoutIntOrdi extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ajoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutActionPerformed

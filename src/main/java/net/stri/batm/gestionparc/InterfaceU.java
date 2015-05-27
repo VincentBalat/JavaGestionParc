@@ -564,6 +564,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                 l.type.setText(type);
                 l.marque.setText(marque);
                 l.modele.setText(modele);
+                l.ram.setText("Aucun");
                 l.setVisible(true);
             }
             else{
