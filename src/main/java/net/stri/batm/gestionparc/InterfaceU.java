@@ -557,7 +557,7 @@ public final class InterfaceU extends javax.swing.JFrame {
             String marque = (String)eq.getValueAt(ligne, 3);
             String modele = (String)eq.getValueAt(ligne, 4);
             
-            if(type.equalsIgnoreCase("Ordinateur")==true){
+            if(type.equalsIgnoreCase("Ordinateur")){
                 ModifOrdi l = new ModifOrdi(this);
                 l.nom.setText(nom);
                 l.numserie.setText(sn);
