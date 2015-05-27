@@ -6,6 +6,8 @@
 package net.stri.batm.gestionparc;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -98,6 +100,7 @@ public class ModifEquip extends javax.swing.JFrame {
         numserie = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         type = new javax.swing.JTextField();
+        sup = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(400, 300));
@@ -195,6 +198,13 @@ public class ModifEquip extends javax.swing.JFrame {
             }
         });
 
+        sup.setText("Supprimer");
+        sup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,7 +235,7 @@ public class ModifEquip extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -242,13 +252,16 @@ public class ModifEquip extends javax.swing.JFrame {
                                 .addGap(18, 18, 18))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jLabel5)
-                        .addGap(118, 118, 118)
-                        .addComponent(jCheckBox1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(modifier)
-                        .addGap(12, 12, 12)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(sup)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(modifier)
+                                .addGap(12, 12, 12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(118, 118, 118)
+                                .addComponent(jCheckBox1)))))
                 .addGap(34, 482, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -306,7 +319,9 @@ public class ModifEquip extends javax.swing.JFrame {
                                 .addGap(16, 16, 16)))))
                 .addComponent(lMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(modifier)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modifier)
+                    .addComponent(sup))
                 .addGap(32, 32, 32))
         );
 
@@ -367,6 +382,20 @@ public class ModifEquip extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_typeActionPerformed
 
+    private void supActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supActionPerformed
+        // TODO add your handling code here:
+        String idI = String.valueOf(numserie.getText());
+        lMessage.setText("");
+        try {
+            mainInt.getController().removeEquipement(idI);
+        } catch (SQLException | ClassNotFoundException ex) {
+             ErreurBD err = new ErreurBD();
+             err.setVisible(true);
+        }
+        
+        
+    }//GEN-LAST:event_supActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,6 +454,7 @@ public class ModifEquip extends javax.swing.JFrame {
     public javax.swing.JTextField nom;
     public javax.swing.JTextField numserie;
     public javax.swing.JComboBox salle;
+    private javax.swing.JButton sup;
     private javax.swing.JTable tableint;
     public javax.swing.JTextField type;
     // End of variables declaration//GEN-END:variables
