@@ -354,7 +354,7 @@ public final class InterfaceU extends javax.swing.JFrame {
                 err.setVisible(true);
             }
             for(Equipement e : s.getEquipements()){
-                Object[] obj = {e.getNom(),e.getType(),e.getMarque(),e.getModele(), e.isActif()};
+                Object[] obj = {e.getSN(), e.getNom(),e.getType(),e.getMarque(),e.getModele(), e.isActif()};
                 eq.addRow(obj);
             }
         }
@@ -486,16 +486,8 @@ public final class InterfaceU extends javax.swing.JFrame {
     }//GEN-LAST:event_batimentMouseClicked
 */
     private void salleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salleMouseClicked
-        // TODO add your handling code here:
-        Batiment bb = null;
-        
-        for (Batiment b : controller.getBatiments()){
-                if (b.toString().equals((String) batiment.getSelectedValue())){
-                    bb = b;
-                }
-        }
-        
-        for (Salle s : bb.getSalles()){
+        // TODO add your handling code here:      
+        for (Salle s : controller.listAllSalles()){
                 if (s.toString().equals((String) salle.getSelectedValue())){
                     this.UpdateJTableEq(s);
                 }
@@ -503,13 +495,13 @@ public final class InterfaceU extends javax.swing.JFrame {
         
         if (evt.getClickCount() == 2) {
             
-        String idselect = null; 
-        String numselect = null;
-        String nomselect = null;
-        String batselect = null;
-        String etaselect = null;
-        Batiment Bati = null;
-        Salle sa = null;
+            String idselect = null; 
+            String numselect = null;
+            String nomselect = null;
+            String batselect = null;
+            String etaselect = null;
+            Batiment Bati = null;
+            Salle sa = null;
             for(Batiment b : this.getController().getBatiments()){
                 if(b.toString().equals(this.getBatiment().getSelectedValue()))
                     Bati = b;

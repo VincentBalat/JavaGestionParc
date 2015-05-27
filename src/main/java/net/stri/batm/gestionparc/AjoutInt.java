@@ -155,7 +155,7 @@ public class AjoutInt extends javax.swing.JFrame {
             }
             modEq.getMainInt().getController().addInterface((Equipement)equi, mac.getText(),
                     ip.getText(), nom.getText(), vitesse);
-            modEq.UpdateJTableEq(equi);
+            modEq.UpdateJTableIn(equi);
             
             this.setVisible(false);
         }

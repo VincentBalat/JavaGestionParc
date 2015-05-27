@@ -53,7 +53,7 @@ public class ModifEquip extends javax.swing.JFrame {
             sal.addElement(s);
     }
 
-    public void UpdateJTableEq(Equipement selectEq){
+    public void UpdateJTableIn(Equipement selectEq){
         for (int i = interf.getRowCount() - 1; i > -1; i--) {
             interf.removeRow(i);
         }
@@ -384,7 +384,7 @@ public class ModifEquip extends javax.swing.JFrame {
 
     private void supActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supActionPerformed
         // TODO add your handling code here:
-        String idI = String.valueOf(numserie.getText());
+        String idI = numserie.getText();
         lMessage.setText("");
         try {
             mainInt.getController().removeEquipement(idI);
@@ -393,6 +393,8 @@ public class ModifEquip extends javax.swing.JFrame {
              err.setVisible(true);
         }
         
+        mainInt.UpdateJTableEq(null);
+        this.setVisible(false);
         
     }//GEN-LAST:event_supActionPerformed
 
