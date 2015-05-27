@@ -8,7 +8,7 @@ package net.stri.batm.gestionparc;
 import java.sql.SQLException;
 
 /**
- *
+ * Interface permettant d'ajouter une interface.
  * @author Gaspar
  */
 public class AjoutInt extends javax.swing.JFrame {

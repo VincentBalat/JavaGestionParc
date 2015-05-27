@@ -16,6 +16,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * La salle est contenue dans un batiment, et possède les équipements quelle contient.
+ * @author Vince
+ */
 public class Salle {
 
 	private Batiment batiment;
@@ -27,7 +31,7 @@ public class Salle {
         private ArrayList<Ordinateur> ordinateurs;
 
     /**
-     * Une classe est définie par le batiment auquel elle appartient, son id, son nom, son numéro et son étage.
+     * Une salle est définie par le batiment auquel elle appartient, son id, son nom, son numéro et son étage.
      * @param batiment
      * @param id
      * @param name

@@ -105,8 +105,7 @@ public class Controller {
 	}
         
         /**
-         * La méthode ajoute un batiment et l'insert dans la base de donnée
-         * @param id
+         * La méthode ajoute un batiment et l'insere dans la base de donnée
          * @param name
          * @param num 
      * @throws java.sql.SQLException 
@@ -513,8 +512,11 @@ public class Controller {
 		}
 	} 
         
-
-	public ArrayList<Salle> listAllSalles() {
+    /**
+     * Permet d'afficher toutes les salles dans une ArrayList qui est retournée.
+     * @return salles
+     */
+    public ArrayList<Salle> listAllSalles() {
 		ArrayList<Salle> salles = new ArrayList<>();
 		for (Batiment batiment : batiments) {
 			for (Salle salle : batiment.getSalles()) {
@@ -524,7 +526,11 @@ public class Controller {
 		return salles;
 	}
         
-        public ArrayList<Equipement> listAllEquipements() {
+    /**
+     * Permet d'afficher tous les équipements dans une ArrayList qui est retournée.
+     * @return equipements
+     */
+    public ArrayList<Equipement> listAllEquipements() {
 		ArrayList<Equipement> equipements = new ArrayList<>();
                 ArrayList<Salle> salles = listAllSalles();
 		for (Salle s : salles) {

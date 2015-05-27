@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- *
+ * Interface permettant d'ajouter une salle.
  * @author Brice
  */
 public final class AjoutSalle extends javax.swing.JFrame {
@@ -28,7 +28,7 @@ public final class AjoutSalle extends javax.swing.JFrame {
     }
     
     /**
-     *
+     * Permet de mettre à jour la JList des batiments 
      */
     public void UpdateJListBatiment(){
         try {

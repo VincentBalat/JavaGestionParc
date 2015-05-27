@@ -36,10 +36,17 @@ public final class ModifEquip extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     * Retourne la fenetre d'interface utilisateur principale.
+     * @return mainInt
+     */
     public InterfaceU getMainInt() {
         return mainInt;
     }
     
+    /**
+     * Actualise la liste des salles
+     */
     public void UpdateJListSalle(){
         
         sal.removeAllElements();
@@ -50,6 +57,10 @@ public final class ModifEquip extends javax.swing.JFrame {
             sal.addElement(s);
     }
 
+    /**
+     * Actualise le tableau des interfaces
+     * @param selectEq
+     */
     public void UpdateJTableIn(Equipement selectEq){
         for (int i = interf.getRowCount() - 1; i > -1; i--) {
             interf.removeRow(i);
